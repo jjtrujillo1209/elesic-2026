@@ -8,6 +8,6 @@
    ============================================================ */
 
 window.ELESIC_CONFIG = {
-  url: 'TU_SUPABASE_URL_AQUI',    // ej: https://xxxxxxxxxxxx.supabase.co
-  key: 'TU_SUPABASE_ANON_KEY_AQUI' // ej: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+  url: 'https://bkwipauheiqeukbwuvyl.supabase.co',
+  key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJrd2lwYXVoZWlxZXVrYnd1dnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3OTgwMzcsImV4cCI6MjA5NTM3NDAzN30.sdv01mYzuUZT7MmEo1A3QaPjFe0HGEb5jFhyRQUHWzs'
 };
