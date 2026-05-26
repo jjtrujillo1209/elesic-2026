@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELESIC 2026 · Escenario 3 — Crisis Energética | Junta Directiva · ESAENG–UMNG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul-institucional:#0a2a5e;
+  --azul-profundo:#071e44;
+  --azul-medio:#13407e;
+  --azul-acero:#2e63a8;
+  --azul-claro:#5b8fce;
+  --azul-cielo:#aed0f0;
+  --azul-niebla:#e8f1fb;
+  --dorado:#c8a13a;
+  --dorado-claro:#e3c46f;
+  --vino:#7d1f2d;
+  --vino-claro:#a83a48;
+  --blanco:#ffffff;
+  --gris-perla:#f4f7fb;
+  --gris-borde:#d4e0ee;
+  --texto:#15233a;
+  --texto-suave:#41597a;
+  --nivel-excelente:#1f7a4d;
+  --nivel-alto:#2e63a8;
+  --nivel-medio:#c98a17;
+  --nivel-bajo:#b3303f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',system-ui,sans-serif;
+  color:var(--texto);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(46,99,168,.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(200,161,58,.08), transparent 55%),
+    linear-gradient(180deg,#eef4fc 0%, #e3edf9 100%);
+  background-attachment:fixed;
+  line-height:1.55;
+  min-height:100vh;
+}
+h1,h2,h3,h4{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.4px;line-height:1.15}
+.mono{font-family:'IBM Plex Mono',monospace}
+.cond{font-family:'Barlow Condensed',sans-serif}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:linear-gradient(100deg,var(--azul-profundo) 0%, var(--azul-institucional) 45%, var(--azul-medio) 100%);
+  border-bottom:3px solid var(--dorado);
+  box-shadow:0 4px 22px rgba(7,30,68,.35);
+}
+.topbar-inner{max-width:1480px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:10px 22px}
+.escudo{height:62px;width:auto;filter:drop-shadow(0 2px 5px rgba(0,0,0,.4));flex:0 0 auto}
+.brand{display:flex;flex-direction:column;line-height:1.05;color:#fff;flex:1 1 auto;min-width:0}
+.brand .l1{font-family:'Oswald';font-size:13px;letter-spacing:3px;color:var(--dorado-claro);font-weight:500}
+.brand .l2{font-family:'Oswald';font-size:21px;font-weight:700;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand .l3{font-family:'Barlow Condensed';font-size:14px;letter-spacing:1.5px;color:#bcd4f0;text-transform:uppercase}
+.topbar-actions{display:flex;gap:10px;flex:0 0 auto;flex-wrap:wrap;justify-content:flex-end}
+.btn{
+  font-family:'Oswald';font-weight:500;letter-spacing:.6px;font-size:13px;
+  border:none;border-radius:8px;padding:10px 16px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;transition:.18s;text-transform:uppercase;
+}
+.btn:active{transform:translateY(1px)}
+.btn-news{background:var(--vino);color:#fff;box-shadow:0 3px 12px rgba(125,31,45,.4)}
+.btn-news:hover{background:var(--vino-claro)}
+.btn-sim{background:var(--dorado);color:#3a2c06;box-shadow:0 3px 12px rgba(200,161,58,.4)}
+.btn-sim:hover{background:var(--dorado-claro)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.22)}
+
+/* ===== HERO STRIP ===== */
+.hero{
+  max-width:1480px;margin:0 auto;padding:16px 22px 6px;
+}
+.hero-card{
+  background:linear-gradient(120deg,var(--azul-institucional),var(--azul-medio));
+  color:#fff;border-radius:16px;padding:18px 26px;position:relative;overflow:hidden;
+  box-shadow:0 10px 30px rgba(10,42,94,.25);border:1px solid rgba(255,255,255,.08);
+}
+.hero-card::after{
+  content:"";position:absolute;right:-40px;top:-60px;width:280px;height:280px;
+  background:radial-gradient(circle,rgba(200,161,58,.22),transparent 70%);pointer-events:none;
+}
+.hero-tag{display:inline-block;background:var(--vino);color:#fff;font-family:'Barlow Condensed';
+  letter-spacing:2px;font-size:13px;padding:3px 12px;border-radius:20px;text-transform:uppercase;margin-bottom:8px}
+.hero-card h1{font-size:30px;font-weight:700;line-height:1.08}
+.hero-card .sub{font-family:'Barlow Condensed';font-size:16px;letter-spacing:1px;color:var(--dorado-claro);text-transform:uppercase;margin-top:4px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;font-size:13.5px}
+.hero-meta span{display:inline-flex;align-items:center;gap:6px;color:#cfe0f6}
+.hero-meta b{color:#fff;font-weight:600}
+
+/* ===== MAIN GRID ===== */
+.layout{max-width:1480px;margin:0 auto;padding:14px 22px 60px;display:grid;
+  grid-template-columns:300px 1fr 300px;gap:18px;align-items:start}
+@media(max-width:1200px){.layout{grid-template-columns:1fr;}.side{order:3}}
+
+.side{position:sticky;top:96px;display:flex;flex-direction:column;gap:16px}
+@media(max-width:1200px){.side{position:static}}
+.panel{background:#fff;border-radius:14px;border:1px solid var(--gris-borde);
+  box-shadow:0 6px 18px rgba(19,64,126,.08);overflow:hidden}
+.panel-head{font-family:'Oswald';font-weight:600;font-size:14px;letter-spacing:1.2px;
+  text-transform:uppercase;padding:11px 16px;color:#fff;display:flex;align-items:center;gap:8px}
+.panel-head.gen{background:linear-gradient(90deg,var(--azul-institucional),var(--azul-acero))}
+.panel-head.part{background:linear-gradient(90deg,var(--vino),var(--vino-claro))}
+.panel-body{padding:14px 16px;font-size:14px;color:var(--texto-suave)}
+.panel-body p{margin-bottom:10px}
+.panel-body p:last-child{margin-bottom:0}
+.panel-body strong{color:var(--azul-institucional)}
+
+/* indicators */
+.ind{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;
+  padding:8px 0;border-bottom:1px dashed var(--gris-borde);font-size:13px}
+.ind:last-child{border-bottom:none}
+.ind .lbl{color:var(--texto-suave);flex:1}
+.ind .val{font-family:'IBM Plex Mono';font-weight:600;color:var(--azul-institucional);text-align:right;white-space:nowrap}
+.trend{font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:5px;font-family:'Barlow Condensed'}
+.t-crit{background:#fbe3e6;color:var(--rojo,#b3303f)}
+.t-up{background:#fdeecf;color:#9a6a0d}
+.t-flat{background:#e3ecf8;color:var(--azul-medio)}
+.t-down{background:#ece3f8;color:#6a3aa8}
+
+/* ===== CENTER: timer + event ===== */
+.center{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+.clockwrap{background:linear-gradient(135deg,var(--azul-profundo),var(--azul-institucional));
+  border-radius:16px;padding:20px 22px;color:#fff;box-shadow:0 10px 28px rgba(7,30,68,.3);
+  border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden}
+.clockwrap::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 2px,transparent 2px 22px);pointer-events:none}
+.phase-track{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;position:relative;z-index:2}
+.phase-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:10px;
+  padding:8px 10px;text-align:center;transition:.3s}
+.phase-pill .pn{font-family:'Barlow Condensed';font-size:12px;letter-spacing:1px;color:#a9c6ea;text-transform:uppercase}
+.phase-pill .pt{font-family:'Oswald';font-size:15px;font-weight:600}
+.phase-pill.active{background:linear-gradient(135deg,var(--dorado),#b08a26);border-color:var(--dorado-claro);color:#2a1f04;box-shadow:0 0 18px rgba(200,161,58,.5)}
+.phase-pill.active .pn{color:#5b440a}
+.phase-pill.done{background:rgba(31,122,77,.25);border-color:rgba(31,122,77,.5)}
+.clock-main{display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:2;flex-wrap:wrap}
+.time-big{font-family:'IBM Plex Mono';font-weight:600;font-size:62px;line-height:1;letter-spacing:1px;
+  text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.time-big.warn{color:#ffcf6b;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.55}}
+.phase-now{flex:1;min-width:160px}
+.phase-now .ttl{font-family:'Oswald';font-size:19px;font-weight:600;color:var(--dorado-claro)}
+.phase-now .dsc{font-size:13px;color:#bcd4f0;margin-top:2px}
+.clock-bar{height:9px;background:rgba(255,255,255,.12);border-radius:6px;margin-top:14px;overflow:hidden;position:relative;z-index:2}
+.clock-bar .fill{height:100%;background:linear-gradient(90deg,var(--dorado),var(--dorado-claro));width:0;transition:width .9s linear}
+.clock-controls{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap;position:relative;z-index:2}
+.cbtn{font-family:'Oswald';font-size:13px;letter-spacing:.5px;text-transform:uppercase;border:none;border-radius:9px;
+  padding:10px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.16s;font-weight:500}
+.cbtn:active{transform:translateY(1px)}
+.cbtn.play{background:var(--verde-ok,#1f7a4d);color:#fff}
+.cbtn.play:hover{background:#26925d}
+.cbtn.pause{background:#e9eef6;color:var(--azul-institucional)}
+.cbtn.fwd,.cbtn.rev{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.cbtn.fwd:hover,.cbtn.rev:hover{background:rgba(255,255,255,.26)}
+.cbtn.reset{background:var(--vino);color:#fff}
+.cbtn:disabled{opacity:.4;cursor:not-allowed}
+
+/* event tabs */
+.event-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.etab{font-family:'Oswald';font-size:13px;letter-spacing:.5px;padding:8px 13px;border-radius:9px 9px 0 0;
+  border:1px solid var(--gris-borde);border-bottom:none;background:#dde7f4;color:var(--azul-medio);cursor:pointer;transition:.15s;font-weight:500}
+.etab:hover{background:#eaf1fa}
+.etab.active{background:#fff;color:var(--azul-institucional);box-shadow:0 -3px 0 var(--dorado) inset;font-weight:700}
+.etab .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#b9c8dc;margin-left:6px;vertical-align:middle}
+.etab.scored .dot{background:var(--verde-ok,#1f7a4d)}
+
+.eventcard{background:#fff;border-radius:0 14px 14px 14px;border:1px solid var(--gris-borde);
+  box-shadow:0 8px 24px rgba(19,64,126,.10);overflow:hidden}
+.event-banner{background:linear-gradient(110deg,var(--azul-institucional),var(--azul-medio));color:#fff;padding:16px 22px;position:relative;overflow:hidden}
+.event-banner::after{content:"";position:absolute;right:0;top:0;bottom:0;width:46%;
+  background:linear-gradient(90deg,transparent,rgba(200,161,58,.12));pointer-events:none}
+.event-banner .ecode{font-family:'IBM Plex Mono';font-size:13px;letter-spacing:2px;color:var(--dorado-claro);font-weight:600}
+.event-banner h2{font-size:23px;font-weight:700;margin:2px 0 4px}
+.event-banner .emod{font-family:'Barlow Condensed';font-size:14px;letter-spacing:.8px;color:#bcd4f0;text-transform:uppercase}
+.event-banner .edate{font-family:'IBM Plex Mono';font-size:12px;color:#9fc0e8;margin-top:6px}
+.event-body{padding:20px 22px}
+.req-box{background:linear-gradient(100deg,#fff6e0,#fde7c8);border-left:5px solid var(--dorado);
+  border-radius:10px;padding:13px 16px;margin-bottom:18px}
+.req-box .rq-h{font-family:'Oswald';font-size:13px;letter-spacing:1px;color:#8a6a12;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:6px}
+.req-box p{font-size:15px;color:var(--texto);margin-top:4px;font-weight:500}
+
+.sel-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.sel-head h3{font-size:18px;color:var(--azul-institucional)}
+.counter{font-family:'IBM Plex Mono';font-weight:600;font-size:14px;padding:6px 12px;border-radius:8px;background:var(--azul-niebla);color:var(--azul-institucional);border:1px solid var(--gris-borde)}
+.counter.full{background:#e0f3e9;color:var(--verde-ok,#1f7a4d);border-color:#a9dcc1}
+.lock-note{font-family:'Barlow Condensed';font-size:13px;letter-spacing:.5px;color:var(--vino);text-transform:uppercase}
+
+.opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(max-width:720px){.opts-grid{grid-template-columns:1fr}}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--gris-borde);
+  border-radius:10px;background:#fafcff;cursor:pointer;transition:.14s;font-size:13.5px;position:relative}
+.opt:hover{border-color:var(--azul-claro);background:#f1f7ff}
+.opt.selected{background:linear-gradient(100deg,#e7f0fd,#dcebfb);border-color:var(--azul-acero);box-shadow:0 0 0 2px rgba(46,99,168,.18)}
+.opt.disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.3)}
+.opt .num{font-family:'IBM Plex Mono';font-weight:600;font-size:12px;background:var(--azul-institucional);color:#fff;
+  border-radius:6px;min-width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin-top:1px}
+.opt.selected .num{background:var(--dorado);color:#3a2c06}
+.opt .tx{flex:1;line-height:1.35}
+.opt .chk{position:absolute;top:8px;right:9px;width:18px;height:18px;border-radius:5px;border:2px solid var(--gris-borde);background:#fff;flex:0 0 auto}
+.opt.selected .chk{background:var(--azul-acero);border-color:var(--azul-acero)}
+.opt.selected .chk::after{content:"✓";color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;height:100%;font-weight:700}
+
+.justify-box{margin-top:18px}
+.justify-box label{font-family:'Oswald';font-size:14px;letter-spacing:.8px;color:var(--azul-institucional);text-transform:uppercase;display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.justify-box textarea{width:100%;min-height:120px;border:1px solid var(--gris-borde);border-radius:10px;
+  padding:12px 14px;font-family:'Barlow';font-size:14.5px;color:var(--texto);resize:vertical;background:#fafcff;transition:.15s}
+.justify-box textarea:focus{outline:none;border-color:var(--azul-acero);background:#fff;box-shadow:0 0 0 3px rgba(46,99,168,.12)}
+.justify-box textarea:disabled{background:#eef2f7;color:#8497ad}
+.justify-meta{font-family:'IBM Plex Mono';font-size:11px;color:var(--texto-suave);margin-top:5px;display:flex;justify-content:space-between}
+
+.result-trigger{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.btn-result{background:linear-gradient(120deg,var(--verde-ok,#1f7a4d),#2a9863);color:#fff;font-family:'Oswald';
+  font-size:15px;letter-spacing:.6px;text-transform:uppercase;border:none;border-radius:10px;padding:13px 22px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;box-shadow:0 5px 16px rgba(31,122,77,.32);transition:.16s;font-weight:500}
+.btn-result:hover{filter:brightness(1.08)}
+.btn-result:disabled{background:#c3ccd8;color:#fff;box-shadow:none;cursor:not-allowed}
+.btn-result.integral{background:linear-gradient(120deg,var(--vino),var(--vino-claro));box-shadow:0 5px 16px rgba(125,31,45,.32)}
+
+/* result area inside event */
+.result-area{margin-top:18px;border-top:2px dashed var(--gris-borde);padding-top:18px;display:none}
+.result-area.show{display:block;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.level-badge{display:inline-flex;flex-direction:column;align-items:center;border-radius:14px;padding:14px 26px;color:#fff;min-width:150px}
+.level-badge .lv{font-family:'Oswald';font-size:30px;font-weight:700;letter-spacing:1px}
+.level-badge .pts{font-family:'IBM Plex Mono';font-size:14px;margin-top:2px}
+.lvl-EXCELENTE{background:linear-gradient(135deg,var(--nivel-excelente),#2aa467)}
+.lvl-ALTO{background:linear-gradient(135deg,var(--nivel-alto),#3d7cc8)}
+.lvl-MEDIO{background:linear-gradient(135deg,var(--nivel-medio),#e0a536)}
+.lvl-BAJO{background:linear-gradient(135deg,var(--nivel-bajo),#cf4b59)}
+.res-top{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.res-break{flex:1;min-width:240px}
+.res-break .rrow{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0;border-bottom:1px dashed var(--gris-borde)}
+.res-break .rrow b{font-family:'IBM Plex Mono'}
+.tag{display:inline-block;font-family:'Barlow Condensed';font-size:12px;letter-spacing:.5px;padding:2px 8px;border-radius:6px;font-weight:600}
+.tag-opt{background:#e0f3e9;color:#176b41}
+.tag-rec{background:#e3ecf8;color:#1d4f8f}
+.tag-acc{background:#fdeecf;color:#8a6a12}
+.tag-pen{background:#fbe3e6;color:#9a2733}
+.tag-bonus{background:linear-gradient(90deg,var(--dorado),var(--dorado-claro));color:#3a2c06}
+.res-detail{margin-top:14px;font-size:13.5px;color:var(--texto-suave)}
+.res-detail h4{font-family:'Oswald';font-size:14px;color:var(--azul-institucional);text-transform:uppercase;letter-spacing:.8px;margin:12px 0 6px}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+.chip{font-family:'IBM Plex Mono';font-size:11.5px;padding:3px 8px;border-radius:6px;border:1px solid var(--gris-borde);background:#fff}
+.combo-box{background:var(--azul-niebla);border-radius:10px;padding:12px 14px;margin-top:8px;font-size:13.5px;border-left:4px solid var(--azul-acero)}
+.bloom-kohl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+@media(max-width:640px){.bloom-kohl{grid-template-columns:1fr}}
+.bk-card{border:1px solid var(--gris-borde);border-radius:10px;padding:12px 14px;background:#fafcff}
+.bk-card h5{font-family:'Oswald';font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:var(--azul-institucional);margin-bottom:6px}
+.bk-card .bk-lvl{font-family:'Oswald';font-size:18px;font-weight:600;color:var(--vino)}
+.bk-card .bk-bar{height:7px;background:#e3ecf8;border-radius:4px;margin-top:8px;overflow:hidden}
+.bk-card .bk-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--azul-acero),var(--azul-claro))}
+
+/* ===== MODALS ===== */
+.modal-bg{position:fixed;inset:0;background:rgba(7,20,44,.72);backdrop-filter:blur(4px);z-index:200;
+  display:none;align-items:flex-start;justify-content:center;padding:32px 16px;overflow-y:auto}
+.modal-bg.show{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:980px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.4);
+  overflow:hidden;animation:pop .3s}
+@keyframes pop{from{transform:scale(.96);opacity:0}}
+.modal-head{background:linear-gradient(100deg,var(--azul-institucional),var(--azul-medio));color:#fff;
+  padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.modal-head h3{font-size:20px;display:flex;align-items:center;gap:9px}
+.modal-close{background:rgba(255,255,255,.16);border:none;color:#fff;width:34px;height:34px;border-radius:8px;
+  font-size:20px;cursor:pointer;line-height:1}
+.modal-close:hover{background:rgba(255,255,255,.3)}
+.modal-body{padding:22px 26px;max-height:72vh;overflow-y:auto}
+
+/* news grid */
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.news-grid{grid-template-columns:1fr}}
+.news-item{border:1px solid var(--gris-borde);border-radius:12px;overflow:hidden;background:#fafcff}
+.news-item .nh{padding:12px 14px;border-left:4px solid var(--vino)}
+.news-item .src{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1px;color:var(--vino);font-weight:600;text-transform:uppercase}
+.news-item h4{font-size:16px;color:var(--azul-institucional);margin:4px 0}
+.news-item p{font-size:13px;color:var(--texto-suave)}
+.media-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.media-thumb{flex:1;min-width:150px;background:linear-gradient(135deg,var(--azul-institucional),var(--azul-acero));
+  color:#fff;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:5px}
+.media-thumb .ic{font-size:26px}
+.media-thumb .mt{font-family:'Oswald';font-size:14px}
+.media-thumb .md{font-size:12px;color:#cfe0f6}
+
+/* final report */
+.final-rank{width:100%;border-collapse:collapse;margin-top:8px;font-size:13.5px}
+.final-rank th{background:var(--azul-institucional);color:#fff;font-family:'Oswald';font-weight:500;letter-spacing:.5px;
+  padding:9px 10px;text-align:left;font-size:12.5px;text-transform:uppercase}
+.final-rank td{padding:8px 10px;border-bottom:1px solid var(--gris-borde)}
+.final-rank tr:nth-child(even) td{background:#f6f9fd}
+.gestor-section{margin-top:8px}
+.gestor-section .gs-h{font-family:'Oswald';font-size:15px;color:var(--azul-institucional);text-transform:uppercase;
+  letter-spacing:.6px;border-bottom:2px solid var(--dorado);padding-bottom:5px;margin:16px 0 10px}
+.adj-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px dashed var(--gris-borde);flex-wrap:wrap}
+.adj-row label{font-size:13.5px;flex:1;min-width:160px;color:var(--texto-suave)}
+.adj-row input[type=range]{flex:1;min-width:140px}
+.adj-val{font-family:'IBM Plex Mono';font-weight:600;color:var(--azul-institucional);min-width:54px;text-align:right}
+
+/* sim banner */
+.sim-banner{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:150;
+  background:linear-gradient(100deg,var(--azul-institucional),var(--azul-medio));color:#fff;border-radius:12px;
+  padding:14px 22px;box-shadow:0 12px 34px rgba(7,30,68,.45);display:none;align-items:center;gap:14px;border:1px solid var(--dorado);max-width:92vw}
+.sim-banner.show{display:flex;animation:fade .3s}
+.sim-banner .sdot{width:12px;height:12px;border-radius:50%;background:var(--dorado);animation:pulse .8s infinite}
+.sim-banner .stxt{font-family:'Barlow Condensed';font-size:15px;letter-spacing:.5px}
+.sim-banner .stxt b{font-family:'Oswald'}
+
+/* ===== TICKER PÚBLICO ===== */
+.ticker{max-width:1480px;margin:10px auto 0;padding:0 22px}
+.ticker-inner{display:flex;align-items:stretch;background:linear-gradient(100deg,var(--azul-profundo),var(--azul-institucional));
+  border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 18px rgba(7,30,68,.22)}
+.ticker-tag{flex:0 0 auto;display:flex;align-items:center;gap:8px;background:var(--vino);color:#fff;
+  font-family:'Oswald';font-weight:600;letter-spacing:1.2px;font-size:13px;text-transform:uppercase;padding:0 16px}
+.ticker-tag .live{width:9px;height:9px;border-radius:50%;background:var(--dorado);animation:pulse .9s infinite}
+.ticker-view{flex:1;overflow:hidden;position:relative}
+.ticker-view::before,.ticker-view::after{content:"";position:absolute;top:0;bottom:0;width:38px;z-index:2;pointer-events:none}
+.ticker-view::before{left:0;background:linear-gradient(90deg,var(--azul-profundo),transparent)}
+.ticker-view::after{right:0;background:linear-gradient(270deg,var(--azul-institucional),transparent)}
+.ticker-row{display:inline-flex;align-items:center;white-space:nowrap;padding:11px 0;will-change:transform;animation:tickerScroll 46s linear infinite}
+.ticker-inner:hover .ticker-row{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;color:#dceafa;font-size:14px;font-family:'Barlow';padding:0 26px;border-right:1px solid rgba(255,255,255,.12)}
+.ticker-item .ti-k{font-family:'Barlow Condensed';letter-spacing:.6px;color:var(--dorado-claro);text-transform:uppercase;font-size:12.5px}
+.ticker-item .ti-v{font-family:'IBM Plex Mono';font-weight:600;color:#fff}
+.ticker-item .ti-tr{font-family:'Barlow Condensed';font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px}
+.ti-crit{background:#fbe3e6;color:#9a2733}.ti-up{background:#fdeecf;color:#9a6a0d}.ti-flat{background:#e3ecf8;color:#1d4f8f}.ti-down{background:#ece3f8;color:#6a3aa8}
+@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+footer{background:var(--azul-profundo);color:#bcd4f0;text-align:center;padding:18px;font-family:'Barlow Condensed';
+  letter-spacing:1px;font-size:13px;border-top:3px solid var(--dorado)}
+footer b{color:var(--dorado-claro)}
+
+.toast{position:fixed;top:80px;right:20px;z-index:300;background:var(--azul-institucional);color:#fff;
+  padding:12px 18px;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.3);font-size:14px;display:none;border-left:4px solid var(--dorado)}
+.toast.show{display:block;animation:fade .3s}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:12px}
+.legend .lg{display:inline-flex;align-items:center;gap:5px;color:var(--texto-suave)}
+.legend .sw{width:12px;height:12px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="escudo" src="data:image/jpeg;base64,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" alt="Escudo Universidad Militar Nueva Granada">
+    <div class="brand">
+      <span class="l1">ESAENG · ELESIC 2026 · PALEM</span>
+      <span class="l2">JUNTA DIRECTIVA — ESCENARIO 3</span>
+      <span class="l3">Escuela de Altos Estudios Estratégicos · Universidad Militar Nueva Granada</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-sim" onclick="runAutoSim()">▶ Simulación 1 min</button>
+      <button class="btn btn-news" onclick="openModal('newsModal')">📡 Noticias e Información Multimedia</button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-card">
+    <span class="hero-tag">Criterio rector: LEM — Metodología: Junta Directiva Privada / Velocidad de Escape</span>
+    <h1>Crisis Energética: Tensión Ambiental y Productiva en la Región Caribe</h1>
+    <div class="sub">ODS · Derechos de Comunidades · Transición Energética Justa · Velocidad de Escape del Subdesarrollo</div>
+    <div class="hero-meta">
+      <span>🎯 <b>Tipo:</b> Crisis energética — dimensión ambiental, social y de gobernanza corporativa</span>
+      <span>⚖️ <b>Detonante:</b> Suspensión judicial por derechos territoriales Wayuu y Zenú</span>
+      <span>🧩 <b>6 Eventos</b> · 5 días simulados / 2 días de ejercicio</span>
+      <span>⏱ <b>Fase por evento:</b> 5′ reflexión · 10′ selección · 10′ justificación</span>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER PÚBLICO (datos relevantes en movimiento) -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-tag"><span class="live"></span>En Vivo</div>
+    <div class="ticker-view"><div class="ticker-row" id="tickerRow"></div></div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+  <!-- LEFT: SITUACIÓN GENERAL -->
+  <aside class="side">
+    <div class="panel">
+      <div class="panel-head gen">🌍 Situación General</div>
+      <div class="panel-body">
+        <p>Una empresa energética regional opera en el Caribe colombiano desde hace 32 años. Inició como carbonera y ha diversificado hacia solar y eólica, pero el <strong>71%</strong> de sus ingresos aún proviene del carbón térmico. La presión regulatoria, los compromisos de París (reducción del <strong>51%</strong> de emisiones al 2030) y la exigencia ESG de sus inversores la sitúan ante una disyuntiva existencial.</p>
+        <p>El concepto de <strong>velocidad de escape del subdesarrollo</strong> es literal: la empresa debe invertir un umbral crítico en transformación en los próximos <strong>18–24 meses</strong> para superar el punto de no retorno y acceder a una trayectoria sostenida. El equipo opera como <strong>Junta Directiva</strong> en ese preciso momento de bifurcación.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-head gen">📊 Indicadores Estratégicos</div>
+      <div class="panel-body" id="indicadores"></div>
+    </div>
+  </aside>
+
+  <!-- CENTER -->
+  <main class="center">
+
+    <!-- CLOCK -->
+    <div class="clockwrap">
+      <div class="phase-track" id="phaseTrack">
+        <div class="phase-pill" data-ph="0"><div class="pn">Fase 1</div><div class="pt">Reflexión · 5′</div></div>
+        <div class="phase-pill" data-ph="1"><div class="pn">Fase 2</div><div class="pt">Selección · 10′</div></div>
+        <div class="phase-pill" data-ph="2"><div class="pn">Fase 3</div><div class="pt">Justificación · 10′</div></div>
+      </div>
+      <div class="clock-main">
+        <div class="time-big" id="timeBig">25:00</div>
+        <div class="phase-now">
+          <div class="ttl" id="phaseTtl">Fase de Reflexión Individual</div>
+          <div class="dsc" id="phaseDsc">Lea el evento y reflexione. La selección de opciones se habilita en la Fase 2.</div>
+        </div>
+      </div>
+      <div class="clock-bar"><div class="fill" id="clockFill"></div></div>
+      <div class="clock-controls">
+        <button class="cbtn play" id="btnPlay" onclick="toggleClock()">▶ Iniciar</button>
+        <button class="cbtn rev" onclick="seek(-30)">⏪ Reversar 30″</button>
+        <button class="cbtn fwd" onclick="seek(30)">⏩ Adelantar 30″</button>
+        <button class="cbtn fwd" onclick="skipPhase()">⏭ Saltar fase</button>
+        <button class="cbtn reset" onclick="resetClock()">↺ Reiniciar</button>
+      </div>
+    </div>
+
+    <!-- EVENT TABS -->
+    <div>
+      <div class="event-tabs" id="eventTabs"></div>
+      <div class="eventcard" id="eventCard"></div>
+    </div>
+
+    <!-- FINAL RESULTS BLOCK -->
+    <div class="panel" id="finalBlock" style="display:none">
+      <div class="panel-head gen">🏁 Resultados Finales — Consolidado de los 6 Eventos</div>
+      <div class="panel-body" id="finalBody"></div>
+    </div>
+
+  </main>
+
+  <!-- RIGHT: SITUACIÓN PARTICULAR + ALGORITMO -->
+  <aside class="side">
+    <div class="panel">
+      <div class="panel-head part">🎯 Situación Particular</div>
+      <div class="panel-body" id="particularPanel"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head gen">⚙️ Algoritmo de Desempeño</div>
+      <div class="panel-body">
+        <p>Se seleccionan <strong>10 de 30</strong> opciones. Cada una pondera según su categoría:</p>
+        <div class="ind"><span class="lbl">★★★★ Óptimas</span><span class="val">35 pts</span></div>
+        <div class="ind"><span class="lbl">★★★ Recomendadas</span><span class="val">20 pts</span></div>
+        <div class="ind"><span class="lbl">★★ Aceptables</span><span class="val">5 pts</span></div>
+        <div class="ind"><span class="lbl">✖ Penalizadas</span><span class="val">−5 pts</span></div>
+        <div class="ind"><span class="lbl">⊕ Bonus (1 por evento)</span><span class="val">+10 pts</span></div>
+        <p style="margin-top:10px"><strong>Máximo: 300 pts</strong> = 6 Óptimas (210) + 4 Recomendadas (80) + Bonus (10).</p>
+        <div class="legend">
+          <span class="lg"><span class="sw" style="background:var(--nivel-excelente)"></span>Excelente 90–100%</span>
+          <span class="lg"><span class="sw" style="background:var(--nivel-alto)"></span>Alto 70–89%</span>
+          <span class="lg"><span class="sw" style="background:var(--nivel-medio)"></span>Medio 50–69%</span>
+          <span class="lg"><span class="sw" style="background:var(--nivel-bajo)"></span>Bajo &lt;50%</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-head part">🧠 Evaluación Integral</div>
+      <div class="panel-body">
+        <p><strong>40%</strong> Desempeño Estratégico · <strong>35%</strong> Taxonomía de Bloom · <strong>25%</strong> Etapas de Kohlberg.</p>
+        <p>Bloom y Kohlberg se deducen de la <strong>integración</strong> entre la calidad de la selección y la justificación escrita.</p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- NEWS MODAL -->
+<div class="modal-bg" id="newsModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>📡 Noticias e Información Multimedia de la Crisis</h3>
+      <button class="modal-close" onclick="closeModal('newsModal')">×</button>
+    </div>
+    <div class="modal-body" id="newsBody"></div>
+  </div>
+</div>
+
+<!-- GESTOR REPORT MODAL -->
+<div class="modal-bg" id="gestorModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>🗂️ Reporte Gestor de la Simulación</h3>
+      <button class="modal-close" onclick="closeModal('gestorModal')">×</button>
+    </div>
+    <div class="modal-body" id="gestorBody"></div>
+  </div>
+</div>
+
+<!-- INTEGRAL MODAL (E6) -->
+<div class="modal-bg" id="integralModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>🧭 Resultados y Evaluación Integral — Triple Análisis</h3>
+      <button class="modal-close" onclick="closeModal('integralModal')">×</button>
+    </div>
+    <div class="modal-body" id="integralBody"></div>
+  </div>
+</div>
+
+<!-- SIM BANNER -->
+<div class="sim-banner" id="simBanner">
+  <span class="sdot"></span>
+  <span class="stxt" id="simText"><b>Simulación automática</b> en curso…</span>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  ESAENG — ELESIC 2026 · ESCENARIO 3: CRISIS ENERGÉTICA · <b>Liderazgo Estratégico con Visión Neogranadina</b>
+</footer>
+
+<script>
+const EVENTS = [{"id": "E1", "code": "E1", "mod": "MOD 5 — Desarrollo Productivo: Criterios y Escenarios", "title": "Detonante Energético — Suspensión de Operaciones", "datetime": "12 de mayo de 2026 — 06:00 AM │ Día 0 — Notificación de suspensión", "situacionGlobal": "CRISIS ENERGÉTICA │ TENSIÓN AMBIENTAL Y PRODUCTIVA — REGIÓN CARIBE", "contexto": ["La empresa energética regional más importante del Caribe colombiano recibe una orden judicial de suspensión de operaciones por violación de derechos territoriales de comunidades Wayuu y Zenú. La empresa extrae carbón térmico y opera parques solares en La Guajira y Cesar. La suspensión afecta el 34% de la generación eléctrica del Caribe. Los hospitales activan generadores de emergencia. Los acueductos reportan falta de bombeo.", "Activistas ambientales internacionales (Greenpeace, Friends of the Earth) emiten comunicados respaldando la suspensión judicial. Tres fondos de inversión internacionales que poseen el 28% de las acciones amenazan con retirar su capital si la empresa no cumple plenamente los ODS. La CREG alerta sobre riesgo de colapso del sistema interconectado."], "particular": "La Junta Directiva de la empresa energética se reúne en sesión de emergencia. Como equipo de alta dirección, deben tomar las decisiones críticas de las próximas 4 horas para gestionar la crisis sin comprometer la viabilidad de la empresa, los derechos de las comunidades y la continuidad del servicio esencial.", "requerimiento": "¿Cómo gestiona la Junta Directiva la suspensión de operaciones garantizando la continuidad del servicio esencial, los derechos de las comunidades, la viabilidad financiera de la empresa y el cumplimiento de los ODS?", "options": ["Activar el protocolo de contingencia energética para proteger hospitales y acueductos", "Convocar reunión de emergencia con representantes de las comunidades Wayuu y Zenú", "Solicitar al Tribunal medidas cautelares para operación parcial de unidades esenciales", "Contratar mediador independiente reconocido por las comunidades para el diálogo", "Emitir comunicado público reconociendo el fallo judicial y comprometiendo cumplimiento", "Activar plan de compensación económica urgente para las comunidades afectadas", "Notificar a los fondos de inversión el plan de acción con cronograma de cumplimiento ODS", "Proponer a la CREG un mecanismo de operación restringida de mínima técnica para emergencias", "Diseñar Programa de Consulta Previa reforzado con estándares internacionales (ILO 169)", "Contratar auditoría externa de impacto ambiental y social de toda la operación", "Proponer a las comunidades un modelo de participación accionaria en la empresa", "Activar alianza estratégica con empresas de energía renovable para sustitución rápida", "Crear Comité de Vigilancia Comunitaria permanente de la operación de la empresa", "Proponer ruta de transición energética de 5 años con participación comunitaria", "Solicitar arbitraje internacional ante la CIADI sin agotar el diálogo interno previo", "Diseñar sistema de monitoreo ambiental en tiempo real con acceso abierto a comunidades", "Proponer acuerdo de redistribución del 15% de las utilidades para las comunidades", "Crear un fondo de desarrollo sostenible regional con aportes de la empresa", "Negociar con el gobierno nacional el reconocimiento como servicio público esencial para eludir el fallo judicial", "Diseñar un plan de relocalización de operaciones más contaminantes con compensación a comunidades", "Proponer a inversores un modelo de bonos verdes para financiar la transición", "Crear un programa de empleabilidad para jóvenes de las comunidades en la empresa", "Diseñar acuerdo de uso sostenible del territorio con delimitación concertada", "Proponer a la ANLA una revisión expedita del estudio de impacto ambiental", "Implementar tecnologías de reducción de huella hídrica en operaciones activas", "Crear sistema de gestión de riesgos socio-ambientales basado en IA", "Proponer al Ministerio de Energía una mesa de diálogo tripartita empresa-comunidad-Estado", "Diseñar un plan de comunicación estratégica para inversores y medios internacionales", "Crear indicadores de la velocidad de escape del subdesarrollo para la región", "Proponer modelo de empresa de beneficio e interés colectivo BIC para rediseñarse"], "optimas": [1, 2, 3, 5, 7, 9, 11], "recomendadas": [4, 6, 8, 10, 12, 13, 14, 17, 18, 21, 27], "aceptables": [16, 20, 22, 23, 24, 25, 26, 28, 29, 30], "penalizadas": [15, 19], "bonus": 11, "combinacionOptima": "Protocolo de contingencia para servicios esenciales + Convocatoria urgente a comunidades + Solicitud de operación parcial al Tribunal + Comunicado reconociendo el fallo + Notificación a fondos con plan ODS + Programa de Consulta Previa ILO 169 + Participación accionaria comunitaria. La respuesta debe demostrar equilibrio entre continuidad operativa y cumplimiento de derechos.", "razonPenalizacion": ["Solicitar arbitraje internacional ante la CIADI sin agotar el diálogo interno — escala el conflicto irreversiblemente y daña la reputación ESG de la empresa ante los fondos de inversión y la opinión pública internacional.", "Negociar reconocimiento como servicio público esencial para eludir el fallo judicial — constituye un intento de desacato que puede derivar en embargo, sanciones penales y pérdida total de la confianza institucional."], "bonusDesc": "Opción 11 — Proponer a las comunidades un modelo de participación accionaria en la empresa — transforma la relación adversarial en alianza estratégica y garantiza la sostenibilidad de largo plazo, alineando los intereses de todas las partes."}, {"id": "E2", "code": "E2", "mod": "MOD 3 — Asuntos Globales, Seguridad y Gobernanza", "title": "Tensión ODS versus Rentabilidad", "datetime": "13 de mayo de 2026 — 09:00 AM │ Día 1 — Mesa de Junta Directiva ampliada", "situacionGlobal": "CRISIS ENERGÉTICA │ TENSIÓN AMBIENTAL Y PRODUCTIVA — REGIÓN CARIBE", "contexto": ["La suspensión ha generado una disyuntiva estratégica en la Junta: los accionistas de capital privado exigen recuperar operaciones para proteger el flujo de caja (la empresa pierde USD 4.2 millones diarios). Los fondos de inversión ESG condicionan su permanencia al cumplimiento pleno de los ODS. Las comunidades exigen que antes de reabrir cualquier unidad se apruebe el plan de consulta previa.", "La Corte Interamericana de Derechos Humanos emitió una medida cautelar que refuerza el fallo interno. La OIT notificó al Estado colombiano sobre posible incumplimiento del Convenio 169. Tres países europeos clientes del carbón térmico anuncian que suspenderán importaciones si la empresa no certifica cumplimiento de estándares de derechos humanos."], "particular": "La Junta Directiva debe resolver la tensión estratégica entre rentabilidad de corto plazo y sostenibilidad de largo plazo, aplicando los marcos de los ODS y de la gobernanza global, diseñar un modelo de negocio que concilie ambas lógicas y construir una hoja de ruta aceptable para todos los actores.", "requerimiento": "¿Cómo resuelve la Junta la tensión entre rentabilidad inmediata y cumplimiento de ODS y derechos de comunidades? Diseñe el modelo de negocio sostenible y la hoja de ruta de transición que garantice viabilidad empresarial y social.", "options": ["Aplicar el marco de los 17 ODS como principio rector de todas las decisiones de la Junta", "Diseñar modelo de empresa de triple impacto (económico, social, ambiental) como norte estratégico", "Proponer a accionistas un dividendo diferido a cambio de inversión en la transición sostenible", "Crear comité de sostenibilidad de la Junta con representación de todos los grupos de interés", "Diseñar hoja de ruta de transición con 3 horizontes: crisis (0–30 días), consolidación (31–180), transformación (181–730 días)", "Proponer a los fondos ESG un marco de valoración que integre el valor social y ambiental", "Negociar con clientes europeos un certificado de transición progresiva verificado por terceros", "Crear un balanced scorecard que integre indicadores financieros, sociales y ambientales", "Proponer a las comunidades un acuerdo marco de coexistencia con beneficios tangibles", "Diseñar un plan de diversificación hacia energías renovables en 36 meses con metas verificables", "Solicitar a la IFC (Corporación Financiera Internacional) financiamiento verde para la transición", "Crear un mecanismo de reporte ESG auditado trimestralmente con publicación abierta", "Proponer al Estado una asociación público-privada para infraestructura energética sostenible", "Diseñar indicadores de la velocidad de escape del subdesarrollo para medir el impacto regional", "Proponer a los inversores un modelo de bonos de impacto social para financiar la transición", "Crear un programa de innovación abierta para identificar tecnologías de transición con universidades", "Diseñar una política de compras locales que fortalezca la economía de las comunidades", "Proponer una alianza con empresas de energía solar para diversificación de cartera en 18 meses", "Crear mecanismo de denuncia y reparación de impactos ambientales con acceso comunitario", "Diseñar un plan de comunicación de la transición que construya confianza con todos los actores", "Proponer a la Junta un programa de formación en liderazgo consciente y organizaciones sostenibles", "Crear un consejo asesor externo de sostenibilidad con expertos internacionales", "Diseñar un programa de investigación propia sobre transición energética justa en el Caribe como respuesta principal al déficit ESG", "Proponer al gobierno una zona especial de transición energética con incentivos fiscales", "Crear un sistema de monitoreo de biodiversidad en las zonas de operación con publicación abierta", "Diseñar una política de compensación por servicios ecosistémicos para las comunidades", "Proponer un mecanismo de coproducción del conocimiento con comunidades sobre el territorio", "Crear indicadores de bienestar comunitario como parte del informe anual de la empresa", "Diseñar una estrategia de liderazgo sectorial en la transición energética del Caribe", "Proponer modelo de empresa consciente como ventaja competitiva diferenciadora para inversores, sin hoja de ruta verificable"], "optimas": [2, 3, 5, 8, 11, 12], "recomendadas": [1, 4, 6, 7, 9, 10, 13, 14, 15, 29], "aceptables": [16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28], "penalizadas": [23, 30], "bonus": 5, "combinacionOptima": "Modelo de triple impacto + Dividendo diferido a cambio de inversión en transición + Hoja de ruta 3 horizontes + Balanced scorecard integrado + Financiamiento IFC + Reporte ESG auditado + Certificado de transición para clientes europeos + Acuerdo marco con comunidades. La respuesta debe articular simultáneamente las dimensiones financiera, social y ambiental.", "razonPenalizacion": ["Proponer investigación propia como respuesta principal al déficit ESG — académicamente valioso pero sin impacto inmediato en la crisis; señala a inversores y reguladores que la empresa prefiere estudiar el problema en lugar de resolverlo.", "Proponer modelo de empresa consciente sin hoja de ruta verificable — constituye greenwashing que daña la credibilidad ante fondos ESG sofisticados y puede derivar en acusaciones de publicidad engañosa ante reguladores europeos."], "bonusDesc": "Opción 5 — Diseñar hoja de ruta de transición con 3 horizontes claramente definidos — da certeza a todos los actores sobre el plan, reduce la incertidumbre y genera confianza en que la empresa tiene una estrategia coherente y ejecutable."}, {"id": "E3", "code": "E3", "mod": "MOD 4 — Innovación Tecnológica, Ciberespacial y Complejidad", "title": "Innovación Tecnológica en la Transición Energética", "datetime": "14 de mayo de 2026 — 10:00 AM │ Día 2 — Sesión de estrategia tecnológica", "situacionGlobal": "CRISIS ENERGÉTICA │ TENSIÓN AMBIENTAL Y PRODUCTIVA — REGIÓN CARIBE", "contexto": ["La Junta recibe el informe del comité técnico: la transición energética requiere una transformación tecnológica profunda que va más allá de instalar paneles solares. Implica rediseñar el modelo de negocio a partir de la inteligencia artificial, el internet de las cosas energético, el blockchain para certificación de energía limpia y los sistemas de almacenamiento de nueva generación.", "El DTI de la empresa está en 3.8/10. Los principales competidores de España, Alemania y Chile ya operan con DTI entre 7 y 9. El ecosistema de startups de Barranquilla y Cartagena ofrece soluciones innovadoras pero la empresa no tiene un mecanismo para integrarlas. La velocidad de escape del subdesarrollo tecnológico exige una decisión estratégica de alto nivel ahora."], "particular": "La Junta debe tomar decisiones estratégicas de transformación tecnológica que le permitan liderar la transición energética en el Caribe, elevar el DTI de la empresa, integrar el ecosistema local de innovación y crear ventajas competitivas sostenibles.", "requerimiento": "Diseñe la estrategia de transformación tecnológica DTI de la empresa para liderar la transición energética en el Caribe, integrando IA, blockchain, IoT energético y el ecosistema local de innovación, con metas verificables en 36 meses.", "options": ["Crear un Centro de Innovación de Energía Limpia en Barranquilla con universidades del Caribe", "Implementar gemelos digitales de toda la infraestructura energética para monitoreo en tiempo real", "Crear sistema de gestión energética inteligente con IA para optimización de la red", "Proponer plataforma blockchain para certificación y trazabilidad de energía renovable", "Diseñar un programa de innovación abierta con las 50 mejores startups energéticas del Caribe", "Implementar IoT energético para monitoreo granular del consumo y la generación", "Crear laboratorio de almacenamiento de energía (baterías de flujo, hidrógeno verde) en La Guajira", "Proponer sistema de microrredes comunitarias en zonas indígenas con energía solar y almacenamiento", "Diseñar una plataforma de datos abiertos de generación y consumo para investigación y política", "Crear un programa de formación digital para los empleados de la empresa en el nuevo modelo", "Proponer un ecosistema de startup en residencia dentro de la empresa con laboratorios propios", "Implementar IA generativa para diseñar escenarios de transición y optimización de portafolio", "Crear un sistema de monitoreo satelital de la biodiversidad en zonas de operación", "Proponer plataforma digital de gestión de la relación con comunidades (community management)", "Diseñar un sistema de ciberseguridad industrial OT/IT para proteger infraestructura crítica", "Crear un centro de datos sin garantizar el suministro de energía 100% renovable propia", "Proponer un modelo de energía como servicio (EaaS) para clientes empresariales", "Diseñar una plataforma P2P de intercambio de energía entre prosumidores de la región", "Implementar realidad aumentada para mantenimiento predictivo de la infraestructura", "Proponer hub de hidrógeno verde en La Guajira sin análisis de viabilidad técnica y financiera previa", "Proponer un sistema de tokenización de créditos de carbono para monetizar la transición", "Diseñar un programa de smartgrid para Barranquilla como ciudad piloto del Caribe", "Crear un sistema de predicción de demanda energética con machine learning", "Proponer acuerdo tecnológico con un socio internacional líder en energía renovable", "Implementar tecnología de redes neuronales para optimizar la distribución de energía", "Crear indicadores de DTI propios para medir la madurez tecnológica de la empresa", "Diseñar una arquitectura de dato soberano que proteja la información crítica de la empresa", "Proponer un programa de residuos cero en todas las operaciones con tecnología circular", "Crear un sistema de evaluación continua de tecnologías emergentes en energía", "Diseñar la hoja de ruta tecnológica para alcanzar DTI de 8/10 en 36 meses"], "optimas": [1, 2, 3, 4, 5, 8, 15], "recomendadas": [6, 7, 9, 10, 11, 12, 14, 22, 24, 26, 30], "aceptables": [13, 17, 18, 19, 21, 23, 25, 27, 28, 29], "penalizadas": [16, 20], "bonus": 4, "combinacionOptima": "Centro de Innovación con universidades Caribe + Gemelos digitales de infraestructura + IA para gestión de red + Blockchain para certificación renovable + Programa innovación abierta 50 startups + Microrredes comunitarias solares + Ciberseguridad OT/IT. La transformación debe alcanzar DTI 8/10 en 36 meses con métricas verificables.", "razonPenalizacion": ["Crear un centro de datos sin garantizar el suministro de energía 100% renovable propia — contradice directamente la narrativa de transición sostenible y daña la credibilidad ante inversores ESG y reguladores ambientales.", "Proponer hub de hidrógeno verde sin análisis de viabilidad técnica y financiera previa — genera expectativas no realistas que erosionan la confianza de todos los stakeholders cuando los proyectos no se materializan."], "bonusDesc": "Opción 4 — Proponer plataforma blockchain para certificación y trazabilidad de energía renovable — crea ventaja competitiva diferenciadora, responde a los fondos ESG y permite acceder a mercados europeos premium con trazabilidad verificable."}, {"id": "E4", "code": "E4", "mod": "MOD 2 — Organizaciones Conscientes y Neurociencia Aplicada", "title": "Gestión de Comunidades y Territorios Ancestrales", "datetime": "15 de mayo de 2026 — 08:00 AM │ Día 3 — Mesa de diálogo con comunidades", "situacionGlobal": "CRISIS ENERGÉTICA │ TENSIÓN AMBIENTAL Y PRODUCTIVA — REGIÓN CARIBE", "contexto": ["Las comunidades Wayuu y Zenú se reúnen por primera vez con la Junta Directiva. El ambiente es de alta tensión: 30 años de historia de promesas incumplidas, contaminación del acuífero subterráneo documentada, desplazamiento de 3 veredas por expansión de operaciones. Los líderes comunitarios llegan con abogados de derechos humanos internacionales.", "Los datos demográficos revelan una oportunidad: el 62% de los jóvenes de las comunidades desea estudiar carreras en energía renovable. Las comunidades tienen conocimiento ancestral profundo del viento y el agua, clave para las energías renovables. Dos comunidades ya tienen cooperativas solares funcionando. La neurociencia del diálogo intercultural sugiere una ventana de 90 minutos para crear un vínculo de confianza inicial."], "particular": "La Junta Directiva debe gestionar el diálogo intercultural con las comunidades aplicando los principios de la neurociencia social, transformar la relación adversarial en una alianza estratégica y construir los primeros acuerdos de una nueva relación empresa-comunidad-territorio.", "requerimiento": "Aplique los principios de neurociencia social y organizaciones conscientes para transformar la relación adversarial empresa-comunidades en una alianza estratégica: diseñe la sesión de diálogo y los primeros acuerdos.", "options": ["Diseñar la apertura de la sesión con reconocimiento formal de los daños históricos causados", "Aplicar el modelo SCARF para entender las necesidades de reconocimiento y certeza de las comunidades", "Usar técnicas de escucha activa profunda y comunicación no violenta (Marshall Rosenberg)", "Proponer una sesión de diálogo en el territorio de las comunidades como gesto de reconocimiento", "Aplicar metodología de World Café para explorar intereses comunes con todos los grupos", "Crear un espacio de narración de historias (storytelling) para humanizar la relación", "Proponer un acuerdo de colaboración en el desarrollo de energía solar comunitaria", "Diseñar un programa de becas universitarias en energía renovable para jóvenes de las comunidades", "Proponer un proyecto de mapeo participativo del territorio con las comunidades como líderes", "Crear un programa de intercambio de conocimientos (científico y ancestral)", "Proponer que las cooperativas comunitarias solares se integren como proveedoras de la empresa", "Diseñar un protocolo de consulta previa que vaya más allá de los requisitos legales mínimos", "Implementar el modelo de organizaciones conscientes en la empresa como valor ético", "Crear un consejo asesor de comunidades en la Junta Directiva con voz pero sin voto", "Proponer un fondo de reparación histórica administrado por las propias comunidades", "Diseñar indicadores de bienestar definidos con y para las comunidades como parte del reporte ESG", "Aplicar la neurociencia de la confianza: consistencia en acciones pequeñas antes de compromisos grandes", "Crear un mecanismo de seguimiento de acuerdos con líder comunitario como veedor", "Proponer un co-diseño del plan de expansión renovable con participación plena de las comunidades", "Diseñar un programa de formación en negociación basada en principios para líderes comunitarios", "Implementar tecnologías de recuperación de acuíferos como compromiso de reparación ambiental", "Crear un modelo de empresa-comunidad donde la comunidad sea socia estratégica", "Proponer un programa de salud y bienestar para las comunidades financiado por la empresa", "Diseñar un sistema de monitoreo de los impactos de la operación con control comunitario", "Proponer un protocolo de comunicación directa entre la Presidencia de la empresa y los líderes", "Crear un libro de historia compartida de la relación empresa-comunidad como respuesta principal a las demandas de derechos", "Implementar prácticas de liderazgo regenerativo que restauren la relación con el territorio", "Diseñar un plan de empleo local con preferencia para miembros de las comunidades", "Proponer un sistema de beneficio compartido basado en la producción renovable de la empresa", "Crear el modelo de empresa de beneficio comunitario reconociendo los derechos del territorio"], "optimas": [1, 2, 3, 7, 8, 11, 12], "recomendadas": [4, 5, 6, 9, 10, 13, 14, 15, 17], "aceptables": [16, 18, 19, 21, 22, 23, 24, 25, 27, 28, 29, 30], "penalizadas": [20, 26], "bonus": 11, "combinacionOptima": "Reconocimiento formal de daños históricos + Modelo SCARF para necesidades comunitarias + Escucha activa y CNV + Acuerdo de energía solar comunitaria + Becas universitarias + Cooperativas solares como proveedoras + Protocolo de consulta previa reforzado. La sesión debe demostrar honestidad, empatía y compromisos concretos verificables.", "razonPenalizacion": ["Diseñar programa de formación en negociación para líderes comunitarios — es condescendiente y paternalista: las comunidades ya tienen experiencia legal y representación internacional; proponer esto activa el sistema de amenaza del modelo SCARF.", "Crear un libro de historia compartida como respuesta principal a las demandas de derechos — trivializa décadas de violaciones documentadas; las comunidades con abogados internacionales interpretarán esto como una maniobra de PR sin compromiso jurídico real."], "bonusDesc": "Opción 11 — Proponer que las cooperativas comunitarias solares se integren como proveedoras de la empresa — transforma la relación de extracción en alianza productiva y crea un vínculo económico directo de largo plazo que beneficia a todas las partes."}, {"id": "E5", "code": "E5", "mod": "MOD 6 — Estrategia y Prospéctica", "title": "Prospéctica Energética y Velocidad de Escape", "datetime": "16 de mayo de 2026 — 14:00 PM │ Día 4 — Sesión de estrategia a largo plazo", "situacionGlobal": "CRISIS ENERGÉTICA │ TENSIÓN AMBIENTAL Y PRODUCTIVA — REGIÓN CARIBE", "contexto": ["La empresa ha logrado estabilizar la crisis inmediata: la suspensión está siendo levantada parcialmente para unidades esenciales, se ha firmado un protocolo inicial con las comunidades y los fondos ESG han expresado voluntad de permanecer condicionada al plan de transición. Sin embargo, el horizonte estratégico es complejo: la transición energética global acelerará el declive del carbón térmico, la demanda de renovables del Caribe colombiano crecerá un 340% en 10 años.", "El artículo sobre la velocidad de escape del subdesarrollo, referente conceptual del PALEM, propone que existen momentos de bifurcación en el desarrollo de organizaciones y territorios donde, si se toman las decisiones correctas, se puede alcanzar una trayectoria de desarrollo auto-sostenido que supera el punto de no retorno hacia el subdesarrollo. La empresa y la región Caribe están en ese momento."], "particular": "La Junta Directiva debe construir los escenarios prospécticos de la empresa al 2035, identificar el punto de bifurcación estratégica que les permitirá alcanzar la velocidad de escape del subdesarrollo energético, y diseñar el plan estratégico de largo plazo para convertirse en el líder de la transición energética del Caribe.", "requerimiento": "Construya los escenarios prospécticos de la empresa al 2035 aplicando el concepto de velocidad de escape del subdesarrollo, identifique el punto de bifurcación estratégica y diseñe el plan para liderar la transición energética del Caribe colombiano.", "options": ["Elaborar matriz de escenarios con variables críticas: precio del carbón, regulación ambiental, tecnología, comunidades y competencia", "Construir escenario Optimista: empresa líder de energía renovable del Caribe colombiano al 2030", "Construir escenario Tendencial: transición lenta con conflictos recurrentes y competitividad media", "Construir escenario Pesimista: empresa en declive por falta de transición y presión regulatoria", "Construir escenario de Ruptura: empresa se divide en unidad carbón (liquidación) y empresa renovable (nuevo inicio)", "Identificar el punto de bifurcación: la decisión que determina si la empresa alcanza o no la velocidad de escape", "Aplicar el modelo de velocidad de escape del subdesarrollo al análisis de la empresa y la región", "Diseñar el mapa de ruta estratégica para el escenario óptimo con hitos verificables cada 6 meses", "Crear indicadores de velocidad de escape propios de la industria energética del Caribe", "Proponer una alianza estratégica regional entre todas las empresas energéticas del Caribe para la transición", "Diseñar un modelo de empresa energética del futuro: plataforma de ecosistema más que proveedor", "Proponer un centro de investigación y desarrollo de la transición energética Caribe con universidades", "Crear un foro anual de prospéctica energética del Caribe con actores de 10 países", "Diseñar indicadores de desarrollo regional vinculados a la estrategia energética de la empresa", "Proponer un modelo de co-creación del plan estratégico con todos los grupos de interés", "Crear un laboratorio de futuros de la energía para explorar tecnologías disruptivas", "Diseñar la narrativa estratégica de la empresa como agente de la velocidad de escape regional", "Proponer un sistema de monitoreo del ecosistema energético regional con alertas tempranas", "Crear un programa de liderazgo estratégico en la empresa para ejecutivos que lideren la transición, priorizándolo sobre la construcción de escenarios", "Diseñar un mecanismo de evaluación continua de la estrategia con revisión semestral", "Proponer la creación de una fundación empresarial para el desarrollo energético del Caribe como estrategia principal", "Crear un modelo de gobernanza estratégica con participación de comunidades, estado e inversores", "Diseñar un plan de posicionamiento regional de la empresa como referente de transición justa", "Proponer una agenda de incidencia de política pública para acelerar la transición energética", "Crear un sistema de inteligencia competitiva sobre tendencias energéticas globales", "Diseñar un programa de innovación disruptiva con horizonte de 10 años", "Proponer una arquitectura de alianzas internacionales para la transformación tecnológica", "Crear un modelo de reporte integrado (IR) que integre la estrategia de largo plazo", "Diseñar el mapa de actores del futuro ecosistema energético del Caribe al 2035", "Proponer un Pacto Energético del Caribe con gobierno, empresa y comunidades como marco de la transición"], "optimas": [1, 6, 7, 8, 10, 30], "recomendadas": [2, 3, 4, 5, 9, 11, 12, 15, 16, 17, 22, 24], "aceptables": [13, 14, 18, 20, 23, 25, 26, 27, 28, 29], "penalizadas": [19, 21], "bonus": 30, "combinacionOptima": "Matriz con 5 variables críticas + 4 escenarios al 2035 + Identificación del punto de bifurcación + Aplicación del modelo velocidad de escape + Mapa de ruta con hitos semestrales + Alianza regional energética + Pacto Energético del Caribe. La prospéctica debe ser rigurosa y orientada a la acción transformacional.", "razonPenalizacion": ["Crear programa de liderazgo estratégico para ejecutivos priorizándolo sobre la construcción de escenarios — es una actividad de RRHH que desplaza el análisis prospéctico crítico; señala a inversores que la Junta no comprende la urgencia del momento de bifurcación.", "Proponer fundación empresarial como estrategia principal de transición — mecanismo de RSE tradicional que no alcanza la velocidad de escape requerida; señala una mentalidad de filantropía en lugar de transformación estructural del negocio."], "bonusDesc": "Opción 30 — Proponer el Pacto Energético del Caribe con gobierno, empresa y comunidades — crea el marco institucional colectivo que hace posible la velocidad de escape regional, más allá de la estrategia individual de la empresa."}, {"id": "E6", "code": "E6", "mod": "MOD 1 — Liderazgo Estratégico, Toma de Decisiones y Resolución de Conflictos", "title": "Liderazgo Estratégico Integrador — Cierre y Legado", "datetime": "17 de mayo de 2026 — 09:00 AM │ Día 5 — Sesión de cierre estratégico", "situacionGlobal": "CRISIS ENERGÉTICA │ TENSIÓN AMBIENTAL Y PRODUCTIVA — REGIÓN CARIBE", "contexto": ["La empresa ha recorrido 5 días de crisis y transformación. Ha pasado de una suspensión judicial que amenazaba su existencia a una hoja de ruta de transición que podría convertirla en líder energético regional. Sin embargo, las decisiones más difíciles aún están pendientes: la Junta debe presentar ante los 1.200 empleados, las comunidades, los inversores y los medios el Plan Estratégico de Transición Justa, el nuevo modelo de gobernanza y el compromiso de largo plazo.", "El liderazgo estratégico en este momento requiere integrar todas las dimensiones del LEM: tomar decisiones que reconcilien la tensión entre lo económico y lo social, comunicar con autenticidad, construir coaliciones, gestionar la resistencia interna y dejar un legado de transformación que vaya más allá del ejercicio."], "particular": "Como Junta Directiva, diseñan e implementan el plan de comunicación del cierre estratégico, gestionan los actores críticos de resistencia al cambio, toman las decisiones de largo plazo sobre el nuevo modelo de gobierno corporativo y definen el legado de liderazgo de esta transformación.", "requerimiento": "Como líder estratégico de la Junta Directiva, diseñe el plan de cierre de la crisis, comunique el Plan de Transición Justa a todos los grupos de interés, gestione la resistencia al cambio y defina el legado de liderazgo de esta transformación energética.", "options": ["Diseñar el discurso de la Presidencia de la empresa con los elementos del liderazgo LEM", "Crear una estrategia de comunicación diferenciada por actor: empleados, comunidades, inversores, medios", "Proponer al Congreso de la empresa (asamblea de empleados) la adopción del nuevo modelo de gobernanza", "Diseñar un mecanismo de gestión de la resistencia interna al cambio con participación de sindicatos", "Aplicar el modelo de Kotter para la gestión del cambio organizacional de largo plazo", "Crear un sistema de early wins: 10 victorias tempranas visibles en los primeros 90 días", "Diseñar la comunicación de los acuerdos con las comunidades como modelo de relación transformacional", "Proponer al Directorio la adopción de un modelo de remuneración ejecutiva vinculado a los ODS sin estructura técnica previa", "Crear un mecanismo de rendición de cuentas público anual con los grupos de interés", "Diseñar un programa de embajadores internos del cambio en todos los niveles de la empresa", "Proponer la creación de un Chief Sustainability Officer en el comité ejecutivo de la empresa con presupuesto y autoridad reales", "Crear un espacio de diálogo permanente entre la Junta y representantes de todos los grupos de interés", "Diseñar el legado de esta transformación como narrativa de liderazgo para el sector energético", "Proponer al sector energético nacional adoptar el modelo de Transición Justa de la empresa como estándar", "Crear un programa de mentorías entre los líderes de la empresa y líderes de las comunidades", "Diseñar un sistema de aprendizaje organizacional que capitalice la experiencia de la crisis", "Proponer una política de diversidad en el liderazgo de la empresa: género, origen étnico y territorial", "Crear un mecanismo de evaluación del desempeño del liderazgo basado en el LEM", "Diseñar el informe de gestión anual como documento de liderazgo estratégico visible y accesible", "Proponer un programa de formación en liderazgo regenerativo para los 200 ejecutivos de la empresa", "Crear una agenda de incidencia en política energética que posicione a la empresa como actor del sistema", "Diseñar un modelo de sucesión que garantice la continuidad del liderazgo transformacional durante la crisis activa", "Proponer un programa de reconocimiento público de las comunidades como socias estratégicas", "Crear un sistema de indicadores del legado de la transformación con seguimiento a 10 años", "Diseñar la declaración de propósito renovada de la empresa como marco de identidad y acción", "Proponer una ceremonia de firma del Plan de Transición Justa con todos los actores clave", "Crear un modelo de gobierno corporativo de nueva generación: empresa, comunidades e inversores", "Diseñar una política de transparencia radical como identidad de la empresa post-transición", "Proponer una alianza con la academia para investigar el modelo de transición justa del Caribe", "Crear el manifiesto estratégico de la empresa como líder de la transición energética justa del Caribe"], "optimas": [1, 2, 5, 6, 9, 11, 14, 25], "recomendadas": [3, 4, 7, 10, 12, 13, 15, 21, 24, 26, 27, 30], "aceptables": [16, 17, 18, 19, 20, 23, 28, 29], "penalizadas": [8, 22], "bonus": 14, "combinacionOptima": "Discurso presidencial con elementos LEM + Comunicación diferenciada por actor + Modelo Kotter para gestión del cambio + 10 early wins en 90 días + Rendición de cuentas público anual + Chief Sustainability Officer con poderes reales + Declaración de propósito renovada + Adopción del modelo como estándar sectorial. La integración debe demostrar dominio multidimensional del LEM.", "razonPenalizacion": ["Proponer remuneración ejecutiva vinculada a ODS sin estructura técnica previa — puede percibirse como marketing oportunista; los fondos ESG sofisticados verificarán la implementación y la ausencia de un sistema robusto generará mayor desconfianza.", "Diseñar modelo de sucesión durante la crisis activa — señala inestabilidad de liderazgo en el momento más crítico de la transformación; la oposición interna y los medios lo interpretarán como señal de debilidad en la Junta."], "bonusDesc": "Opción 14 — Proponer al sector energético nacional adoptar el modelo de Transición Justa de la empresa como estándar — convierte la estrategia particular en bien público y posiciona a la empresa como líder del ecosistema, multiplicando el impacto de la transformación."}];
+</script>
+<script>
+/* ============================================================
+   GRÁFICA INTEGRADA BLOOM–KOHLBERG (Figura N° 2)
+   Reproduce forma, colores y datos de la figura del PALEM.
+   Ubica el resultado del equipo según bloomNorm y kohlNorm (0..1).
+   ============================================================ */
+function bloomKohlbergSVG(bloomNorm, kohlNorm, opts){
+  opts = opts || {};
+  const idTag = opts.id || ('bk'+Math.floor(Math.random()*1e6));
+  // Geometry
+  const W=860, H=600;
+  const padL=150, padR=30, padT=70, padB=190;
+  const gx0=padL, gy0=padT;                 // grid top-left
+  const gw=W-padL-padR, gh=H-padT-padB;     // grid size
+  const cols=6, rows=6;
+  const cw=gw/cols, ch=gh/rows;
+
+  // Bloom labels (bottom->top = row 0..5) — taxonomía revisada, culmina en CREAR
+  const bloom=["1. Recordar","2. Comprender","3. Aplicar","4. Analizar","5. Evaluar","6. Crear"];
+  // Kohlberg labels (left->right = col 0..5)
+  const kohl=["1. Miedo","2. Oportunidad","3. Buen\nchico/chica","4. Orientado\na la ley","5. Contrato\nsocial","6. Ética\nuniversal"];
+  // Kohlberg level groupings (each spans 2 columns)
+  const kohlLevels=[["PRECONVENCIONAL",0,2],["CONVENCIONAL",2,2],["POSTCONVENCIONAL",4,2]];
+
+  // Cell colors approximating the figure (col j, row i with i=0 bottom).
+  // Base hue shifts across columns; saturation/lightness vary by row.
+  // We build a 6x6 palette tuned to resemble the image.
+  const palette=[
+    // row 0 (Conocimiento, bottom) -> mostly blue/teal/cyan tints
+    ["#6cb7e0","#8fcf6f","#7ed0b8","#5cc6e0","#6f86d6","#e0b352"],
+    // row 1 (Comprensión) -> yellow-green/cyan
+    ["#8fd14b","#b6d94a","#7ed6c0","#56b0d6","#5b6fc0","#e8b84a"],
+    // row 2 (Aplicación) -> orange row
+    ["#f59a3c","#f0a84a","#9fd06a","#6cc6dc","#5566bf","#f0a83c"],
+    // row 3 (Análisis) -> magenta/pink row
+    ["#e0359a","#e85fae","#df5fae","#5b8fd6","#7d4fb0","#df6a3c"],
+    // row 4 (Síntesis) -> teal/green row
+    ["#2bb0a0","#46b59a","#7ec8a0","#56b6d0","#6a55b0","#d98a3c"],
+    // row 5 (Evaluación, top) -> purple/violet row
+    ["#7a4fb0","#8a5fc0","#a06fc0","#5fa6d6","#6f5fc0","#c98a3c"]
+  ];
+
+  // Build grid cells
+  let cells="";
+  for(let i=0;i<rows;i++){           // i=0 bottom row
+    for(let j=0;j<cols;j++){
+      const x=gx0+j*cw;
+      const y=gy0+(rows-1-i)*ch;     // top row drawn first
+      cells+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${cw.toFixed(1)}" height="${ch.toFixed(1)}" fill="${palette[i][j]}" opacity="0.92"/>`;
+    }
+  }
+
+  // Bloom row labels (left strip) with their own colored swatches
+  let bloomLabels="";
+  const bloomSwatch=["#5cb6e8","#a9d94a","#f59a3c","#e0359a","#2bb0a0","#7a4fb0"];
+  for(let i=0;i<rows;i++){
+    const y=gy0+(rows-1-i)*ch;
+    bloomLabels+=`<rect x="${(gx0-118).toFixed(1)}" y="${y.toFixed(1)}" width="118" height="${ch.toFixed(1)}" fill="${bloomSwatch[i]}" opacity="0.9"/>`;
+    bloomLabels+=`<text x="${(gx0-112)}" y="${(y+ch/2+5).toFixed(1)}" font-family="Barlow,sans-serif" font-size="15" font-weight="700" fill="#15233a">${bloom[i]}</text>`;
+  }
+
+  // Kohlberg column labels (bottom)
+  let kohlLabels="";
+  for(let j=0;j<cols;j++){
+    const x=gx0+j*cw+cw/2;
+    const lines=kohl[j].split("\n");
+    lines.forEach((ln,k)=>{
+      kohlLabels+=`<text x="${x.toFixed(1)}" y="${(gy0+gh+28+k*16).toFixed(1)}" text-anchor="middle" font-family="Barlow,sans-serif" font-size="13.5" font-weight="700" fill="#15233a">${ln}</text>`;
+    });
+  }
+  // Kohlberg level grouping band (Preconvencional / Convencional / Postconvencional)
+  const bandY=gy0+gh+72, bandH=30;
+  const bandColors=["#f3a6a0","#a9d6f0","#e6c46f"];
+  let kohlBand="";
+  kohlLevels.forEach((lv,idx)=>{
+    const bx=gx0+lv[1]*cw, bw=lv[2]*cw;
+    kohlBand+=`<rect x="${bx.toFixed(1)}" y="${bandY.toFixed(1)}" width="${bw.toFixed(1)}" height="${bandH}" rx="4" fill="${bandColors[idx]}" opacity="0.9" stroke="#fff" stroke-width="2"/>`;
+    kohlBand+=`<text x="${(bx+bw/2).toFixed(1)}" y="${(bandY+bandH/2+5).toFixed(1)}" text-anchor="middle" font-family="Oswald,sans-serif" font-size="14" font-weight="700" fill="#15233a">${lv[0]}</text>`;
+  });
+
+  // DESEADO red curve: high Bloom at low Kohlberg, descending to low Bloom at high Kohlberg.
+  // Quadratic-like descending curve from top-left to bottom-right of the grid.
+  const cx0=gx0, cy0=gy0+ch*0.15;            // start near top-left (Bloom ~6, Kohlberg ~1)
+  const cxM=gx0+gw*0.5, cyM=gy0+gh*0.42;
+  const cx1=gx0+gw, cy1=gy0+gh*0.98;         // end near bottom-right
+  const curve=`M ${cx0},${cy0} Q ${cxM},${cy0} ${(gx0+gw*0.62).toFixed(1)},${(cyM).toFixed(1)} T ${cx1},${cy1}`;
+  // Smoother: cubic bezier
+  const curveC=`M ${cx0},${cy0} C ${(gx0+gw*0.30).toFixed(1)},${(gy0+ch*0.18).toFixed(1)} ${(gx0+gw*0.55).toFixed(1)},${(gy0+gh*0.30).toFixed(1)} ${(gx0+gw*0.70).toFixed(1)},${(gy0+gh*0.50).toFixed(1)} S ${(gx0+gw*0.92).toFixed(1)},${(gy0+gh*0.92).toFixed(1)} ${cx1},${cy1}`;
+
+  // Marker position from normalized scores
+  const bN=Math.max(0,Math.min(1,bloomNorm));
+  const kN=Math.max(0,Math.min(1,kohlNorm));
+  // map 0..1 to grid: x across, y inverted (higher bloom = higher up)
+  const mx=gx0 + (0.06 + kN*0.88)*gw;
+  const my=gy0 + (0.94 - bN*0.88)*gh;
+
+  return `
+  <svg viewBox="0 0 ${W} ${H}" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Barlow,sans-serif" role="img" aria-label="Gráfica Bloom-Kohlberg">
+    <defs>
+      <marker id="${idTag}-arr" markerWidth="12" markerHeight="12" refX="2" refY="5" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#15233a"/>
+      </marker>
+      <filter id="${idTag}-sh" x="-30%" y="-30%" width="160%" height="160%">
+        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+      </filter>
+    </defs>
+
+    <!-- Title -->
+    <text x="${W/2}" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0a2a5e" font-family="Oswald,sans-serif">Figura N° 2 — Taxonomía y niveles de desarrollo</text>
+
+    <!-- Grid cells -->
+    ${cells}
+    <!-- subtle grid lines -->
+    ${Array.from({length:cols+1}).map((_,j)=>`<line x1="${(gx0+j*cw).toFixed(1)}" y1="${gy0}" x2="${(gx0+j*cw).toFixed(1)}" y2="${gy0+gh}" stroke="#ffffff" stroke-opacity="0.45" stroke-width="1.5"/>`).join('')}
+    ${Array.from({length:rows+1}).map((_,i)=>`<line x1="${gx0}" y1="${(gy0+i*ch).toFixed(1)}" x2="${gx0+gw}" y2="${(gy0+i*ch).toFixed(1)}" stroke="#ffffff" stroke-opacity="0.45" stroke-width="1.5"/>`).join('')}
+
+    <!-- Bloom labels strip -->
+    ${bloomLabels}
+    <!-- Kohlberg labels -->
+    ${kohlLabels}
+    <!-- Kohlberg level grouping band -->
+    ${kohlBand}
+
+    <!-- Axes -->
+    <line x1="${gx0}" y1="${gy0+gh}" x2="${gx0}" y2="${gy0-18}" stroke="#15233a" stroke-width="4" marker-end="url(#${idTag}-arr)"/>
+    <line x1="${gx0}" y1="${gy0+gh}" x2="${gx0+gw+18}" y2="${gy0+gh}" stroke="#15233a" stroke-width="4" marker-end="url(#${idTag}-arr)"/>
+    <text x="${gx0-118}" y="${gy0-30}" font-size="15" font-weight="700" fill="#15233a" font-family="Oswald,sans-serif">TAXONOMÍA</text>
+    <text x="${gx0-118}" y="${gy0-12}" font-size="15" font-weight="700" fill="#15233a" font-family="Oswald,sans-serif">DE BLOOM</text>
+    <text x="${(gx0+gw/2).toFixed(1)}" y="${(gy0+gh+padB-14)}" text-anchor="middle" font-size="15" font-weight="700" fill="#15233a" font-family="Oswald,sans-serif">ETAPAS MORALES DE KOHLBERG</text>
+
+    <!-- MÍNIMO triangle -->
+    <polygon points="${gx0-118},${gy0+gh+40} ${gx0-12},${gy0+gh+40} ${gx0-118},${gy0+gh+96}" fill="#1f7ce0"/>
+    <text x="${gx0-110}" y="${gy0+gh+62}" font-size="14" font-weight="700" fill="#ffffff" font-family="Oswald,sans-serif">MÍNIMO</text>
+
+    <!-- DESEADO red curve -->
+    <path d="${curveC}" fill="none" stroke="#ee3b33" stroke-width="9" stroke-linecap="round" opacity="0.92"/>
+    <text x="${(gx0+gw*0.56).toFixed(1)}" y="${(gy0+gh*0.30).toFixed(1)}" font-size="19" font-weight="700" fill="#ffffff" font-family="Oswald,sans-serif" transform="rotate(20 ${(gx0+gw*0.56).toFixed(1)} ${(gy0+gh*0.30).toFixed(1)})" filter="url(#${idTag}-sh)">DESEADO</text>
+
+    <!-- Result marker -->
+    <line x1="${gx0}" y1="${my.toFixed(1)}" x2="${mx.toFixed(1)}" y2="${my.toFixed(1)}" stroke="#0a2a5e" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.7"/>
+    <line x1="${mx.toFixed(1)}" y1="${gy0+gh}" x2="${mx.toFixed(1)}" y2="${my.toFixed(1)}" stroke="#0a2a5e" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.7"/>
+    <circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="16" fill="#0a2a5e" stroke="#fff" stroke-width="3" filter="url(#${idTag}-sh)"/>
+    <circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="6" fill="#ffd54a"/>
+    <text x="${mx.toFixed(1)}" y="${(my-24).toFixed(1)}" text-anchor="middle" font-size="13" font-weight="700" fill="#0a2a5e" font-family="Oswald,sans-serif" filter="url(#${idTag}-sh)">SU RESULTADO</text>
+  </svg>`;
+}
+
+/* ============================================================
+   ELESIC 2026 — Escenario 1 · Crisis Geopolítica
+   Motor de simulación: cronómetro por fases, selección,
+   algoritmo de ponderación, Bloom/Kohlberg, informes.
+   ============================================================ */
+
+const PTS = {opt:35, rec:20, acc:5, pen:-5, bonus:10};
+const MAX_EVENT = 300;
+
+/* Per-event state */
+const state = EVENTS.map(()=>({
+  selected:[],          // option numbers (1..30)
+  justify:"",
+  scored:false,
+  result:null
+}));
+let current = 0;
+
+/* ---------- helpers ---------- */
+function cat(ev, n){
+  if(ev.optimas.includes(n)) return 'opt';
+  if(ev.recomendadas.includes(n)) return 'rec';
+  if(ev.aceptables.includes(n)) return 'acc';
+  if(ev.penalizadas.includes(n)) return 'pen';
+  return 'acc';
+}
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+/* ============================================================
+   INDICATORS (Situación General)
+   ============================================================ */
+const INDICADORES = [
+  ["Ingresos del carbón / Total","71%","↓ Debe bajar a 30%","t-crit"],
+  ["DTI Energético de la empresa","3.8 / 10","↓ Baja competitividad","t-down"],
+  ["Presión de fondos ESG","28% del capital","↑ Urgente","t-up"],
+  ["Tensión con comunidades","Alta — 3 demandas","↑ Crítico","t-crit"],
+  ["Potencial solar y eólico propio","2.4 GW no explotados","→ Oportunidad","t-flat"],
+  ["Pérdidas por suspensión","USD 4.2 M / día","↓ Crítico","t-crit"],
+  ["Generación eléctrica del Caribe afectada","34%","↑ Crítico","t-up"],
+  ["Velocidad de escape","Bifurcación: 18 meses","↑ Crítico","t-up"],
+];
+function renderIndicadores(){
+  document.getElementById('indicadores').innerHTML = INDICADORES.map(i=>`
+    <div class="ind"><span class="lbl">${i[0]}</span>
+    <span class="val">${i[1]}<span class="trend ${i[3]}">${i[2]}</span></span></div>`).join('');
+}
+
+/* ============================================================
+   TICKER PÚBLICO — datos relevantes dinámicos
+   ============================================================ */
+// Datos base + ruido dinámico para que "pasen" actualizándose
+const TICKER_BASE=[
+  {k:"Ingresos del carbón", base:71, suf:"% del total", tr:"crit", step:.15, dec:0},
+  {k:"DTI Energético", base:3.8, suf:"/10", tr:"down", step:.03, dec:1},
+  {k:"Presión fondos ESG", base:28, suf:"% del capital", tr:"up", step:.4, dec:0},
+  {k:"Pérdidas por suspensión", base:4.2, pre:"USD ", suf:" M/día", tr:"crit", step:.06, dec:1},
+  {k:"Generación Caribe afectada", base:34, suf:"%", tr:"up", step:.25, dec:0},
+  {k:"Demandas judiciales activas", base:3, suf:"", tr:"crit", step:0, dec:0},
+  {k:"Potencial solar/eólico", base:2.4, suf:" GW sin explotar", tr:"flat", step:0, dec:1},
+  {k:"Velocidad de escape", txt:"Punto de bifurcación · 18 meses", tr:"up"},
+  {k:"Comunidades Wayuu y Zenú", txt:"3 veredas desplazadas · acuífero contaminado", tr:"crit"},
+  {k:"Clientes europeos", txt:"Amenaza de suspender importaciones de carbón", tr:"crit"},
+  {k:"CREG", txt:"Riesgo de colapso del sistema interconectado", tr:"crit"},
+];
+let tickerVals=TICKER_BASE.map(d=>d.base);
+function tickerLine(){
+  return TICKER_BASE.map((d,i)=>{
+    let v;
+    if(d.txt!==undefined){ v=d.txt; }
+    else{
+      const num=tickerVals[i];
+      let s=num.toFixed(d.dec);
+      if(d.signed && num>0) s="+"+s;
+      v=(d.pre||"")+ (d.dec===0? Math.round(num).toLocaleString('es-CO') : s) +(d.suf||"");
+    }
+    const arrow=d.tr==='up'?'↑':d.tr==='down'?'↓':d.tr==='crit'?'⚠':'→';
+    return `<span class="ticker-item"><span class="ti-k">${d.k}</span><span class="ti-v">${v}</span><span class="ti-tr ti-${d.tr}">${arrow}</span></span>`;
+  }).join('');
+}
+function renderTicker(){
+  // duplicado para scroll continuo (50%)
+  const line=tickerLine();
+  const row=document.getElementById('tickerRow');
+  if(row) row.innerHTML=line+line;
+}
+function tickTicker(){
+  TICKER_BASE.forEach((d,i)=>{
+    if(d.step){
+      const drift=(Math.random()-0.42)*d.step; // sesgo leve a la escalada
+      tickerVals[i]=tickerVals[i]+drift;
+    }
+  });
+  renderTicker();
+}
+
+/* ============================================================
+   CLOCK — 3 phases: 5 / 10 / 10 min  (total 25 min)
+   ============================================================ */
+const PHASES = [
+  {name:"Fase de Reflexión Individual", dsc:"Lea el evento y reflexione. La selección de opciones se habilita en la Fase 2.", secs:5*60},
+  {name:"Fase de Selección Estratégica", dsc:"Seleccione las 10 opciones de respuesta. SOLO habilitadas durante estos 10 minutos.", secs:10*60},
+  {name:"Fase de Justificación Innovadora", dsc:"Redacte la justificación estratégica. El cajón de texto está habilitado solo en esta fase.", secs:10*60},
+];
+const TOTAL = PHASES.reduce((a,p)=>a+p.secs,0); // 1500s
+let elapsed = 0;        // seconds elapsed across whole 25 min
+let running = false;
+let tick = null;
+
+function phaseIndexAt(e){
+  let acc=0;
+  for(let i=0;i<PHASES.length;i++){ acc+=PHASES[i].secs; if(e<acc) return i; }
+  return PHASES.length; // finished
+}
+function fmt(s){ s=Math.max(0,Math.round(s)); const m=Math.floor(s/60), ss=s%60; return String(m).padStart(2,'0')+":"+String(ss).padStart(2,'0'); }
+
+function renderClock(){
+  const remaining = TOTAL - elapsed;
+  const big = document.getElementById('timeBig');
+  big.textContent = fmt(remaining);
+  big.classList.toggle('warn', remaining<=30 && remaining>0 && running);
+  document.getElementById('clockFill').style.width = (elapsed/TOTAL*100)+"%";
+
+  const pi = phaseIndexAt(elapsed);
+  // phase pills
+  document.querySelectorAll('.phase-pill').forEach((el,idx)=>{
+    el.classList.toggle('active', idx===pi && pi<PHASES.length);
+    el.classList.toggle('done', idx<pi);
+  });
+  if(pi<PHASES.length){
+    document.getElementById('phaseTtl').textContent = PHASES[pi].name;
+    document.getElementById('phaseDsc').textContent = PHASES[pi].dsc;
+  }else{
+    document.getElementById('phaseTtl').textContent = "Tiempo finalizado";
+    document.getElementById('phaseDsc').textContent = "Pulse «Resultados Obtenidos» para desplegar el desempeño del evento.";
+  }
+  // re-evaluate locks
+  applyPhaseLocks();
+}
+
+function currentPhase(){ return phaseIndexAt(elapsed); }
+function selectionOpen(){ return currentPhase()===1; }
+function justifyOpen(){ return currentPhase()===2; }
+function timeFinished(){ return elapsed>=TOTAL; }
+
+function toggleClock(){
+  if(running){ stopClock(); }
+  else{
+    if(timeFinished()) return;
+    running=true;
+    document.getElementById('btnPlay').textContent="⏸ Detener";
+    document.getElementById('btnPlay').classList.remove('play');
+    document.getElementById('btnPlay').classList.add('pause');
+    tick=setInterval(()=>{
+      elapsed++;
+      if(elapsed>=TOTAL){ elapsed=TOTAL; stopClock(); }
+      renderClock();
+    },1000);
+  }
+}
+function stopClock(){
+  running=false; clearInterval(tick);
+  const b=document.getElementById('btnPlay');
+  b.textContent= timeFinished()? "✔ Finalizado" : "▶ Iniciar";
+  b.classList.add('play'); b.classList.remove('pause');
+  if(timeFinished()) b.disabled=true;
+}
+function seek(delta){
+  elapsed = Math.min(TOTAL, Math.max(0, elapsed+delta));
+  if(elapsed<TOTAL){ document.getElementById('btnPlay').disabled=false; if(!running){const b=document.getElementById('btnPlay');b.textContent="▶ Iniciar";} }
+  renderClock();
+}
+function skipPhase(){
+  const pi=currentPhase();
+  if(pi>=PHASES.length) return;
+  let acc=0; for(let i=0;i<=pi;i++) acc+=PHASES[i].secs;
+  elapsed=Math.min(TOTAL,acc);
+  if(elapsed<TOTAL) document.getElementById('btnPlay').disabled=false;
+  renderClock();
+}
+function resetClock(){
+  stopClock(); elapsed=0;
+  document.getElementById('btnPlay').disabled=false;
+  document.getElementById('btnPlay').textContent="▶ Iniciar";
+  renderClock();
+}
+
+/* ============================================================
+   SCORING ALGORITHM
+   ============================================================ */
+function scoreEvent(idx){
+  const ev=EVENTS[idx];
+  const sel=state[idx].selected;
+  let raw=0, n={opt:0,rec:0,acc:0,pen:0}, bonus=false;
+  sel.forEach(num=>{
+    const c=cat(ev,num);
+    raw+=PTS[c]; n[c]++;
+    if(num===ev.bonus) bonus=true;
+  });
+  let total = raw + (bonus?PTS.bonus:0);
+  if(total<0) total=0;
+  const pct = Math.round(total/MAX_EVENT*1000)/10;
+  let level;
+  if(total>=270) level="EXCELENTE";
+  else if(total>=210) level="ALTO";
+  else if(total>=150) level="MEDIO";
+  else level="BAJO";
+
+  // ---- Bloom (cognitive) derived from selection quality + justification depth ----
+  // Selection signal: density of óptimas/recomendadas maps to higher Bloom levels.
+  const selWeight = (n.opt*1.0 + n.rec*0.62 + n.acc*0.18 - n.pen*0.5);
+  const selSignal = Math.max(0, Math.min(1, selWeight/8.5)); // 0..1
+  // Justification signal: length + presence of analytical/creative connectors
+  const j=(state[idx].justify||"").toLowerCase();
+  const words=j.trim()? j.trim().split(/\s+/).length:0;
+  const lenSig=Math.max(0,Math.min(1, words/120));
+  const KW_HI=["integr","sistémic","sistemic","prospect","innov","diseñ","propong","propon","crear","articul","sinerg","multidimensional","escenario","matriz","porque","dado que","por tanto","evaluar","priorizar","trade-off","contrapeso"];
+  const KW_MID=["aplicar","implementar","coordinar","analizar","comparar","considerar","contexto","riesgo"];
+  let kwHi=0,kwMid=0; KW_HI.forEach(k=>{if(j.includes(k))kwHi++;}); KW_MID.forEach(k=>{if(j.includes(k))kwMid++;});
+  const kwSig=Math.max(0,Math.min(1,(kwHi*0.16+kwMid*0.07)));
+  const bloomNorm = Math.max(0,Math.min(1, selSignal*0.55 + lenSig*0.22 + kwSig*0.23));
+  const bloomPct = Math.round(bloomNorm*1000)/10;            // 0..100
+  const bloomPts = Math.round(bloomNorm*150);                // /150
+  const bloomLevel = bloomLabel(bloomNorm);
+
+  // ---- Kohlberg (moral) derived from ethical/sovereignty-oriented choices + justification ----
+  // Penalized = self-interest/fear (low); óptimas tend to principled/universal (high)
+  const moralSel = Math.max(0,Math.min(1,(n.opt*1.0 + n.rec*0.55 - n.pen*0.9)/7.5));
+  const KW_POST=["soberan","principi","justicia","derecho internacional","sostenib","bien común","bien comun","ético","etico","legitim","multilateral","convemar","carta onu","no intervención","no intervencion","universal","contrato social"];
+  let kwPost=0; KW_POST.forEach(k=>{if(j.includes(k))kwPost++;});
+  const moralKw=Math.max(0,Math.min(1,kwPost*0.17));
+  const kohlNorm=Math.max(0,Math.min(1, moralSel*0.6 + moralKw*0.28 + lenSig*0.12));
+  const kohlPct=Math.round(kohlNorm*1000)/10;
+  const kohlStage=kohlbergStage(kohlNorm);
+  const kohlPts=Math.round(kohlNorm*30); // per event /30
+
+  return {
+    total, pct, level, raw, bonus, n,
+    bloomNorm, bloomPct, bloomPts, bloomLevel,
+    kohlNorm, kohlPct, kohlStage, kohlPts,
+    words
+  };
+}
+function bloomLabel(x){
+  if(x>=0.9) return "6 · CREAR";
+  if(x>=0.75) return "5 · EVALUAR";
+  if(x>=0.58) return "4 · ANALIZAR";
+  if(x>=0.4) return "3 · APLICAR";
+  if(x>=0.22) return "2 · COMPRENDER";
+  return "1 · RECORDAR";
+}
+function kohlbergStage(x){
+  if(x>=0.9) return {lvl:"POSTCONVENCIONAL", st:"6 · Ética Universal"};
+  if(x>=0.74) return {lvl:"POSTCONVENCIONAL", st:"5 · Contrato Social"};
+  if(x>=0.56) return {lvl:"CONVENCIONAL", st:"4 · Ley y Orden"};
+  if(x>=0.38) return {lvl:"CONVENCIONAL", st:"3 · Buen Líder"};
+  if(x>=0.2)  return {lvl:"PRECONVENCIONAL", st:"2 · Interés Propio"};
+  return {lvl:"PRECONVENCIONAL", st:"1 · Miedo / Castigo"};
+}
+
+/* ============================================================
+   EVENT RENDER
+   ============================================================ */
+function renderTabs(){
+  document.getElementById('eventTabs').innerHTML = EVENTS.map((e,i)=>`
+    <button class="etab ${i===current?'active':''} ${state[i].scored?'scored':''}" onclick="goEvent(${i})">
+      ${e.code}<span class="dot"></span>
+    </button>`).join('');
+}
+function goEvent(i){
+  current=i;
+  resetClock();
+  renderTabs(); renderEvent(); renderParticular();
+}
+
+function renderParticular(){
+  const e=EVENTS[current];
+  document.getElementById('particularPanel').innerHTML = `
+    <p><strong>${e.code} · ${e.title}</strong></p>
+    <p>${e.particular}</p>`;
+}
+
+function renderEvent(){
+  const e=EVENTS[current], st=state[current];
+  const selOpen=selectionOpen(), jOpen=justifyOpen(), fin=timeFinished();
+  const isLast = current===EVENTS.length-1;
+
+  const optsHtml = e.options.map((txt,i)=>{
+    const num=i+1;
+    const on=st.selected.includes(num);
+    const dis = !selOpen && !on;          // when closed, can't add new; can't remove either after lock
+    const lockedAll = !selOpen;
+    return `<div class="opt ${on?'selected':''} ${lockedAll?'disabled':''}" onclick="toggleOpt(${num})">
+      <span class="num">${num}</span>
+      <span class="tx">${txt}</span>
+      <span class="chk"></span>
+    </div>`;
+  }).join('');
+
+  const cnt=st.selected.length;
+  const counterCls = cnt===10?'counter full':'counter';
+  const lockMsg = selOpen
+      ? `<span class="lock-note">● Selección ABIERTA (Fase 2)</span>`
+      : (currentPhase()<1 ? `<span class="lock-note">Selección se habilita en Fase 2</span>`
+                          : `<span class="lock-note">🔒 Selección CERRADA</span>`);
+
+  const resultBtns = isLast
+    ? `<button class="btn-result" id="btnRes${current}" onclick="showEventResult(${current})">📈 Resultados del Evento</button>
+       <button class="btn-result integral" onclick="showIntegral()">🧭 Resultados y Evaluación Integral</button>`
+    : `<button class="btn-result" id="btnRes${current}" onclick="showEventResult(${current})">📈 Resultados Obtenidos</button>`;
+
+  document.getElementById('eventCard').innerHTML = `
+    <div class="event-banner">
+      <div class="ecode">EVENTO ${e.code} · ${e.situacionGlobal}</div>
+      <h2>${e.title}</h2>
+      <div class="emod">${e.mod}</div>
+      <div class="edate">${e.datetime}</div>
+    </div>
+    <div class="event-body">
+      <div class="panel" style="margin-bottom:16px;box-shadow:none;border-color:var(--gris-borde)">
+        <div class="panel-head gen" style="font-size:13px">◆ Contexto Estratégico del Evento</div>
+        <div class="panel-body">${e.contexto.map(c=>`<p>${c}</p>`).join('')}</div>
+      </div>
+
+      <div class="req-box">
+        <div class="rq-h">⚡ Requerimiento Estratégico</div>
+        <p>${e.requerimiento}</p>
+      </div>
+
+      <div class="sel-head">
+        <h3>Menú de Opciones — Seleccione 10 de 30</h3>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          ${lockMsg}
+          <span class="${counterCls}" id="counter${current}">${cnt} / 10</span>
+        </div>
+      </div>
+      <div class="opts-grid">${optsHtml}</div>
+
+      <div class="justify-box">
+        <label>📝 Justificación Innovadora — Vinculación con el ${e.mod.split('—')[0].trim()}</label>
+        <textarea id="justify${current}" ${jOpen?'':'disabled'} placeholder="${jOpen?'Redacte aquí la justificación estratégica de su selección (habilitado solo en Fase 3)…':'El cajón de texto se habilita en la Fase 3 (Justificación).'}" oninput="onJustify(this.value)">${st.justify}</textarea>
+        <div class="justify-meta"><span id="jmeta${current}">${(st.justify.trim()?st.justify.trim().split(/\\s+/).length:0)} palabras</span><span>Mide Taxonomía de Bloom · base para Kohlberg</span></div>
+      </div>
+
+      <div class="result-trigger">
+        ${resultBtns}
+      </div>
+      <div style="font-size:12px;color:var(--texto-suave);margin-top:8px">
+        ${fin? '✔ Tiempo finalizado — resultados disponibles.' : '⏳ El botón de resultados se habilita al finalizar los 25 minutos (o al saltar las fases).'}
+      </div>
+
+      <div class="result-area" id="resultArea${current}"></div>
+    </div>`;
+
+  // enable/disable result button
+  const rb=document.getElementById('btnRes'+current);
+  if(rb) rb.disabled = !fin && !st.scored;
+  // if already scored, keep result visible
+  if(st.scored && st.result){ renderEventResultHTML(current); }
+}
+
+function applyPhaseLocks(){
+  // Re-render relevant parts without losing textarea focus when possible
+  const e=EVENTS[current], st=state[current];
+  // counter + locks managed by full re-render of options only if phase changed
+  const rb=document.getElementById('btnRes'+current);
+  if(rb) rb.disabled = !timeFinished() && !st.scored;
+  // toggle textarea
+  const ta=document.getElementById('justify'+current);
+  if(ta){ ta.disabled = !justifyOpen() && !st.scored ? !justifyOpen() : ta.disabled;
+    ta.disabled = !justifyOpen(); }
+  // toggle option disabled state
+  document.querySelectorAll('#eventCard .opt').forEach((el,i)=>{
+    const num=i+1, on=st.selected.includes(num);
+    const lockedAll=!selectionOpen();
+    el.classList.toggle('disabled', lockedAll);
+  });
+  // update lock label
+  const lab=document.querySelector('#eventCard .sel-head .lock-note');
+  if(lab){
+    if(selectionOpen()){lab.textContent="● Selección ABIERTA (Fase 2)";}
+    else if(currentPhase()<1){lab.textContent="Selección se habilita en Fase 2";}
+    else{lab.textContent="🔒 Selección CERRADA";}
+  }
+}
+
+function toggleOpt(num){
+  if(!selectionOpen()){ toast("La selección solo está habilitada en la Fase 2 (10 min)."); return; }
+  const st=state[current];
+  const i=st.selected.indexOf(num);
+  if(i>=0){ st.selected.splice(i,1); }
+  else{
+    if(st.selected.length>=10){ toast("Máximo 10 opciones. Deseleccione una primero."); return; }
+    st.selected.push(num);
+  }
+  // update UI for that option + counter
+  const opts=document.querySelectorAll('#eventCard .opt');
+  const el=opts[num-1];
+  el.classList.toggle('selected', st.selected.includes(num));
+  const c=document.getElementById('counter'+current);
+  c.textContent=st.selected.length+" / 10";
+  c.className = st.selected.length===10?'counter full':'counter';
+}
+
+function onJustify(v){
+  state[current].justify=v;
+  const w=v.trim()? v.trim().split(/\s+/).length:0;
+  const m=document.getElementById('jmeta'+current);
+  if(m) m.textContent=w+" palabras";
+}
+
+/* ============================================================
+   EVENT RESULT DISPLAY
+   ============================================================ */
+function showEventResult(idx){
+  if(!timeFinished() && !state[idx].scored){ toast("Espere a que finalice el tiempo del evento."); return; }
+  if(state[idx].selected.length===0){ toast("No se seleccionaron opciones en este evento."); }
+  state[idx].result = scoreEvent(idx);
+  state[idx].scored = true;
+  renderTabs();
+  renderEventResultHTML(idx);
+  maybeShowFinal();
+}
+
+function renderEventResultHTML(idx){
+  const e=EVENTS[idx], st=state[idx], r=st.result || scoreEvent(idx);
+  st.result=r;
+  const area=document.getElementById('resultArea'+idx);
+  if(!area) return;
+
+  const chips = (arr,cls)=>arr.map(n=>`<span class="chip" style="border-color:transparent" >${n}</span>`).join('');
+  const selByCat = {opt:[],rec:[],acc:[],pen:[]};
+  st.selected.forEach(n=>selByCat[cat(e,n)].push(n));
+
+  const bonusGot = st.selected.includes(e.bonus);
+
+  area.innerHTML = `
+    <div class="res-top">
+      <div class="level-badge lvl-${r.level}">
+        <span class="lv">${r.level}</span>
+        <span class="pts">${r.total} / 300 pts · ${r.pct}%</span>
+      </div>
+      <div class="res-break">
+        <div class="rrow"><span><span class="tag tag-opt">★★★★ Óptimas</span> ×${r.n.opt}</span><b>+${r.n.opt*35}</b></div>
+        <div class="rrow"><span><span class="tag tag-rec">★★★ Recomendadas</span> ×${r.n.rec}</span><b>+${r.n.rec*20}</b></div>
+        <div class="rrow"><span><span class="tag tag-acc">★★ Aceptables</span> ×${r.n.acc}</span><b>+${r.n.acc*5}</b></div>
+        <div class="rrow"><span><span class="tag tag-pen">✖ Penalizadas</span> ×${r.n.pen}</span><b>${r.n.pen*-5}</b></div>
+        <div class="rrow"><span><span class="tag tag-bonus">⊕ Bonus (Opc. ${e.bonus})</span></span><b>${bonusGot?'+10':'0'}</b></div>
+      </div>
+    </div>
+
+    <div class="res-detail">
+      <h4>Desglose de su selección</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:13px">
+        <div><span class="tag tag-opt">Óptimas</span> ${selByCat.opt.length?selByCat.opt.join(', '):'—'}</div>
+        <div><span class="tag tag-rec">Recomendadas</span> ${selByCat.rec.length?selByCat.rec.join(', '):'—'}</div>
+        <div><span class="tag tag-acc">Aceptables</span> ${selByCat.acc.length?selByCat.acc.join(', '):'—'}</div>
+        <div><span class="tag tag-pen">Penalizadas</span> ${selByCat.pen.length?selByCat.pen.join(', '):'—'}</div>
+      </div>
+
+      <h4>Combinación óptima del evento</h4>
+      <div class="combo-box">
+        <div style="margin-bottom:8px"><span class="tag tag-opt">★★★★ Opciones óptimas</span> <b style="font-family:'IBM Plex Mono'">${e.optimas.join(', ')}</b> &nbsp;·&nbsp; <span class="tag tag-bonus">⊕ Bonus</span> <b style="font-family:'IBM Plex Mono'">Opc. ${e.bonus}</b></div>
+        ${e.combinacionOptima}
+      </div>
+
+      <h4>Análisis cognitivo y moral (derivado de selección + justificación)</h4>
+      <div class="bloom-kohl">
+        <div class="bk-card">
+          <h5>🧠 Taxonomía de Bloom</h5>
+          <div class="bk-lvl">${r.bloomLevel}</div>
+          <div style="font-size:12.5px;color:var(--texto-suave)">Desarrollo cognitivo: ${r.bloomPct}% · ${r.bloomPts}/150 · (${r.words} palabras de justificación)</div>
+          <div class="bk-bar"><i style="width:${r.bloomPct}%"></i></div>
+        </div>
+        <div class="bk-card">
+          <h5>⚖️ Etapas de Kohlberg</h5>
+          <div class="bk-lvl">${r.kohlStage.st}</div>
+          <div style="font-size:12.5px;color:var(--texto-suave)">Nivel moral: ${r.kohlStage.lvl} · ${r.kohlPct}% · ${r.kohlPts}/30</div>
+          <div class="bk-bar"><i style="width:${r.kohlPct}%"></i></div>
+        </div>
+      </div>
+
+      <h4>Razón estratégica de penalizaciones</h4>
+      <ul style="margin:4px 0 0 18px;font-size:13px;color:var(--texto-suave)">
+        ${e.razonPenalizacion.map(x=>`<li style="margin-bottom:4px">${x}</li>`).join('')}
+      </ul>
+
+      <h4>⊕ Bonus diferenciador</h4>
+      <div style="font-size:13px;color:var(--texto-suave)">${e.bonusDesc}</div>
+    </div>`;
+  area.classList.add('show');
+  area.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ============================================================
+   FINAL CONSOLIDATED RESULTS
+   ============================================================ */
+function maybeShowFinal(){
+  const allScored = state.every(s=>s.scored);
+  if(allScored){ renderFinal(); document.getElementById('finalBlock').style.display='block'; }
+}
+function aggregate(){
+  // Strategic performance: average of event % (40%)
+  let perfPctSum=0, bloomPtsSum=0, kohlPtsSum=0;
+  state.forEach((s,i)=>{
+    const r=s.result||scoreEvent(i);
+    perfPctSum += r.pct;
+    bloomPtsSum += r.bloomPts; // /150 each (we'll average)
+    kohlPtsSum += r.kohlPts;   // /30 each → sum /180
+  });
+  const perfPct = perfPctSum/EVENTS.length;          // 0..100
+  const bloomPct = (bloomPtsSum/EVENTS.length)/150*100; // avg of /150
+  const kohlPct = kohlPtsSum/180*100;                // /180 total
+  const integrated = perfPct*0.40 + bloomPct*0.35 + kohlPct*0.25;
+  let level;
+  if(integrated>=90) level="A · Excelencia Estratégica";
+  else if(integrated>=75) level="B · Competencia Táctica";
+  else if(integrated>=60) level="C · Desempeño Funcional";
+  else level="D · Desempeño Inicial";
+  return {perfPct,bloomPct,kohlPct,integrated,level,
+    perfW:perfPct*0.40, bloomW:bloomPct*0.35, kohlW:kohlPct*0.25};
+}
+function renderFinal(){
+  const a=aggregate();
+  const rows = state.map((s,i)=>{
+    const r=s.result; const e=EVENTS[i];
+    return `<tr><td><b>${e.code}</b> ${e.title}</td>
+      <td>${r.total}/300</td><td>${r.pct}%</td>
+      <td><span class="tag lvl-tag" style="background:var(--nivel-${r.level.toLowerCase()});color:#fff">${r.level}</span></td>
+      <td>${r.bloomLevel}</td><td>${r.kohlStage.st}</td></tr>`;
+  }).join('');
+  document.getElementById('finalBody').innerHTML = `
+    <div class="res-top" style="margin-bottom:14px">
+      <div class="level-badge ${a.integrated>=90?'lvl-EXCELENTE':a.integrated>=75?'lvl-ALTO':a.integrated>=60?'lvl-MEDIO':'lvl-BAJO'}">
+        <span class="lv">${a.level.split('·')[0].trim()}</span>
+        <span class="pts">${a.integrated.toFixed(1)}% INTEGRADO</span>
+      </div>
+      <div class="res-break">
+        <div class="rrow"><span>Desempeño Estratégico (40%)</span><b>${a.perfPct.toFixed(1)}% → ${a.perfW.toFixed(1)}</b></div>
+        <div class="rrow"><span>Taxonomía de Bloom (35%)</span><b>${a.bloomPct.toFixed(1)}% → ${a.bloomW.toFixed(1)}</b></div>
+        <div class="rrow"><span>Etapas de Kohlberg (25%)</span><b>${a.kohlPct.toFixed(1)}% → ${a.kohlW.toFixed(1)}</b></div>
+        <div class="rrow"><span><b>TOTAL INTEGRADO</b></span><b>${a.integrated.toFixed(1)}% · ${a.level}</b></div>
+      </div>
+    </div>
+    <table class="final-rank">
+      <thead><tr><th>Evento</th><th>Puntaje</th><th>%</th><th>Nivel</th><th>Bloom</th><th>Kohlberg</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div style="margin-top:16px;text-align:center">
+      <button class="btn-result integral" onclick="openGestor()">🗂️ Reporte Gestor de la Simulación</button>
+    </div>`;
+}
+
+/* ============================================================
+   INTEGRAL MODAL (triggered from last event)
+   ============================================================ */
+function showIntegral(){
+  // ensure all events scored; if not, score those with data / zero
+  state.forEach((s,i)=>{ if(!s.scored){ s.result=scoreEvent(i); } });
+  const a=aggregate();
+  // Bloom-Kohlberg quadrant
+  let quad, qdesc;
+  const bHi=a.bloomPct>=58, kHi=a.kohlPct>=56;
+  if(bHi&&kHi){quad="★ Superior Derecho — DESEADO";qdesc="Líderes que piensan con profundidad cognitiva Y deciden desde principios éticos avanzados. Perfil aspiracional del PALEM.";}
+  else if(bHi&&!kHi){quad="Superior Izquierdo";qdesc="Cognitivamente capaces que actúan por temor o conveniencia. Conocen las herramientas pero las usan para fines individualistas.";}
+  else if(!bHi&&kHi){quad="Inferior Derecho";qdesc="Buenas intenciones éticas con capacidad cognitiva limitada. Pueden tomar malas decisiones con buenas intenciones.";}
+  else{quad="Inferior Izquierdo";qdesc="Déficit: poca capacidad cognitiva y razonamiento moral básico. Requiere desarrollo integral urgente.";}
+
+  const evRows=state.map((s,i)=>{
+    const r=s.result,e=EVENTS[i];
+    return `<tr><td><b>${e.code}</b></td><td>${r.total}/300</td><td>${r.level}</td><td>${r.bloomLevel}</td><td>${r.kohlStage.st}</td></tr>`;
+  }).join('');
+
+  document.getElementById('integralBody').innerHTML=`
+    <p style="color:var(--texto-suave);margin-bottom:14px">Evaluación tridimensional del ELESIC: <strong>lo que se decide</strong> (Desempeño), <strong>cómo se piensa</strong> (Bloom) y <strong>por qué se decide</strong> (Kohlberg).</p>
+
+    <div class="gestor-section"><div class="gs-h">1 · Desempeño en las Respuestas (por evento)</div>
+    <table class="final-rank"><thead><tr><th>Ev</th><th>Puntaje</th><th>Nivel</th><th>Bloom</th><th>Kohlberg</th></tr></thead><tbody>${evRows}</tbody></table></div>
+
+    <div class="gestor-section"><div class="gs-h">2 · Puntuación Integrada Final</div>
+    <div class="res-break" style="max-width:520px">
+      <div class="rrow"><span>Desempeño Estratégico (40%)</span><b>${a.perfPct.toFixed(1)}% → ${a.perfW.toFixed(1)}</b></div>
+      <div class="rrow"><span>Taxonomía de Bloom (35%)</span><b>${a.bloomPct.toFixed(1)}% → ${a.bloomW.toFixed(1)}</b></div>
+      <div class="rrow"><span>Etapas de Kohlberg (25%)</span><b>${a.kohlPct.toFixed(1)}% → ${a.kohlW.toFixed(1)}</b></div>
+      <div class="rrow"><span><b>TOTAL INTEGRADO</b></span><b>${a.integrated.toFixed(1)}% · ${a.level}</b></div>
+    </div></div>
+
+    <div class="gestor-section"><div class="gs-h">3 · Cuadrante Bloom–Kohlberg</div>
+    <div class="combo-box" style="border-left-color:var(--dorado)"><strong>${quad}</strong><br>${qdesc}</div>
+    <div class="bloom-kohl">
+      <div class="bk-card"><h5>Eje Cognitivo (Bloom)</h5><div class="bk-lvl">${a.bloomPct.toFixed(1)}%</div><div class="bk-bar"><i style="width:${a.bloomPct}%"></i></div></div>
+      <div class="bk-card"><h5>Eje Moral (Kohlberg)</h5><div class="bk-lvl">${a.kohlPct.toFixed(1)}%</div><div class="bk-bar"><i style="width:${a.kohlPct}%"></i></div></div>
+    </div>
+    <div style="font-size:13px;color:var(--texto-suave);margin:14px 0 6px">Mapa bidimensional de desarrollo directivo del PALEM. Eje vertical: niveles de Bloom (cognitivo). Eje horizontal: etapas de Kohlberg (moral). La curva roja marca el estándar DESEADO; el marcador ubica el resultado integrado final del escenario.</div>
+    <div style="background:#fff;border:1px solid var(--gris-borde);border-radius:12px;padding:10px">${bloomKohlbergSVG(a.bloomPct/100, a.kohlPct/100, {id:'bkint'})}</div>
+    <div style="font-size:12.5px;color:var(--texto-suave);margin-top:6px">Posición integrada del escenario — Bloom: <b>${a.bloomPct.toFixed(1)}%</b> · Kohlberg: <b>${a.kohlPct.toFixed(1)}%</b>.</div>
+    </div>
+
+    <div class="gestor-section"><div class="gs-h">Puntaje y Análisis Definitivo</div>
+    <p style="font-size:14px">El equipo alcanza un desempeño <strong>${a.level}</strong> con ${a.integrated.toFixed(1)}% integrado. ${conclusionTxt(a)}</p>
+    </div>`;
+  openModal('integralModal');
+}
+function conclusionTxt(a){
+  if(a.integrated>=90) return "Integración sistémica de herramientas avanzadas y visión transformacional con base moral postconvencional. Liderazgo transformacional ético.";
+  if(a.integrated>=75) return "Ejecución efectiva con buen alcance operativo y conciencia social; profundidad metodológica moderada. Gestor estratégico con conciencia social.";
+  if(a.integrated>=60) return "Capacidades funcionales con oportunidades de profundización metodológica y moral. Ejecutivo funcional con desarrollo pendiente.";
+  return "Requiere desarrollo integral en estructura cognitiva y razonamiento moral bajo presión. Líder en formación — desarrollo urgente.";
+}
+
+/* ============================================================
+   GESTOR REPORT  (observer adjustments to Bloom & Kohlberg)
+   ============================================================ */
+let adj = {bloom:0, kohl:0};
+function openGestor(){
+  state.forEach((s,i)=>{ if(!s.scored) s.result=scoreEvent(i); });
+  renderGestor();
+  openModal('gestorModal');
+}
+function renderGestor(){
+  const a=aggregate();
+  const adjBloom = Math.max(0,Math.min(100,a.bloomPct+adj.bloom));
+  const adjKohl  = Math.max(0,Math.min(100,a.kohlPct+adj.kohl));
+  const integratedAdj = a.perfPct*0.40 + adjBloom*0.35 + adjKohl*0.25;
+  let lvl;
+  if(integratedAdj>=90) lvl="A · Excelencia Estratégica";
+  else if(integratedAdj>=75) lvl="B · Competencia Táctica";
+  else if(integratedAdj>=60) lvl="C · Desempeño Funcional";
+  else lvl="D · Desempeño Inicial";
+
+  const evRows=state.map((s,i)=>{
+    const r=s.result,e=EVENTS[i];
+    const j=(s.justify||"").trim();
+    return `<tr><td><b>${e.code}</b></td><td>${r.total}/300 · ${r.level}</td><td>${r.bloomLevel}</td><td>${r.kohlStage.st}</td><td style="font-size:12px;color:var(--texto-suave)">${j? (j.length>60?j.slice(0,60)+'…':j):'<i>sin justificación</i>'}</td></tr>`;
+  }).join('');
+
+  document.getElementById('gestorBody').innerHTML=`
+    <p style="color:var(--texto-suave);margin-bottom:12px">Informe consolidado para el gestor/observador del módulo PALEM. Permite aplicar un <strong>ajuste de calificación</strong> sobre los criterios de Bloom y Kohlberg, según la observación directa de las presentaciones del Día 2.</p>
+
+    <div class="gestor-section"><div class="gs-h">Resumen por Evento</div>
+    <table class="final-rank"><thead><tr><th>Ev</th><th>Desempeño</th><th>Bloom</th><th>Kohlberg</th><th>Justificación (extracto)</th></tr></thead><tbody>${evRows}</tbody></table></div>
+
+    <div class="gestor-section"><div class="gs-h">Ajuste del Observador (±15 puntos porcentuales)</div>
+    <div class="adj-row">
+      <label>Ajuste Taxonomía de Bloom</label>
+      <input type="range" min="-15" max="15" value="${adj.bloom}" oninput="adj.bloom=+this.value;renderGestor()">
+      <span class="adj-val">${adj.bloom>0?'+':''}${adj.bloom} pp</span>
+    </div>
+    <div class="adj-row">
+      <label>Ajuste Etapas de Kohlberg</label>
+      <input type="range" min="-15" max="15" value="${adj.kohl}" oninput="adj.kohl=+this.value;renderGestor()">
+      <span class="adj-val">${adj.kohl>0?'+':''}${adj.kohl} pp</span>
+    </div></div>
+
+    <div class="gestor-section"><div class="gs-h">Puntuación Integrada Definitiva (con ajuste)</div>
+    <div class="res-break" style="max-width:560px">
+      <div class="rrow"><span>Desempeño Estratégico (40%)</span><b>${a.perfPct.toFixed(1)}%</b></div>
+      <div class="rrow"><span>Bloom ajustado (35%)</span><b>${adjBloom.toFixed(1)}%</b></div>
+      <div class="rrow"><span>Kohlberg ajustado (25%)</span><b>${adjKohl.toFixed(1)}%</b></div>
+      <div class="rrow"><span><b>TOTAL INTEGRADO DEFINITIVO</b></span><b>${integratedAdj.toFixed(1)}% · ${lvl}</b></div>
+    </div></div>
+
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn-result" onclick="printReport()">🖨️ Imprimir / Guardar PDF</button>
+    </div>`;
+}
+function printReport(){ window.print(); }
+
+/* ============================================================
+   NEWS / MULTIMEDIA MODAL
+   ============================================================ */
+const NEWS=[
+  ["El Heraldo · Caribe","Suspendida la mayor energética del Caribe","Orden judicial por violación de derechos territoriales Wayuu y Zenú. La medida afecta el 34% de la generación eléctrica regional; hospitales en generadores de emergencia."],
+  ["Greenpeace / Friends of the Earth","Activistas respaldan el fallo judicial","Organizaciones ambientales internacionales celebran la suspensión. La presión sobre el carbón térmico colombiano se intensifica en vísperas de metas de París."],
+  ["Fondos ESG internacionales","28% del capital amenaza con retirarse","Tres fondos condicionan su permanencia al cumplimiento pleno de los ODS. La empresa pierde USD 4.2 millones diarios mientras dura la suspensión."],
+  ["CREG","Riesgo de colapso del sistema interconectado","La Comisión de Regulación de Energía alerta sobre la continuidad del servicio en el Caribe. Acueductos reportan falta de bombeo en varias zonas."],
+  ["Corte IDH / OIT","Medida cautelar y alerta por Convenio 169","La Corte Interamericana refuerza el fallo interno. La OIT notifica al Estado por posible incumplimiento de derechos de pueblos indígenas."],
+  ["Clientes europeos","Condicionan compras a estándares de DD.HH.","Tres países europeos anuncian que suspenderán importaciones de carbón térmico si la empresa no certifica cumplimiento de derechos humanos."],
+];
+function renderNews(){
+  document.getElementById('newsBody').innerHTML = `
+    <div class="news-grid">
+      ${NEWS.map(n=>`<div class="news-item"><div class="nh">
+        <div class="src">${n[0]}</div><h4>${n[1]}</h4><p>${n[2]}</p></div></div>`).join('')}
+    </div>
+    <div class="media-strip">
+      <div class="media-thumb"><span class="ic">⚡</span><span class="mt">Sistema interconectado</span><span class="md">34% de la generación del Caribe suspendida</span></div>
+      <div class="media-thumb"><span class="ic">🌬️</span><span class="mt">Potencial renovable</span><span class="md">2.4 GW solar y eólico sin explotar</span></div>
+      <div class="media-thumb"><span class="ic">🪶</span><span class="mt">Comunidades ancestrales</span><span class="md">Wayuu y Zenú · La Guajira y Cesar</span></div>
+      <div class="media-thumb"><span class="ic">📉</span><span class="mt">Presión ESG</span><span class="md">28% del capital · USD 4.2 M/día en pérdidas</span></div>
+    </div>`;
+}
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+document.addEventListener('click',e=>{ if(e.target.classList.contains('modal-bg')) e.target.classList.remove('show'); });
+
+/* ============================================================
+   AUTO SIMULATION (≈1 min) — runs the whole exercise
+   ============================================================ */
+let simRunning=false;
+function runAutoSim(){
+  if(simRunning) return;
+  simRunning=true;
+  const banner=document.getElementById('simBanner');
+  const txt=document.getElementById('simText');
+  banner.classList.add('show');
+  stopClock();
+
+  // ~10s per event × 6 = 60s
+  const perEvent=10000;
+  let i=0;
+  function doEvent(){
+    if(i>=EVENTS.length){
+      txt.innerHTML="<b>Simulación completa</b> · consolidando resultados…";
+      setTimeout(()=>{
+        renderFinal(); document.getElementById('finalBlock').style.display='block';
+        banner.classList.remove('show'); simRunning=false;
+        toast("Simulación de 1 minuto finalizada. Resultados generados.");
+        showIntegral();
+      },1200);
+      return;
+    }
+    current=i; renderTabs(); renderParticular();
+    const e=EVENTS[i], st=state[i];
+    // pick 10 options: bias to a realistic mix (some optimas, recs, occasional acc)
+    const pick=simPick(e,i);
+    st.selected=pick;
+    st.justify=simJustify(e,i,pick);
+    st.scored=true; st.result=null; st.result=scoreEvent(i);
+    // open time fully so result renders
+    elapsed=TOTAL; renderClock(); renderEvent();
+    txt.innerHTML=`<b>Evento ${e.code}</b> · seleccionando 10 opciones, redactando y evaluando…`;
+    // animate selection visually
+    let k=0;
+    const animSel=setInterval(()=>{
+      if(k>=pick.length){clearInterval(animSel);return;}
+      k++;
+    },perEvent/12);
+    setTimeout(()=>{
+      showEventResult(i);
+      i++;
+      doEvent();
+    },perEvent);
+  }
+  doEvent();
+}
+function simPick(e,idx){
+  // realistic, slightly varied performance per event
+  const profiles=[ {o:5,r:4,a:1,p:0}, {o:4,r:5,a:1,p:0}, {o:5,r:3,a:2,p:0},
+                   {o:6,r:4,a:0,p:0}, {o:3,r:5,a:2,p:0}, {o:4,r:4,a:2,p:0} ];
+  const pr=profiles[idx%profiles.length];
+  const pick=[];
+  const take=(arr,k)=>{ const a=[...arr]; for(let n=0;n<k && a.length;n++){ const j=Math.floor(Math.random()*a.length); pick.push(a.splice(j,1)[0]); } };
+  // ensure bonus included for high performance
+  if(!pick.includes(e.bonus) && e.optimas.includes(e.bonus)) pick.push(e.bonus);
+  take(e.optimas.filter(x=>!pick.includes(x)), pr.o-(pick.length));
+  take(e.recomendadas.filter(x=>!pick.includes(x)), pr.r);
+  take(e.aceptables.filter(x=>!pick.includes(x)), pr.a);
+  if(pr.p) take(e.penalizadas, pr.p);
+  // trim/fill to 10
+  while(pick.length>10) pick.pop();
+  if(pick.length<10){ const pool=e.recomendadas.concat(e.aceptables).filter(x=>!pick.includes(x)); take(pool,10-pick.length); }
+  return pick.slice(0,10);
+}
+function simJustify(e,idx,pick){
+  return `La decisión de la Junta integra de forma sistémica las dimensiones económica, social, ambiental, tecnológica y ética del LEM. Se prioriza la combinación óptima del ${e.mod.split('—')[0].trim()}, articulando las opciones seleccionadas porque permiten conciliar la viabilidad financiera de la empresa con los derechos de las comunidades Wayuu y Zenú y el cumplimiento de los ODS, evaluando los trade-offs de cada decisión. Se propone un diseño que crea valor compartido y sostenible, dado que equilibra la rentabilidad con la transición energética justa y orienta a la empresa hacia la velocidad de escape del subdesarrollo, con principios de equidad para todos los grupos de interés.`;
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function init(){
+  renderIndicadores();
+  renderTabs();
+  renderEvent();
+  renderParticular();
+  renderNews();
+  renderClock();
+  tickerVals=TICKER_BASE.map(d=>d.base);
+  renderTicker();
+  setInterval(tickTicker, 3000);
+}
+init();
+
+</script>
+</body>
+</html>
