@@ -1466,5 +1466,31 @@ function init(){
 init();
 
 </script>
+
+<!-- ===== ELESIC DB INTEGRATION ===== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="_config.js"></script>
+<script>
+  window.ELESIC_SCENARIO_ID = 'E1';
+  window.ELESIC_STATE_REF   = function() { return state; };
+  window.ELESIC_EVENTS_REF  = function() { return EVENTS; };
+</script>
+<script src="_db.js"></script>
+<script>
+  // Parche: llamar a _db.js después de cada evento y al final integral
+  (function() {
+    var _se = showEventResult;
+    showEventResult = function(idx) {
+      _se(idx);
+      if (window.elesicDB) window.elesicDB.afterScore(idx);
+    };
+    var _si = showIntegral;
+    showIntegral = function() {
+      _si();
+      if (window.elesicDB) window.elesicDB.afterIntegral();
+    };
+  })();
+</script>
+<!-- ===================================== -->
 </body>
 </html>

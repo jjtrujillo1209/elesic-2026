@@ -1574,5 +1574,268 @@ const sidebar = document.querySelector('.sidebar');
 if (sidebar) observer.observe(sidebar);
 </script>
 
+<!-- ===== RESULTADOS EN VIVO — Supabase ===== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="_config.js"></script>
+<script>
+/* ---------- Panel de Resultados en Vivo ---------- */
+(function () {
+  const CFG = window.ELESIC_CONFIG || {};
+  const ready = CFG.url && CFG.url !== 'TU_SUPABASE_URL_AQUI'
+             && CFG.key && CFG.key !== 'TU_SUPABASE_ANON_KEY_AQUI';
+
+  const SB_CSS = `
+    #live-fab{position:fixed;bottom:22px;right:22px;z-index:400;
+      background:linear-gradient(135deg,#071e44,#2e63a8);color:#fff;
+      font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.8px;
+      text-transform:uppercase;border:none;border-radius:22px;padding:10px 18px 10px 14px;
+      cursor:pointer;box-shadow:0 6px 20px rgba(7,30,68,.38);
+      display:flex;align-items:center;gap:8px;transition:all .16s}
+    #live-fab:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(7,30,68,.48)}
+    #live-fab .lf-dot{width:9px;height:9px;border-radius:50%;background:#22c55e;
+      box-shadow:0 0 0 3px rgba(34,197,94,.25);animation:lfPulse 1.6s infinite}
+    @keyframes lfPulse{0%,100%{opacity:1}50%{opacity:.45}}
+    #live-panel{position:fixed;bottom:72px;right:22px;z-index:400;width:480px;max-width:calc(100vw - 32px);
+      background:#fff;border-radius:18px;border:1px solid #d4e0ee;
+      box-shadow:0 16px 48px rgba(10,42,94,.2);display:none;overflow:hidden;
+      animation:lvFade .22s ease}
+    @keyframes lvFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    #live-panel.open{display:block}
+    #lv-head{background:linear-gradient(100deg,#071e44,#13407e);
+      padding:14px 18px;display:flex;align-items:center;justify-content:space-between;
+      border-bottom:2px solid #c8a13a}
+    #lv-head h3{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#fff;margin:0;
+      display:flex;align-items:center;gap:8px}
+    #lv-close{background:rgba(255,255,255,.14);border:none;color:#fff;width:28px;height:28px;
+      border-radius:7px;cursor:pointer;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center}
+    #lv-close:hover{background:rgba(255,255,255,.26)}
+    #lv-refresh{background:rgba(200,161,58,.2);border:1px solid rgba(200,161,58,.4);color:#e3c46f;
+      font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.8px;text-transform:uppercase;
+      border-radius:6px;padding:4px 10px;cursor:pointer;transition:.15s}
+    #lv-refresh:hover{background:rgba(200,161,58,.35)}
+    #lv-body{padding:14px 16px;max-height:380px;overflow-y:auto;font-family:'Barlow',sans-serif}
+    .lv-empty{text-align:center;padding:32px 16px;color:#7a8ea8;font-size:14px}
+    .lv-table{width:100%;border-collapse:collapse;font-size:13px}
+    .lv-table th{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:1.2px;
+      text-transform:uppercase;color:#41597a;padding:6px 8px;border-bottom:2px solid #d4e0ee;
+      text-align:left;white-space:nowrap}
+    .lv-table td{padding:8px 8px;border-bottom:1px solid #eef4fb;vertical-align:middle}
+    .lv-table tr:last-child td{border-bottom:none}
+    .lv-table tr:hover td{background:#f6f9fd}
+    .lv-equipo{font-weight:700;color:#0a2a5e;font-family:'Oswald',sans-serif;font-size:14px}
+    .lv-esc{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2px 7px;
+      border-radius:5px;border:1px solid #d4e0ee;color:#41597a;background:#fff}
+    .lv-pct{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:14px}
+    .lv-bar-wrap{width:80px;height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:6px}
+    .lv-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
+    .banda-A{background:#1a6b42;color:#1a6b42}.banda-B{background:#1a4e8f;color:#1a4e8f}
+    .banda-C{background:#b07918;color:#b07918}.banda-D{background:#a32030;color:#a32030}
+    .lv-banda{display:inline-flex;align-items:center;justify-content:center;
+      width:22px;height:22px;border-radius:6px;font-family:'Oswald',sans-serif;font-size:12px;
+      font-weight:700;color:#fff}
+    .lv-time{font-size:11px;color:#94a3b8}
+    #lv-status{font-size:11px;color:#7a8ea8;padding:6px 16px 10px;font-family:'Barlow Condensed',sans-serif;
+      letter-spacing:.5px;border-top:1px solid #eef4fb;text-align:right}
+    .lv-no-db{padding:20px;text-align:center;font-size:13px;color:#7a8ea8;line-height:1.6}
+    .lv-no-db a{color:#2e63a8;font-weight:600}
+    .lv-tab-bar{display:flex;border-bottom:1px solid #e2e8f0;padding:0 4px}
+    .lv-tab{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;
+      letter-spacing:.8px;text-transform:uppercase;padding:8px 12px;cursor:pointer;
+      border:none;background:transparent;color:#7a8ea8;transition:.15s;border-bottom:2px solid transparent}
+    .lv-tab.active{color:#0a2a5e;border-bottom-color:#c8a13a}
+    .lv-tab:hover{color:#0a2a5e}
+  `;
+
+  const styleEl = document.createElement('style');
+  styleEl.textContent = SB_CSS;
+  document.head.appendChild(styleEl);
+
+  // FAB button
+  const fab = document.createElement('button');
+  fab.id = 'live-fab';
+  fab.setAttribute('aria-label', 'Ver resultados en vivo');
+  fab.innerHTML = '<span class="lf-dot"></span> Resultados en vivo';
+  document.body.appendChild(fab);
+
+  // Panel
+  const panel = document.createElement('div');
+  panel.id = 'live-panel';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'Resultados en vivo');
+  panel.innerHTML = `
+    <div id="lv-head">
+      <h3>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Resultados en Vivo
+      </h3>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button id="lv-refresh" title="Actualizar">&#8635; Actualizar</button>
+        <button id="lv-close" aria-label="Cerrar panel">×</button>
+      </div>
+    </div>
+    <div class="lv-tab-bar">
+      <button class="lv-tab active" data-tab="ranking">Ranking</button>
+      <button class="lv-tab" data-tab="respuestas">Por evento</button>
+    </div>
+    <div id="lv-body"></div>
+    <div id="lv-status">—</div>
+  `;
+  document.body.appendChild(panel);
+
+  let db = null;
+  let currentTab = 'ranking';
+  let panelOpen = false;
+
+  if (ready && window.supabase) {
+    db = window.supabase.createClient(CFG.url, CFG.key);
+  }
+
+  function formatTime(ts) {
+    if (!ts) return '—';
+    try {
+      const d = new Date(ts);
+      return d.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+    } catch (_) { return '—'; }
+  }
+
+  function bandaClass(b) {
+    return 'banda-' + (b || 'D');
+  }
+
+  function barColor(pct) {
+    if (pct >= 90) return '#1a6b42';
+    if (pct >= 75) return '#1a4e8f';
+    if (pct >= 60) return '#b07918';
+    return '#a32030';
+  }
+
+  async function loadRanking() {
+    const body = document.getElementById('lv-body');
+    const status = document.getElementById('lv-status');
+    if (!db) {
+      body.innerHTML = `<div class="lv-no-db">Base de datos no configurada.<br>Completa <strong>_config.js</strong> con tus credenciales de <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>.</div>`;
+      status.textContent = '—';
+      return;
+    }
+    body.innerHTML = '<div class="lv-empty">Cargando…</div>';
+    const { data, error } = await db
+      .from('resultados_finales')
+      .select('equipo, escenario, integrado_pct, banda, desempeno_pct, bloom_pct, kohlberg_pct, created_at')
+      .order('integrado_pct', { ascending: false });
+
+    if (error) {
+      body.innerHTML = `<div class="lv-empty">Error al cargar: ${error.message}</div>`;
+      status.textContent = 'Error';
+      return;
+    }
+    if (!data || !data.length) {
+      body.innerHTML = '<div class="lv-empty">Aún no hay resultados finales.<br>Los equipos deben pulsar "Evaluación Integral" en su escenario.</div>';
+      status.textContent = 'Sin datos';
+      return;
+    }
+
+    const rows = data.map((r, i) => `
+      <tr>
+        <td style="padding-left:10px;font-weight:700;color:#94a3b8;font-family:'IBM Plex Mono',monospace;font-size:12px">${i+1}</td>
+        <td><span class="lv-equipo">${r.equipo}</span></td>
+        <td><span class="lv-esc">${r.escenario}</span></td>
+        <td>
+          <span class="lv-pct" style="color:${barColor(r.integrado_pct)}">${r.integrado_pct}%</span>
+          <span class="lv-bar-wrap"><span class="lv-bar-fill" style="width:${r.integrado_pct}%;background:${barColor(r.integrado_pct)}"></span></span>
+        </td>
+        <td><span class="lv-banda ${bandaClass(r.banda)}">${r.banda || '—'}</span></td>
+        <td class="lv-time">${formatTime(r.created_at)}</td>
+      </tr>`).join('');
+
+    body.innerHTML = `
+      <table class="lv-table">
+        <thead><tr>
+          <th>#</th><th>Equipo</th><th>Esc.</th>
+          <th>Integrado</th><th>Banda</th><th>Hora</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+    status.textContent = `Actualizado: ${new Date().toLocaleTimeString('es-CO')} · ${data.length} resultado(s)`;
+  }
+
+  async function loadRespuestas() {
+    const body = document.getElementById('lv-body');
+    const status = document.getElementById('lv-status');
+    if (!db) {
+      body.innerHTML = `<div class="lv-no-db">Base de datos no configurada.</div>`;
+      return;
+    }
+    body.innerHTML = '<div class="lv-empty">Cargando…</div>';
+    const { data, error } = await db
+      .from('respuestas')
+      .select('equipo, escenario, evento_codigo, nivel, puntaje_total, palabras_justificacion, guardado_en')
+      .order('guardado_en', { ascending: false })
+      .limit(40);
+
+    if (error) { body.innerHTML = `<div class="lv-empty">Error: ${error.message}</div>`; return; }
+    if (!data || !data.length) { body.innerHTML = '<div class="lv-empty">Sin respuestas registradas aún.</div>'; return; }
+
+    const nivelColor = { EXCELENTE: '#1a6b42', ALTO: '#1a4e8f', MEDIO: '#b07918', BAJO: '#a32030' };
+    const rows = data.map(r => `
+      <tr>
+        <td><span class="lv-equipo" style="font-size:13px">${r.equipo}</span></td>
+        <td><span class="lv-esc">${r.escenario}</span></td>
+        <td style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#41597a">${r.evento_codigo}</td>
+        <td style="font-weight:700;color:${nivelColor[r.nivel]||'#334155'};font-size:12px">${r.nivel||'—'}</td>
+        <td style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600">${r.puntaje_total}</td>
+        <td class="lv-time">${r.palabras_justificacion} pal.</td>
+        <td class="lv-time">${formatTime(r.guardado_en)}</td>
+      </tr>`).join('');
+
+    body.innerHTML = `
+      <table class="lv-table">
+        <thead><tr>
+          <th>Equipo</th><th>Esc.</th><th>Evt.</th>
+          <th>Nivel</th><th>Pts</th><th>Justif.</th><th>Hora</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+    status.textContent = `Actualizado: ${new Date().toLocaleTimeString('es-CO')} · ${data.length} respuesta(s)`;
+  }
+
+  function loadTab() {
+    if (currentTab === 'ranking') loadRanking();
+    else loadRespuestas();
+  }
+
+  fab.addEventListener('click', () => {
+    panelOpen = !panelOpen;
+    panel.classList.toggle('open', panelOpen);
+    if (panelOpen) loadTab();
+  });
+
+  document.getElementById('lv-close').addEventListener('click', () => {
+    panelOpen = false;
+    panel.classList.remove('open');
+  });
+
+  document.getElementById('lv-refresh').addEventListener('click', loadTab);
+
+  panel.querySelectorAll('.lv-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      panel.querySelectorAll('.lv-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentTab = tab.dataset.tab;
+      loadTab();
+    });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && panelOpen) {
+      panelOpen = false;
+      panel.classList.remove('open');
+    }
+  });
+
+  // Auto-refresh cada 30s si el panel está abierto
+  setInterval(() => { if (panelOpen) loadTab(); }, 30000);
+})();
+</script>
+
 </body>
 </html>
