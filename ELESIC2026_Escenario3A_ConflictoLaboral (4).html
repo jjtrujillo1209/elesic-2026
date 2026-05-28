@@ -342,6 +342,235 @@ footer b{color:var(--dorado-claro)}
 .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:12px}
 .legend .lg{display:inline-flex;align-items:center;gap:5px;color:var(--texto-suave)}
 .legend .sw{width:12px;height:12px;border-radius:3px}
+
+/* ============================================================
+   MOBILE RESPONSIVE — ELESIC 2026  v2
+   Breakpoints: 768px (tablet) · 480px (phone) · 380px (mini)
+   ============================================================ */
+
+/* Compensar topbar sticky al hacer scroll programático */
+@media(max-width:768px){html{scroll-padding-top:66px}}
+@media(max-width:480px){html{scroll-padding-top:52px}}
+
+/* ── Topbar: una sola fila, sin flex-wrap ─────────────────── */
+@media(max-width:768px){
+  .topbar-inner{padding:8px 12px;gap:8px}   /* NO flex-wrap */
+  .escudo{height:42px}
+  .brand .l1{font-size:10px;letter-spacing:1px}
+  .brand .l2{font-size:14px}
+  .brand .l3{display:none}
+  .topbar-actions{gap:5px}
+  .btn{font-size:11px;padding:7px 10px;gap:4px;letter-spacing:.3px}
+}
+@media(max-width:480px){
+  .escudo{height:34px}
+  .brand .l2{font-size:12px}
+  .brand .l1{display:none}
+  .topbar-actions{gap:4px}
+  /* Botones icon-only: mostrar solo el emoji, cortar el texto */
+  .btn-sim,.btn-news{
+    width:36px;padding:0 6px;overflow:hidden;
+    justify-content:flex-start;flex-shrink:0;
+    letter-spacing:-999px        /* empuja el texto fuera del contenedor */
+  }
+  /* Restaurar tamaño del emoji (primer caracter) */
+  .btn-sim,.btn-news{font-size:18px;letter-spacing:-120px}
+}
+
+/* ── Hero strip ───────────────────────────────────────────── */
+@media(max-width:768px){
+  .hero{padding:10px 12px 4px}
+  .hero-card{padding:14px 16px}
+  .hero-card::after{display:none}    /* eliminar overlay decorativo que desbordaba */
+  .hero-card h1{font-size:20px}
+  .hero-card .sub{font-size:13px}
+  .hero-meta{gap:8px;margin-top:8px;font-size:12.5px}
+  .hero-tag{font-size:11px;padding:2px 9px;margin-bottom:6px}
+}
+@media(max-width:480px){
+  .hero-card{padding:12px 14px}
+  .hero-card h1{font-size:17px}
+  .hero-card .sub{font-size:12px;letter-spacing:.5px}
+  .hero-meta span{font-size:11.5px}
+}
+
+/* ── Ticker ───────────────────────────────────────────────── */
+@media(max-width:768px){
+  .ticker{padding:0 12px;margin-top:8px}
+  .ticker-tag{font-size:11px;padding:0 10px}
+  .ticker-item{font-size:12px;padding:0 14px}
+}
+
+/* ── Layout ───────────────────────────────────────────────── */
+@media(max-width:768px){.layout{padding:10px 12px 40px;gap:12px}}
+@media(max-width:480px){.layout{padding:8px 8px 32px;gap:10px}}
+
+/* ── Side panels: 2 cols en tablet, 1 col en phone ──────────
+   Se muestran DEBAJO del center (order:3 ya definido) ────── */
+@media(max-width:1200px){
+  .side{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+}
+@media(max-width:768px){.side{grid-template-columns:1fr}}
+
+/* ── Cronómetro ───────────────────────────────────────────── */
+@media(max-width:768px){
+  .clockwrap{padding:14px 14px}
+  .phase-track{gap:6px;margin-bottom:12px}
+  .phase-pill{padding:7px 6px}
+  .phase-pill .pn{font-size:10px;letter-spacing:.4px}
+  .phase-pill .pt{font-size:12px}
+  .clock-main{gap:12px;flex-wrap:nowrap} /* no wrap: evita que el reloj salte */
+  .time-big{font-size:46px;flex-shrink:0}
+  .phase-now{min-width:0;flex:1;overflow:hidden}
+  .phase-now .ttl{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .phase-now .dsc{font-size:12px}
+  /* Controles: grid 2×2 + botón play ancho completo ───────── */
+  .clock-controls{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+  .cbtn{font-size:11px;padding:10px 8px;justify-content:center;gap:5px}
+  .cbtn.play{grid-column:1 / -1}
+}
+@media(max-width:480px){
+  .clockwrap{padding:12px 10px}
+  .phase-track{gap:4px}
+  .phase-pill{padding:6px 4px}
+  .phase-pill .pn{font-size:9px;letter-spacing:.2px}
+  .phase-pill .pt{font-size:11px}
+  .time-big{font-size:38px}
+  .cbtn{font-size:10px;padding:9px 6px}
+}
+/* En pantallas muy pequeñas: truncar texto largo del pill ─── */
+@media(max-width:380px){
+  .phase-pill .pt{font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:clip}
+  .time-big{font-size:34px}
+}
+
+/* ── Tabs de eventos: scroll horizontal ──────────────────── */
+@media(max-width:768px){
+  .event-tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;padding-bottom:2px;gap:4px}
+  .event-tabs::-webkit-scrollbar{display:none}
+  .etab{flex:0 0 auto;font-size:12px;padding:7px 11px;white-space:nowrap}
+}
+
+/* ── Event card ───────────────────────────────────────────── */
+@media(max-width:768px){
+  .eventcard{border-radius:0 12px 12px 12px}
+  .event-banner{padding:12px 14px}
+  .event-banner::after{display:none}     /* decorativo que solapaba texto */
+  .event-banner h2{font-size:18px}
+  .event-banner .emod{font-size:12px}
+  .event-banner .edate{font-size:11px}
+  .event-body{padding:14px 14px}
+  .req-box{padding:11px 13px;margin-bottom:14px}
+  .req-box p{font-size:13.5px}
+  .sel-head h3{font-size:16px}
+  .sel-head{margin-bottom:10px}
+  .counter{font-size:13px;padding:5px 10px}
+}
+@media(max-width:480px){
+  .event-banner{padding:10px 12px}
+  .event-banner h2{font-size:15px}
+  .event-body{padding:12px 10px}
+  .req-box{padding:10px 11px}
+}
+
+/* ── Opciones: fix solapamiento texto↔checkbox ───────────── */
+/* El .chk está en position:absolute right:9px — el texto .tx
+   necesita margen derecho para no quedar debajo ─────────── */
+.opt{padding-right:36px}   /* aplica siempre para que nunca se solape */
+.opt .chk{top:50%;transform:translateY(-50%)} /* centrado vertical */
+
+@media(max-width:480px){
+  .opt{font-size:13px;padding:10px 36px 10px 10px}
+  .opt .num{font-size:11px;min-width:22px;height:22px}
+}
+
+/* ── Textarea de justificación ────────────────────────────── */
+@media(max-width:768px){
+  .justify-box textarea{font-size:14px;min-height:90px;padding:10px 12px}
+  .justify-meta{font-size:10.5px}
+}
+
+/* ── Área de resultados ───────────────────────────────────── */
+@media(max-width:768px){
+  .level-badge{padding:10px 16px;min-width:100px}
+  .level-badge .lv{font-size:22px}
+  .level-badge .pts{font-size:12px}
+  .res-top{gap:10px}
+  .res-break{min-width:160px}
+  .res-break .rrow{font-size:12.5px}
+}
+
+/* ── Botones de resultado ─────────────────────────────────── */
+@media(max-width:768px){
+  .btn-result{font-size:13px;padding:11px 16px}
+  .result-trigger{gap:8px}
+}
+@media(max-width:480px){
+  .btn-result{width:100%;justify-content:center}
+  .result-trigger{flex-direction:column}
+}
+
+/* ── Modales ──────────────────────────────────────────────── */
+@media(max-width:768px){
+  /* En tablet: modal centrado ajustado */
+  .modal-bg{padding:12px 10px}
+  .modal{border-radius:14px;max-width:100%;width:100%;max-height:90vh;
+    display:flex;flex-direction:column;animation:none} /* sin scale() */
+  .modal-head{padding:13px 16px;flex-shrink:0}
+  .modal-head h3{font-size:15px;gap:6px}
+  .modal-close{width:30px;height:30px;font-size:18px}
+  .modal-body{padding:14px 14px;flex:1;overflow-y:auto;max-height:none}
+}
+@media(max-width:480px){
+  /* En phone: sheet desde abajo */
+  .modal-bg{padding:0;align-items:flex-end}
+  .modal{border-radius:14px 14px 0 0;max-height:92vh}
+  .modal-head h3{font-size:14px}
+  .modal-body{padding:12px 12px}
+}
+
+/* ── Tabla final-rank: scroll horizontal ─────────────────── */
+@media(max-width:768px){
+  .final-rank{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    white-space:nowrap;font-size:12px}
+  .final-rank th,.final-rank td{padding:7px 9px}
+  .adj-row{gap:8px;flex-wrap:wrap}
+  .adj-row label{font-size:12.5px;min-width:110px}
+  .adj-val{min-width:40px}
+}
+
+/* ── Bloom-Kohlberg ───────────────────────────────────────── */
+@media(max-width:768px){
+  .bloom-kohl{gap:8px}
+  .bk-card{padding:10px 12px}
+  .bk-card .bk-lvl{font-size:16px}
+}
+
+/* ── Paneles laterales ────────────────────────────────────── */
+@media(max-width:768px){
+  .panel-body{padding:12px 12px;font-size:13.5px}
+  .panel-head{font-size:13px;padding:9px 12px}
+  .ind{font-size:12.5px;padding:7px 0}
+}
+
+/* ── Sim banner ───────────────────────────────────────────── */
+@media(max-width:480px){
+  .sim-banner{padding:10px 14px;gap:10px;bottom:14px;font-size:13px;
+    width:calc(100% - 24px);left:12px;right:12px;transform:none}
+}
+
+/* ── Toast ────────────────────────────────────────────────── */
+@media(max-width:768px){
+  .toast{top:auto;bottom:20px;right:12px;left:12px;text-align:center;
+    font-size:13px;border-radius:10px}
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+@media(max-width:480px){
+  footer{font-size:11px;padding:14px 12px;letter-spacing:.3px}
+}
+
 </style>
 </head>
 <body>
