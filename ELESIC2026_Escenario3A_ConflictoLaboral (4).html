@@ -1521,6 +1521,7 @@ function showIntegral(){
     <p style="font-size:14px">El equipo alcanza un desempeño <strong>${a.level}</strong> con ${a.integrated.toFixed(1)}% integrado. ${conclusionTxt(a)}</p>
     </div>`;
   openModal('integralModal');
+  setTimeout(function(){ if(typeof showRelatorAvatar==='function') showRelatorAvatar(); }, 800);
 }
 function conclusionTxt(a){
   if(a.integrated>=90) return "Integración sistémica de herramientas avanzadas y visión transformacional con base moral postconvencional. Liderazgo transformacional ético.";
@@ -1731,7 +1732,6 @@ init();
     showIntegral = function() {
       _si();
       if (window.elesicDB) window.elesicDB.afterIntegral();
-      setTimeout(showRelatorAvatar, 700);
     };
   })();
 </script>
