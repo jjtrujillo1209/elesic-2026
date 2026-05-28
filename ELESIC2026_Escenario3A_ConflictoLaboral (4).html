@@ -1737,236 +1737,204 @@ init();
 </script>
 <!-- ===================================== -->
 
-<!-- ================================================================
-     AVATAR RELATOR E3A — Análisis al abrir Evaluación Integral
-     ================================================================ -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     AVATAR RELATOR E3A — Chat humanoid dialog
+     ═══════════════════════════════════════════════════════════ -->
 <style>
-/* ============================================================
-   AVATAR RELATOR — Modal de análisis de resultados
-   ============================================================ */
-.avatar-relator-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.88);
-  display:none;align-items:center;justify-content:center;
-  z-index:9999;padding:16px;
-}
-.avatar-relator-overlay.visible{display:flex;animation:arFadeIn .35s ease}
-@keyframes arFadeIn{from{opacity:0}to{opacity:1}}
-
-.avatar-relator-card{
-  background:#0a0f1e;border:2px solid #c9a227;border-radius:16px;
-  max-width:620px;width:100%;max-height:88vh;overflow-y:auto;
-  padding:28px 24px 20px;position:relative;
-  animation:arSlideUp .45s cubic-bezier(.22,.9,.36,1);
-  scrollbar-width:thin;scrollbar-color:#c9a227 #0a0f1e;
-}
-@keyframes arSlideUp{from{transform:translateY(36px);opacity:0}to{transform:translateY(0);opacity:1}}
-
-.ar-header{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:16px;padding-bottom:14px;
-  border-bottom:1px solid rgba(201,162,39,.3);
-}
-.ar-icon{
-  width:54px;height:54px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;flex-shrink:0;border:2px solid #c9a227;
-}
-.ar-meta{flex:1;min-width:0}
-.ar-esc{display:block;font-size:10px;font-weight:700;letter-spacing:2px;color:#c9a227;text-transform:uppercase;margin-bottom:2px}
-.ar-tit{display:block;font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#fff;line-height:1.2}
-.ar-sub{display:block;font-size:11px;color:#888;margin-top:2px}
-
-.ar-chip{
-  display:inline-block;padding:5px 14px;border-radius:20px;
-  font-size:11px;font-weight:700;letter-spacing:1px;
-  text-transform:uppercase;margin-bottom:14px;
-}
-.ar-chip.excelente{background:#1a4d2e;color:#7fff7f}
-.ar-chip.alto      {background:#1a3a5c;color:#7fd4ff}
-.ar-chip.medio     {background:#4a3a00;color:#ffd966}
-.ar-chip.bajo      {background:#5c1a1a;color:#ff9999}
-
-.ar-intro{font-size:13.5px;color:#c8d8e8;line-height:1.65;margin-bottom:16px}
-
-.ar-spoken{
-  border-left:3px solid #c9a227;padding:12px 16px;margin:0 0 16px;
-  font-style:italic;color:#f0e8c8;font-size:14px;line-height:1.7;
-  background:rgba(201,162,39,.06);border-radius:0 8px 8px 0;
-}
-
-.ar-analisis{font-size:13px;color:#b0c0d0;line-height:1.65;margin-bottom:14px}
-
-.ar-dev{
-  font-size:12px;color:#888;background:rgba(255,255,255,.04);
-  border:1px solid rgba(201,162,39,.2);border-radius:8px;
-  padding:10px 14px;margin-bottom:14px;line-height:1.6;
-}
-
-.ar-hr{border:none;border-top:1px solid rgba(201,162,39,.25);margin:16px 0}
-
-.ar-integral{font-size:12.5px;color:#aaa}
-.ar-integral summary{
-  cursor:pointer;color:#c9a227;font-size:12.5px;font-weight:600;padding:4px 0
-}
-.ar-integral summary:hover{color:#f0d060}
-.ar-integral-body{padding:12px 0 4px;line-height:1.7}
-.ar-integral-body ol{padding-left:18px;margin:8px 0}
-.ar-integral-body li{margin-bottom:6px}
-.ar-cierre-quote{
-  border-left:3px solid #c9a227;padding:8px 12px;
-  font-style:italic;color:#c8c0a0;font-size:12.5px;margin-top:10px;
-}
-
-.ar-firma{
-  font-size:11px;color:#555;text-align:center;
-  margin:14px 0 16px;font-style:italic;
-}
-
-.ar-btn-cerrar{
-  display:block;width:100%;padding:12px;background:transparent;
-  border:1.5px solid #c9a227;border-radius:10px;color:#c9a227;
-  font-size:13px;font-weight:600;cursor:pointer;
-  text-align:center;transition:background .2s,color .2s;
-}
-.ar-btn-cerrar:hover{background:rgba(201,162,39,.12)}
-
-.ar-bonus-section{margin-bottom:14px}
-.ar-bonus-title{
-  font-size:11px;font-weight:700;letter-spacing:1.5px;color:#c9a227;
-  text-transform:uppercase;margin-bottom:10px;
-}
-.ar-bonus-row{
-  padding:9px 12px;border-radius:8px;font-size:12.5px;
-  line-height:1.5;margin-bottom:6px;
-}
-.ar-bonus-row.ok  {background:#1a4d2e;color:#7fff7f}
-.ar-bonus-row.no  {background:#2a2a2a;color:#888}
-
-@media(max-width:480px){
-  .avatar-relator-overlay{align-items:flex-end;padding:0}
-  .avatar-relator-card{border-radius:14px 14px 0 0;max-height:92vh;padding:20px 16px 16px}
-}
+.arc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:9999;padding:16px}
+.arc-overlay.on{display:flex;animation:arcFade .3s ease}
+@keyframes arcFade{from{opacity:0}to{opacity:1}}
+.arc-card{background:#0a0f1e;border:2px solid rgba(201,162,39,.7);border-radius:18px;max-width:580px;width:100%;max-height:88vh;display:flex;flex-direction:column;animation:arcUp .4s cubic-bezier(.22,.9,.36,1);overflow:hidden}
+@keyframes arcUp{from{transform:translateY(28px);opacity:0}to{transform:translateY(0);opacity:1}}
+.arc-head{display:flex;align-items:center;gap:14px;padding:18px 20px 14px;border-bottom:1px solid rgba(201,162,39,.2);flex-shrink:0;background:linear-gradient(135deg,rgba(201,162,39,.07) 0%,transparent 60%)}
+.arc-av-wrap{width:64px;height:64px;border-radius:50%;border:2px solid #c9a227;flex-shrink:0;overflow:hidden}
+.arc-av-wrap svg{width:100%;height:100%;display:block}
+.arc-hi{flex:1;min-width:0}
+.arc-esc{font-size:10px;font-weight:700;letter-spacing:2px;color:#c9a227;text-transform:uppercase}
+.arc-tit{font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.2;margin:3px 0}
+.arc-sub{font-size:11px;color:#777}
+.arc-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:#c9a227 #0a0f1e}
+.arc-row{display:flex;gap:10px;align-items:flex-start;animation:arcMsg .28s ease}
+@keyframes arcMsg{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.arc-mini{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(201,162,39,.4);flex-shrink:0;overflow:hidden}
+.arc-mini svg{width:100%;height:100%;display:block}
+.arc-bub{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:4px 14px 14px 14px;padding:11px 14px;font-size:13.5px;color:#c8d8e8;line-height:1.65;max-width:calc(100% - 48px)}
+.arc-bub-chip{background:transparent;border:none;padding:4px 0}
+.arc-chip-lbl{font-size:11px;color:#777;margin-bottom:6px}
+.arc-chip{display:inline-block;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.arc-chip.excelente{background:#1a4d2e;color:#7fff7f}
+.arc-chip.alto{background:#1a3a5c;color:#7fd4ff}
+.arc-chip.medio{background:#4a3a00;color:#ffd966}
+.arc-chip.bajo{background:#5c1a1a;color:#ff9999}
+.arc-bub-q{background:rgba(201,162,39,.07);border-color:#c9a227;border-left-width:3px;font-style:italic;color:#f0e8c0;font-size:14px;line-height:1.7}
+.arc-bub-dev{font-size:12px;color:#888;background:rgba(255,255,255,.02);border-color:rgba(201,162,39,.15)}
+.arc-bub-bonus{padding:10px 14px}
+.arc-bitem{font-size:12.5px;line-height:1.5;padding:6px 10px;border-radius:6px;margin-bottom:5px}
+.arc-bitem.ok{background:rgba(26,77,46,.6);color:#7fff7f}
+.arc-bitem.no{background:rgba(42,42,42,.6);color:#888}
+.arc-btitle{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#c9a227;text-transform:uppercase;margin-bottom:8px}
+.arc-bub-firma{background:transparent;border:none;font-size:11px;color:#555;font-style:italic;text-align:center;padding:4px 14px}
+.arc-typing{display:flex;align-items:center;gap:5px;padding:12px 14px}
+.arc-dot{width:7px;height:7px;border-radius:50%;background:rgba(201,162,39,.5);animation:arcDot 1.2s infinite}
+.arc-dot:nth-child(2){animation-delay:.2s}.arc-dot:nth-child(3){animation-delay:.4s}
+@keyframes arcDot{0%,80%,100%{transform:scale(.8);opacity:.35}40%{transform:scale(1.2);opacity:1}}
+.arc-bub-typing{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:4px 14px 14px 14px;padding:0;max-width:80px}
+.arc-bub-eval{background:rgba(201,162,39,.04);border-color:rgba(201,162,39,.2)}
+.arc-bub-eval summary{cursor:pointer;color:#c9a227;font-size:12px;font-weight:600;padding:2px 0;list-style:none}
+.arc-bub-eval summary::before{content:"▶ ";font-size:10px}
+.arc-bub-eval[open] summary::before{content:"▼ "}
+.arc-bub-eval ol{padding-left:16px;margin:10px 0 4px;font-size:12.5px;color:#aaa;line-height:1.65}
+.arc-bub-eval li{margin-bottom:6px}
+.arc-bub-eval .arc-cq{border-left:3px solid #c9a227;padding:8px 10px;font-style:italic;color:#b8a890;font-size:12px;margin-top:10px;line-height:1.6}
+.arc-foot{padding:12px 16px;border-top:1px solid rgba(201,162,39,.15);flex-shrink:0}
+.arc-close{display:block;width:100%;padding:12px;background:transparent;border:1.5px solid #c9a227;border-radius:10px;color:#c9a227;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,opacity .3s;opacity:0;pointer-events:none}
+.arc-close.on{opacity:1;pointer-events:auto}
+.arc-close:hover{background:rgba(201,162,39,.1)}
+@media(max-width:480px){.arc-overlay{align-items:flex-end;padding:0}.arc-card{border-radius:18px 18px 0 0;max-height:92vh}.arc-head{padding:14px 16px 12px}.arc-av-wrap{width:52px;height:52px}}
 </style>
 
-<div class="avatar-relator-overlay" id="avatarRelatorModal">
-  <div class="avatar-relator-card" style="border-top-color:#4a2800">
-    <div class="ar-header">
-      <div class="ar-icon" style="background:#4a2800">⚓</div>
-      <div class="ar-meta">
-        <span class="ar-esc">ESCENARIO 3A · PALEM 2026</span>
-        <span class="ar-tit">RELATOR — CONFLICTO LABORAL PORTUARIO</span>
-        <span class="ar-sub">Comité de Crisis · Mediador OIT · Puertos del Futuro S.A.</span>
+<div class="arc-overlay" id="arc-modal">
+  <div class="arc-card" style="border-top-color:#4a2800">
+    <div class="arc-head">
+      <div class="arc-av-wrap" id="arc-av-full"><svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="40" fill="#1a0a00"/><path d="M4 80 Q6 60 40 57 Q74 60 76 80Z" fill="#4a2800"/><path d="M33 57 L40 65 L47 57" fill="#f0f0f0"/><path d="M38.5 57 L40 67 L41.5 57 L40.5 61 L39.5 61Z" fill="#8a4010"/><ellipse cx="40" cy="55" rx="7" ry="5" fill="#e8b878"/><circle cx="40" cy="32" r="18" fill="#e8b878"/><path d="M23 26 Q27 10 40 10 Q53 10 57 26 Q54 15 40 14 Q26 15 23 26Z" fill="#2a1c0c"/><ellipse cx="22" cy="31" rx="3" ry="5" fill="#d8a060"/><ellipse cx="58" cy="31" rx="3" ry="5" fill="#d8a060"/><ellipse cx="32" cy="31" rx="5" ry="3.8" fill="white"/><ellipse cx="48" cy="31" rx="5" ry="3.8" fill="white"/><circle cx="32" cy="31" r="2.8" fill="#1a0e02"/><circle cx="48" cy="31" r="2.8" fill="#1a0e02"/><circle cx="33" cy="30" r="0.9" fill="white"/><circle cx="49" cy="30" r="0.9" fill="white"/><path d="M28 25 Q32 24 36 25" stroke="#2a1c0c" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M44 25 Q48 24 52 25" stroke="#2a1c0c" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M39 36 Q37 41 35 42 M39 36 Q41 41 45 42" stroke="#b87840" stroke-width="1" fill="none" stroke-linecap="round"/><path d="M34 47 Q40 51 46 47" stroke="#a07050" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="40" cy="67" r="6" fill="none" stroke="#c9a227" stroke-width="1.5"/><text x="40" y="65.5" text-anchor="middle" font-size="5.5" fill="#c9a227" font-weight="bold">OIT</text><text x="40" y="72" text-anchor="middle" font-size="4" fill="#c9a227">ILO</text></svg></div>
+      <div class="arc-hi">
+        <div class="arc-esc">ESCENARIO 3A · PALEM 2026</div>
+        <div class="arc-tit">RELATOR — CONFLICTO LABORAL PORTUARIO</div>
+        <div class="arc-sub">Comité de Crisis · Mediador OIT · Puertos del Futuro S.A.</div>
       </div>
     </div>
-    <div id="ar-chip" class="ar-chip">—</div>
-    <div id="ar-intro" class="ar-intro"></div>
-    <blockquote id="ar-guion" class="ar-spoken"></blockquote>
-    <div id="ar-analisis" class="ar-analisis"></div>
-    <div id="ar-desarrollo" class="ar-dev"></div>
-    <div class="ar-bonus-section">
-      <div class="ar-bonus-title">Análisis de Bonuses FDAI</div>
-      <div id="ar-bonus-fdai" class="ar-bonus-row"></div>
-      <div id="ar-bonus-trid" class="ar-bonus-row"></div>
-      <div id="ar-bonus-vel"  class="ar-bonus-row"></div>
+    <div class="arc-msgs" id="arc-msgs"></div>
+    <div class="arc-foot">
+      <button class="arc-close" id="arc-close" onclick="cerrarRelator()">Cerrar análisis del Relator</button>
     </div>
-    <hr class="ar-hr">
-    <details class="ar-integral">
-      <summary>Ver Evaluación Integral del Sistema</summary>
-      <div class="ar-integral-body">
-        <ol>
-          <li><strong>Desempeño Estratégico (40%)</strong> — Selección de las 10 respuestas de 40 opciones. Óptimas +35 · Recomendadas +20 · Aceptables +5 · Penalizadas −5 · Bonuses +10 c/u. «Qué se decide».</li>
-          <li><strong>Taxonomía de Bloom (35%)</strong> — Nivel cognitivo de la justificación escrita (Recordar → Crear). «Cómo se piensa».</li>
-          <li><strong>Etapas de Kohlberg (25%)</strong> — Razonamiento moral (Preconvencional → Convencional → Postconvencional). «Por qué se decide».</li>
-        </ol>
-        <p class="ar-cierre-quote">«La calificación final no premia memorizar las respuestas exactas. Premia la combinación inteligente de las mejores decisiones, sustentada en un pensamiento profundo y en un razonamiento ético elevado. Por eso dos grupos con el mismo puntaje de selección pueden terminar en niveles distintos según la calidad de su justificación.»</p>
-      </div>
-    </details>
-    <p class="ar-firma">ESAENG — ELESIC 2026 · Liderazgo Estratégico con Visión Neogranadina</p>
-    <button class="ar-btn-cerrar" onclick="cerrarRelator()">Cerrar análisis del Relator</button>
   </div>
 </div>
 
 <script>
-/* ── AVATAR RELATOR E3A ─────────────────────────────────────── */
+/* ── AVATAR RELATOR E3A ──────────────────────────────────── */
 const AR_DATA = {
   excelente: {
-    chip:      'EXCELENTE · ≥90%',
-    intro:     'En el nivel EXCELENTE, el grupo actuando como Comité de Crisis y equipo negociador (mediador OIT) alcanza el puntaje máximo del escenario. La selección de respuestas se concentra en las opciones óptimas y captura el componente bonus, demostrando un dominio pleno sobre la superación de la lógica dicotómica seguridad-desarrollo: la inversión simultánea en activos intangibles (FDAI) como mecanismo que resuelve el conflicto y genera estabilidad.',
-    guion:     '«Felicitaciones. Este grupo alcanzó el nivel de Excelencia Estratégica, con 100% del puntaje. Integró de forma simultánea las opciones de mayor valor y articuló una justificación de alto nivel cognitivo y moral. Es el perfil aspiracional del PALEM.»',
-    analisis:  'La combinación elegida evidencia simultaneidad y sofisticación: prioriza las decisiones de mayor impacto, evita por completo las opciones penalizadas y aprovecha el diferenciador bonus. El equipo comprendió que FDAI no es un add-on táctico sino el eje estructural de la resolución. En la evaluación integral, este grupo se ubica en la zona DESEADA del mapa Bloom–Kohlberg.',
-    desarrollo:'Liderazgo transformacional · Dominio pleno<br>Bloom: Crear/Evaluar · Kohlberg: Postconvencional'
+    chip: "EXCELENTE \u00b7 \u226590%",
+    intro: "En el nivel EXCELENTE, el grupo actuando como Comit\u00e9 de Crisis y equipo negociador (mediador OIT) alcanza el puntaje m\u00e1ximo. Demuestra dominio pleno sobre la superaci\u00f3n de la l\u00f3gica dicot\u00f3mica seguridad-desarrollo: inversi\u00f3n simult\u00e1nea en activos intangibles FDAI como mecanismo estructural de resoluci\u00f3n.",
+    guion: "\u00abFelicitaciones. Este grupo alcanz\u00f3 el nivel de Excelencia Estrat\u00e9gica, con 100% del puntaje. Integr\u00f3 de forma simult\u00e1nea las opciones de mayor valor y articul\u00f3 una justificaci\u00f3n de alto nivel cognitivo y moral. Es el perfil aspiracional del PALEM.\u00bb",
+    analisis: "La combinaci\u00f3n elegida evidencia simultaneidad y sofisticaci\u00f3n. El equipo comprendi\u00f3 que FDAI no es un add-on t\u00e1ctico sino el eje estructural de la resoluci\u00f3n: a mayor desarrollo organizacional, mayor seguridad. Este grupo se ubica en la zona DESEADA del mapa Bloom\u2013Kohlberg.",
+    dev: "Liderazgo transformacional \u00b7 Dominio pleno<br>Bloom: Crear/Evaluar \u00b7 Kohlberg: Postconvencional"
   },
   alto: {
-    chip:      'ALTO · 75–89%',
-    intro:     'En el nivel ALTO, el grupo selecciona los elementos centrales de la estrategia sobre la superación de la lógica dicotómica seguridad-desarrollo: la inversión simultánea en activos intangibles (FDAI) como mecanismo que resuelve el conflicto y genera estabilidad, con sofisticación metodológica moderada. Mantiene un desempeño sólido sin capturar la totalidad del valor diferenciador.',
-    guion:     '«Buen trabajo. Este grupo alcanzó un nivel Alto, con 76.6% del puntaje. Tomó decisiones acertadas y superó la lógica reactiva, aunque dejó sobre la mesa algunas opciones óptimas o el bonus. Está muy cerca de la excelencia.»',
-    analisis:  'El grupo combina opciones óptimas con recomendadas y alguna aceptable, sin incurrir en penalizaciones. Captó parcialmente la lógica del FDAI pero no la articuló como eje central de la solución. Le falta consolidar la combinación de máximo impacto y profundizar la justificación para escalar al nivel superior.',
-    desarrollo:'Competencia táctica sólida<br>Bloom: Analizar/Evaluar · Kohlberg: Convencional alto / Postconvencional'
+    chip: "ALTO \u00b7 75\u201389%",
+    intro: "En el nivel ALTO, el grupo selecciona los elementos centrales sobre la superaci\u00f3n de la l\u00f3gica dicot\u00f3mica seguridad-desarrollo e inversi\u00f3n simult\u00e1nea en FDAI, con sofisticaci\u00f3n metodol\u00f3gica moderada. Desempe\u00f1o s\u00f3lido sin capturar el valor diferenciador completo.",
+    guion: "\u00abBuen trabajo. Este grupo alcanz\u00f3 un nivel Alto, con 76.6% del puntaje. Tom\u00f3 decisiones acertadas y super\u00f3 la l\u00f3gica reactiva, aunque no articul\u00f3 FDAI como eje central. Est\u00e1 muy cerca de la excelencia.\u00bb",
+    analisis: "El grupo capt\u00f3 parcialmente la l\u00f3gica del FDAI pero no la articul\u00f3 como eje central de la soluci\u00f3n. Le falta profundizar la justificaci\u00f3n para consolidar la inversi\u00f3n simult\u00e1nea como mecanismo generador de seguridad sostenible.",
+    dev: "Competencia t\u00e1ctica s\u00f3lida<br>Bloom: Analizar/Evaluar \u00b7 Kohlberg: Convencional alto / Postconvencional"
   },
   medio: {
-    chip:      'MEDIO · 57–74%',
-    intro:     'En el nivel MEDIO, el grupo mezcla algunas decisiones pertinentes con opciones tácticas de menor valor. Hay comprensión del problema sobre la superación de la lógica dicotómica seguridad-desarrollo: la inversión simultánea en activos intangibles (FDAI) como mecanismo que resuelve el conflicto y genera estabilidad, pero sin una ruptura clara hacia la estrategia óptima.',
-    guion:     '«Este grupo alcanzó un nivel Medio, con 57.8% del puntaje. Identificó parte de la solución, pero su respuesta fue más táctica que estratégica. Tiene una base válida sobre la cual profundizar el razonamiento.»',
-    analisis:  'La selección presenta pocas opciones óptimas y un peso importante de aceptables. El equipo operó dentro de la lógica dicotómica que el escenario busca superar: eligió entre seguridad O desarrollo en lugar de integrar ambas mediante FDAI. No hay penalizaciones graves, pero tampoco se captura el diferenciador.',
-    desarrollo:'Desempeño funcional con desarrollo pendiente<br>Bloom: Aplicar/Analizar · Kohlberg: Convencional'
+    chip: "MEDIO \u00b7 57\u201374%",
+    intro: "En el nivel MEDIO, el grupo mezcla decisiones pertinentes con opciones t\u00e1cticas. Hay comprensi\u00f3n parcial del problema, pero sin ruptura clara hacia la estrategia FDAI: el equipo oper\u00f3 dentro de la l\u00f3gica dicot\u00f3mica que el escenario busca superar.",
+    guion: "\u00abEste grupo alcanz\u00f3 un nivel Medio, con 57.8% del puntaje. Identific\u00f3 parte de la soluci\u00f3n, pero eligi\u00f3 entre seguridad O desarrollo en lugar de integrar ambas mediante FDAI. Tiene una base v\u00e1lida sobre la cual profundizar.\u00bb",
+    analisis: "El equipo oper\u00f3 dentro de la trampa dicot\u00f3mica: primero resolver, luego invertir. No se captura el diferenciador FDAI. En el mapa Bloom\u2013Kohlberg el grupo se sit\u00faa en la franja intermedia.",
+    dev: "Desempe\u00f1o funcional con desarrollo pendiente<br>Bloom: Aplicar/Analizar \u00b7 Kohlberg: Convencional"
   },
   bajo: {
-    chip:      'BAJO · &lt;57%',
-    intro:     'En el nivel BAJO, predominan las acciones tácticas o se incurre en opciones penalizadas, reproduciendo la lógica que el escenario busca superar respecto de la superación de la lógica dicotómica seguridad-desarrollo: la inversión simultánea en activos intangibles (FDAI) como mecanismo que resuelve el conflicto y genera estabilidad.',
-    guion:     '«Este grupo se ubicó en el nivel Bajo, con 29.7% del puntaje. Su respuesta reprodujo enfoques reactivos o de bajo impacto, e incluyó opciones que restan. Requiere reforzar el marco conceptual de la negociación y la decisión estratégica.»',
-    analisis:  'La presencia de opciones penalizadas reduce el puntaje base y desplaza al grupo hacia la zona MÍNIMO del mapa Bloom–Kohlberg. El equipo operó exclusivamente dentro de la trampa dicotómica. La recomendación del relator es orientar la retroalimentación hacia el concepto FDAI y la Velocidad de Escape del Subdesarrollo como marco conceptual de resolución.',
-    desarrollo:'Desempeño inicial — requiere desarrollo conceptual<br>Bloom: Recordar/Comprender · Kohlberg: Preconvencional/Convencional bajo'
+    chip: "BAJO \u00b7 &lt;57%",
+    intro: "En el nivel BAJO, predominan las acciones t\u00e1cticas o se incurre en penalizadas, reproduciendo la l\u00f3gica dicot\u00f3mica que el escenario busca superar. El equipo oper\u00f3 exclusivamente dentro de la trampa seguridad-desarrollo.",
+    guion: "\u00abEste grupo se ubic\u00f3 en el nivel Bajo, con 29.7% del puntaje. Su respuesta reprodujo enfoques reactivos e incluy\u00f3 opciones que restan. Requiere reforzar el marco conceptual del FDAI y la Velocidad de Escape del Subdesarrollo.\u00bb",
+    analisis: "Las opciones penalizadas desplazan al grupo hacia la zona M\u00cdNIMO del mapa Bloom\u2013Kohlberg. Se recomienda orientar la retroalimentaci\u00f3n hacia el concepto FDAI como marco conceptual de resoluci\u00f3n estructural.",
+    dev: "Desempe\u00f1o inicial \u2014 requiere desarrollo conceptual<br>Bloom: Recordar/Comprender \u00b7 Kohlberg: Preconvencional/Convencional bajo"
   },
 };
 
-function showRelatorAvatar() {
-  const a = aggregate();
-  let nivel;
-  if (a.integrated >= 90) nivel = 'excelente';
-  else if (a.integrated >= 75) nivel = 'alto';
-  else if (a.integrated >= 57) nivel = 'medio';
-  else nivel = 'bajo';
-  const d = AR_DATA[nivel];
-  const chip = document.getElementById('ar-chip');
-  chip.textContent = d.chip;
-  chip.className = 'ar-chip ' + nivel;
-  document.getElementById('ar-intro').textContent = d.intro;
-  document.getElementById('ar-guion').textContent = d.guion;
-  document.getElementById('ar-analisis').textContent = d.analisis;
-  document.getElementById('ar-desarrollo').innerHTML = d.desarrollo;
-  _arRenderBonuses();
-  const m = document.getElementById('avatarRelatorModal');
-  m.style.display = 'flex';
-  requestAnimationFrame(() => m.classList.add('visible'));
+var _arcAvatarSVG = null;
+function _arcGetSVG(){
+  if(!_arcAvatarSVG) _arcAvatarSVG = document.getElementById('arc-av-full').innerHTML;
+  return _arcAvatarSVG;
 }
 
-function _arRenderBonuses() {
-  const sel = state[0] ? (state[0].selected||[]) : [];
-  const b = { FDAI: sel.includes(7), campo: sel.includes(5), vel: sel.includes(16) };
-  const ok = '<span style="margin-right:6px">✓</span>';
-  const no = '<span style="margin-right:6px">✗</span>';
-  document.getElementById('ar-bonus-fdai').innerHTML =
-    b.FDAI
-    ? ok+'BONUS 1: El equipo identificó FDAI como eje diferenciador que supera la lógica dicotómica.'
-    : no+'BONUS 1: No se articuló FDAI como eje central. Oportunidad: conceptualizar la inversión simultánea en activos intangibles.';
-  document.getElementById('ar-bonus-fdai').className = 'ar-bonus-row '+(b.FDAI?'ok':'no');
-  document.getElementById('ar-bonus-trid').innerHTML =
-    b.campo
-    ? ok+'BONUS 2: El equipo articuló el campo tridimensional hacia el ecosistema del conocimiento.'
-    : no+'BONUS 2: No se activó el campo tridimensional. Oportunidad: conectar con universidades, centros de I+D, organismos multilaterales.';
-  document.getElementById('ar-bonus-trid').className = 'ar-bonus-row '+(b.campo?'ok':'no');
-  document.getElementById('ar-bonus-vel').innerHTML =
-    b.vel
-    ? ok+'BONUS 3: El equipo propuso el Programa VEL de implementación inmediata.'
-    : no+'BONUS 3: No se implementó VEL. Oportunidad: diseñar un programa de Velocidad de Escape del subdesarrollo Laboral con implementación concurrente.';
-  document.getElementById('ar-bonus-vel').className = 'ar-bonus-row '+(b.vel?'ok':'no');
+function showRelatorAvatar(){
+  var a = aggregate();
+  var nivel;
+  if(a.integrated>=90) nivel='excelente';
+  else if(a.integrated>=75) nivel='alto';
+  else if(a.integrated>=57) nivel='medio';
+  else nivel='bajo';
+  var d = AR_DATA[nivel];
+  var msgs = document.getElementById('arc-msgs');
+  msgs.innerHTML = '';
+  document.getElementById('arc-close').classList.remove('on');
+  var modal = document.getElementById('arc-modal');
+  modal.style.display = 'flex';
+  requestAnimationFrame(function(){modal.classList.add('on');});
+  var seq = [
+    {type:'chip', nivel:nivel, chip:d.chip},
+    {type:'text', text:d.intro},
+    {type:'quote', text:d.guion},
+    {type:'text', text:d.analisis},
+    {type:'dev', text:d.dev},
+    { type: "bonus", html: _arcBonusHtml() },
+    {type:'eval', html:"<ol><li><strong>Desempe\u00f1o Estrat\u00e9gico (40%)</strong> \u2014 Selecci\u00f3n de 10 de 40 opciones. \u00d3ptimas +35 \u00b7 Recomendadas +20 \u00b7 Aceptables +5 \u00b7 Penalizadas \u22125 \u00b7 Bonuses +10 c/u. \u00abQu\u00e9 se decide\u00bb.</li><li><strong>Taxonom\u00eda de Bloom (35%)</strong> \u2014 Nivel cognitivo de la justificaci\u00f3n escrita (Recordar \u2192 Crear). \u00abC\u00f3mo se piensa\u00bb.</li><li><strong>Etapas de Kohlberg (25%)</strong> \u2014 Razonamiento moral (Preconvencional \u2192 Convencional \u2192 Postconvencional). \u00abPor qu\u00e9 se decide\u00bb.</li></ol><p class=\"arc-cq\">\u00abLa calificaci\u00f3n final no premia memorizar las respuestas exactas. Premia la combinaci\u00f3n inteligente de las mejores decisiones, sustentada en un pensamiento profundo y en un razonamiento \u00e9tico elevado.\u00bb</p>"},
+    {type:'firma', text:'ESAENG — ELESIC 2026 · Liderazgo Estratégico con Visión Neogranadina'}
+  ];
+  var t=300;
+  seq.forEach(function(msg, i){
+    var td = (i===0) ? 180 : 650;
+    setTimeout(function(){_arcTyping(msgs);}, t);
+    t += td;
+    (function(m){
+      setTimeout(function(){
+        _arcRm(msgs);
+        _arcAdd(msgs, m);
+      }, t);
+    })(msg);
+    t += 180;
+  });
+  setTimeout(function(){document.getElementById('arc-close').classList.add('on');}, t+100);
 }
-function cerrarRelator() {
-  const m = document.getElementById('avatarRelatorModal');
-  m.classList.remove('visible');
-  setTimeout(() => { m.style.display = 'none'; }, 300);
+
+function _arcBonusHtml() {
+  var sel = state[0] ? (state[0].selected||[]) : [];
+  var b = {FDAI:sel.includes(7), campo:sel.includes(5), vel:sel.includes(16)};
+  var ok = function(t){return '<div class="arc-bitem ok">&#10003; '+t+'</div>';};
+  var no = function(t){return '<div class="arc-bitem no">&#10007; '+t+'</div>';};
+  return '<div class="arc-btitle">An&#225;lisis de Bonuses FDAI</div>'+
+    (b.FDAI ? ok('BONUS 1: El equipo identific&#243; FDAI como eje diferenciador que supera la l&#243;gica dic&#243;tomica.') :
+              no('BONUS 1: No se articul&#243; FDAI como eje central. Oportunidad: conceptualizar la inversi&#243;n simult&#225;nea en activos intangibles.'))+
+    (b.campo ? ok('BONUS 2: El equipo articul&#243; el campo tridimensional hacia el ecosistema del conocimiento.') :
+               no('BONUS 2: Sin campo tridimensional. Oportunidad: conectar universidades, I+D, organismos multilaterales.'))+
+    (b.vel ? ok('BONUS 3: El equipo propuso el Programa VEL de implementaci&#243;n inmediata.') :
+             no('BONUS 3: Sin VEL. Oportunidad: Velocidad de Escape del subdesarrollo Laboral con implementaci&#243;n concurrente.'));
+}
+function _arcTyping(c){
+  var r=document.createElement('div'); r.className='arc-row'; r.id='arc-tr';
+  r.innerHTML='<div class="arc-mini">'+_arcGetSVG()+'</div><div class="arc-bub arc-bub-typing arc-typing"><span class="arc-dot"></span><span class="arc-dot"></span><span class="arc-dot"></span></div>';
+  c.appendChild(r); c.scrollTop=c.scrollHeight;
+}
+function _arcRm(c){var e=document.getElementById('arc-tr');if(e)e.remove();}
+function _arcAdd(c,msg){
+  var r=document.createElement('div'); r.className='arc-row';
+  var b='';
+  if(msg.type==='chip'){
+    b='<div class="arc-bub arc-bub-chip"><div class="arc-chip-lbl">Nivel de desempeño del equipo:</div><span class="arc-chip '+msg.nivel+'">'+msg.chip+'</span></div>';
+  } else if(msg.type==='quote'){
+    b='<div class="arc-bub arc-bub-q">'+msg.text+'</div>';
+  } else if(msg.type==='dev'){
+    b='<div class="arc-bub arc-bub-dev">'+msg.text+'</div>';
+  } else if(msg.type==='bonus'){
+    b='<div class="arc-bub arc-bub-bonus">'+msg.html+'</div>';
+  } else if(msg.type==='eval'){
+    b='<div class="arc-bub arc-bub-eval"><details><summary>Ver Evaluación Integral del Sistema</summary>'+msg.html+'</details></div>';
+  } else if(msg.type==='firma'){
+    b='<div class="arc-bub arc-bub-firma">'+msg.text+'</div>';
+  } else {
+    b='<div class="arc-bub">'+msg.text+'</div>';
+  }
+  r.innerHTML='<div class="arc-mini">'+_arcGetSVG()+'</div>'+b;
+  c.appendChild(r); c.scrollTop=c.scrollHeight;
+}
+function cerrarRelator(){
+  var m=document.getElementById('arc-modal');
+  m.classList.remove('on');
+  setTimeout(function(){m.style.display='none';},300);
 }
 </script>
-
 </body>
 </html>
