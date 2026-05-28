@@ -1717,9 +1717,214 @@ init();
     showIntegral = function() {
       _si();
       if (window.elesicDB) window.elesicDB.afterIntegral();
+      setTimeout(showRelatorAvatar, 700);
     };
   })();
 </script>
 <!-- ===================================== -->
+
+<!-- ================================================================
+     AVATAR RELATOR E3 — Análisis al abrir Evaluación Integral
+     ================================================================ -->
+<style>
+/* ============================================================
+   AVATAR RELATOR — Modal de análisis de resultados
+   ============================================================ */
+.avatar-relator-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.88);
+  display:none;align-items:center;justify-content:center;
+  z-index:9999;padding:16px;
+}
+.avatar-relator-overlay.visible{display:flex;animation:arFadeIn .35s ease}
+@keyframes arFadeIn{from{opacity:0}to{opacity:1}}
+
+.avatar-relator-card{
+  background:#0a0f1e;border:2px solid #c9a227;border-radius:16px;
+  max-width:620px;width:100%;max-height:88vh;overflow-y:auto;
+  padding:28px 24px 20px;position:relative;
+  animation:arSlideUp .45s cubic-bezier(.22,.9,.36,1);
+  scrollbar-width:thin;scrollbar-color:#c9a227 #0a0f1e;
+}
+@keyframes arSlideUp{from{transform:translateY(36px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.ar-header{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:16px;padding-bottom:14px;
+  border-bottom:1px solid rgba(201,162,39,.3);
+}
+.ar-icon{
+  width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;flex-shrink:0;border:2px solid #c9a227;
+}
+.ar-meta{flex:1;min-width:0}
+.ar-esc{display:block;font-size:10px;font-weight:700;letter-spacing:2px;color:#c9a227;text-transform:uppercase;margin-bottom:2px}
+.ar-tit{display:block;font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#fff;line-height:1.2}
+.ar-sub{display:block;font-size:11px;color:#888;margin-top:2px}
+
+.ar-chip{
+  display:inline-block;padding:5px 14px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:14px;
+}
+.ar-chip.excelente{background:#1a4d2e;color:#7fff7f}
+.ar-chip.alto      {background:#1a3a5c;color:#7fd4ff}
+.ar-chip.medio     {background:#4a3a00;color:#ffd966}
+.ar-chip.bajo      {background:#5c1a1a;color:#ff9999}
+
+.ar-intro{font-size:13.5px;color:#c8d8e8;line-height:1.65;margin-bottom:16px}
+
+.ar-spoken{
+  border-left:3px solid #c9a227;padding:12px 16px;margin:0 0 16px;
+  font-style:italic;color:#f0e8c8;font-size:14px;line-height:1.7;
+  background:rgba(201,162,39,.06);border-radius:0 8px 8px 0;
+}
+
+.ar-analisis{font-size:13px;color:#b0c0d0;line-height:1.65;margin-bottom:14px}
+
+.ar-dev{
+  font-size:12px;color:#888;background:rgba(255,255,255,.04);
+  border:1px solid rgba(201,162,39,.2);border-radius:8px;
+  padding:10px 14px;margin-bottom:14px;line-height:1.6;
+}
+
+.ar-hr{border:none;border-top:1px solid rgba(201,162,39,.25);margin:16px 0}
+
+.ar-integral{font-size:12.5px;color:#aaa}
+.ar-integral summary{
+  cursor:pointer;color:#c9a227;font-size:12.5px;font-weight:600;padding:4px 0
+}
+.ar-integral summary:hover{color:#f0d060}
+.ar-integral-body{padding:12px 0 4px;line-height:1.7}
+.ar-integral-body ol{padding-left:18px;margin:8px 0}
+.ar-integral-body li{margin-bottom:6px}
+.ar-cierre-quote{
+  border-left:3px solid #c9a227;padding:8px 12px;
+  font-style:italic;color:#c8c0a0;font-size:12.5px;margin-top:10px;
+}
+
+.ar-firma{
+  font-size:11px;color:#555;text-align:center;
+  margin:14px 0 16px;font-style:italic;
+}
+
+.ar-btn-cerrar{
+  display:block;width:100%;padding:12px;background:transparent;
+  border:1.5px solid #c9a227;border-radius:10px;color:#c9a227;
+  font-size:13px;font-weight:600;cursor:pointer;
+  text-align:center;transition:background .2s,color .2s;
+}
+.ar-btn-cerrar:hover{background:rgba(201,162,39,.12)}
+
+.ar-bonus-section{margin-bottom:14px}
+.ar-bonus-title{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;color:#c9a227;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.ar-bonus-row{
+  padding:9px 12px;border-radius:8px;font-size:12.5px;
+  line-height:1.5;margin-bottom:6px;
+}
+.ar-bonus-row.ok  {background:#1a4d2e;color:#7fff7f}
+.ar-bonus-row.no  {background:#2a2a2a;color:#888}
+
+@media(max-width:480px){
+  .avatar-relator-overlay{align-items:flex-end;padding:0}
+  .avatar-relator-card{border-radius:14px 14px 0 0;max-height:92vh;padding:20px 16px 16px}
+}
+</style>
+
+<div class="avatar-relator-overlay" id="avatarRelatorModal">
+  <div class="avatar-relator-card" style="border-top-color:#1a4d2e">
+    <div class="ar-header">
+      <div class="ar-icon" style="background:#1a4d2e">⚡</div>
+      <div class="ar-meta">
+        <span class="ar-esc">ESCENARIO 3 · PALEM 2026</span>
+        <span class="ar-tit">RELATOR — CRISIS ENERGÉTICA</span>
+        <span class="ar-sub">Junta Directiva · Empresa Energética Caribe</span>
+      </div>
+    </div>
+    <div id="ar-chip" class="ar-chip">—</div>
+    <div id="ar-intro" class="ar-intro"></div>
+    <blockquote id="ar-guion" class="ar-spoken"></blockquote>
+    <div id="ar-analisis" class="ar-analisis"></div>
+    <div id="ar-desarrollo" class="ar-dev"></div>
+    <hr class="ar-hr">
+    <details class="ar-integral">
+      <summary>Ver Evaluación Integral del Sistema</summary>
+      <div class="ar-integral-body">
+        <ol>
+          <li><strong>Desempeño Estratégico (40%)</strong> — Selección de las 10 respuestas ponderada por categoría. Óptimas +35 · Recomendadas +20 · Aceptables +5 · Penalizadas −5. «Qué se decide».</li>
+          <li><strong>Taxonomía de Bloom (35%)</strong> — Nivel cognitivo de la justificación escrita (Recordar → Crear). «Cómo se piensa».</li>
+          <li><strong>Etapas de Kohlberg (25%)</strong> — Razonamiento moral (Preconvencional → Convencional → Postconvencional). «Por qué se decide».</li>
+        </ol>
+        <p class="ar-cierre-quote">«La calificación final no premia memorizar las respuestas exactas. Premia la combinación inteligente de las mejores decisiones, sustentada en un pensamiento profundo y en un razonamiento ético elevado. Por eso dos grupos con el mismo puntaje de selección pueden terminar en niveles distintos según la calidad de su justificación.»</p>
+      </div>
+    </details>
+    <p class="ar-firma">ESAENG — ELESIC 2026 · Liderazgo Estratégico con Visión Neogranadina</p>
+    <button class="ar-btn-cerrar" onclick="cerrarRelator()">Cerrar análisis del Relator</button>
+  </div>
+</div>
+
+<script>
+/* ── AVATAR RELATOR E3 ─────────────────────────────────────── */
+const AR_DATA = {
+  excelente: {
+    chip:      'EXCELENTE · ≥90%',
+    intro:     'En el nivel EXCELENTE, el grupo actuando como Junta Directiva alcanza el puntaje máximo del escenario. La selección de respuestas se concentra en las opciones óptimas y captura el componente bonus, demostrando un dominio pleno sobre la viabilidad de la empresa, los derechos de las comunidades, el cumplimiento de los ODS y la velocidad de escape del subdesarrollo energético.',
+    guion:     '«Felicitaciones. Este grupo alcanzó el nivel de Excelencia Estratégica, con 100% del puntaje. Integró de forma simultánea las opciones de mayor valor y articuló una justificación de alto nivel cognitivo y moral. Es el perfil aspiracional del PALEM.»',
+    analisis:  'La combinación elegida evidencia simultaneidad y sofisticación: prioriza las decisiones de mayor impacto, evita por completo las opciones penalizadas y aprovecha el diferenciador bonus. En la evaluación integral, este grupo se ubica en la zona DESEADA del mapa Bloom–Kohlberg.',
+    desarrollo:'Liderazgo transformacional · Dominio pleno<br>Bloom: Crear/Evaluar · Kohlberg: Postconvencional'
+  },
+  alto: {
+    chip:      'ALTO · 75–89%',
+    intro:     'En el nivel ALTO, el grupo selecciona los elementos centrales de la estrategia sobre la viabilidad de la empresa, los derechos de las comunidades, el cumplimiento de los ODS y la velocidad de escape del subdesarrollo energético, con sofisticación metodológica moderada. Mantiene un desempeño sólido sin capturar la totalidad del valor diferenciador.',
+    guion:     '«Buen trabajo. Este grupo alcanzó un nivel Alto, con 81.7% del puntaje. Tomó decisiones acertadas y superó la lógica reactiva, aunque dejó sobre la mesa algunas opciones óptimas o el bonus. Está muy cerca de la excelencia.»',
+    analisis:  'El grupo combina opciones óptimas con recomendadas y alguna aceptable, sin incurrir en penalizaciones. Le falta consolidar la combinación de máximo impacto y profundizar la justificación para escalar al nivel superior.',
+    desarrollo:'Competencia táctica sólida<br>Bloom: Analizar/Evaluar · Kohlberg: Convencional alto / Postconvencional'
+  },
+  medio: {
+    chip:      'MEDIO · 60–74%',
+    intro:     'En el nivel MEDIO, el grupo mezcla algunas decisiones pertinentes con opciones tácticas de menor valor. Hay comprensión del problema sobre la viabilidad de la empresa, los derechos de las comunidades, el cumplimiento de los ODS y la velocidad de escape del subdesarrollo energético, pero sin una ruptura clara hacia la estrategia óptima.',
+    guion:     '«Este grupo alcanzó un nivel Medio, con 61.7% del puntaje. Identificó parte de la solución, pero su respuesta fue más táctica que estratégica. Tiene una base válida sobre la cual profundizar el razonamiento.»',
+    analisis:  'La selección presenta pocas opciones óptimas y un peso importante de aceptables. No hay penalizaciones graves, pero tampoco se captura el diferenciador. En el mapa Bloom–Kohlberg, el grupo se sitúa en la franja intermedia, por debajo de la curva deseada.',
+    desarrollo:'Desempeño funcional con desarrollo pendiente<br>Bloom: Aplicar/Analizar · Kohlberg: Convencional'
+  },
+  bajo: {
+    chip:      'BAJO · &lt;60%',
+    intro:     'En el nivel BAJO, predominan las acciones tácticas o se incurre en opciones penalizadas, reproduciendo la lógica que el escenario busca superar respecto de la viabilidad de la empresa, los derechos de las comunidades, el cumplimiento de los ODS y la velocidad de escape del subdesarrollo energético.',
+    guion:     '«Este grupo se ubicó en el nivel Bajo, con 35% del puntaje. Su respuesta reprodujo enfoques reactivos o de bajo impacto, e incluyó opciones que restan. Requiere reforzar el marco conceptual de la negociación y la decisión estratégica.»',
+    analisis:  'La presencia de opciones penalizadas reduce el puntaje base y desplaza al grupo hacia la zona MÍNIMO del mapa Bloom–Kohlberg. La recomendación del relator es orientar la retroalimentación al desarrollo conceptual y a la integración del paradigma del escenario.',
+    desarrollo:'Desempeño inicial — requiere desarrollo conceptual<br>Bloom: Recordar/Comprender · Kohlberg: Preconvencional/Convencional bajo'
+  },
+};
+
+function showRelatorAvatar() {
+  const a = aggregate();
+  let nivel;
+  if (a.integrated >= 90) nivel = 'excelente';
+  else if (a.integrated >= 75) nivel = 'alto';
+  else if (a.integrated >= 60) nivel = 'medio';
+  else nivel = 'bajo';
+  const d = AR_DATA[nivel];
+  const chip = document.getElementById('ar-chip');
+  chip.textContent = d.chip;
+  chip.className = 'ar-chip ' + nivel;
+  document.getElementById('ar-intro').textContent = d.intro;
+  document.getElementById('ar-guion').textContent = d.guion;
+  document.getElementById('ar-analisis').textContent = d.analisis;
+  document.getElementById('ar-desarrollo').innerHTML = d.desarrollo;
+  const m = document.getElementById('avatarRelatorModal');
+  m.style.display = 'flex';
+  requestAnimationFrame(() => m.classList.add('visible'));
+}
+
+function cerrarRelator() {
+  const m = document.getElementById('avatarRelatorModal');
+  m.classList.remove('visible');
+  setTimeout(() => { m.style.display = 'none'; }, 300);
+}
+</script>
+
 </body>
 </html>
