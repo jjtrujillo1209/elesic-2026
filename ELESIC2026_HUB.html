@@ -50,6 +50,11 @@
   --e3a-light:#d4baed;
   --e3a-bg:   #f7f1fe;
 
+  --e4-dark:  #5e1622;
+  --e4-mid:   #7d1f2d;
+  --e4-light: #e6b9c0;
+  --e4-bg:    #fdf3f4;
+
   /* Semánticos */
   --excelente: #1a6b42;
   --alto:      #1a4e8f;
@@ -330,6 +335,7 @@ h1,h2,h3,h4,h5 { font-family: 'Oswald', sans-serif; font-weight: 600; line-heigh
 .e2 .sc-stripe { background: linear-gradient(90deg, var(--e2-dark), var(--e2-mid)) }
 .e3 .sc-stripe { background: linear-gradient(90deg, var(--e3-dark), var(--e3-mid)) }
 .e3a .sc-stripe { background: linear-gradient(90deg, var(--e3a-dark), var(--e3a-mid)) }
+.e4 .sc-stripe { background: linear-gradient(90deg, var(--e4-dark), var(--e4-mid)) }
 
 .sc-head {
   padding: 22px 24px 18px;
@@ -344,6 +350,7 @@ h1,h2,h3,h4,h5 { font-family: 'Oswald', sans-serif; font-weight: 600; line-heigh
 .e2 .sc-id { background: var(--e2-light); color: var(--e2-dark) }
 .e3 .sc-id { background: var(--e3-light); color: var(--e3-dark) }
 .e3a .sc-id { background: var(--e3a-light); color: var(--e3a-dark) }
+.e4 .sc-id { background: var(--e4-light); color: var(--e4-dark) }
 
 .sc-evts {
   font-family: 'Barlow Condensed'; font-size: 12px; letter-spacing: 1px;
@@ -365,6 +372,7 @@ h1,h2,h3,h4,h5 { font-family: 'Oswald', sans-serif; font-weight: 600; line-heigh
 .e2 .sc-rol-icon { background: var(--e2-bg) }
 .e3 .sc-rol-icon { background: var(--e3-bg) }
 .e3a .sc-rol-icon { background: var(--e3a-bg) }
+.e4 .sc-rol-icon { background: var(--e4-bg) }
 
 .sc-rol span { font-weight: 600; color: var(--text-primary) }
 .sc-context { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px }
@@ -410,6 +418,8 @@ h1,h2,h3,h4,h5 { font-family: 'Oswald', sans-serif; font-weight: 600; line-heigh
 .e3 .sc-launch:hover { background: var(--e3-dark) }
 .e3a .sc-launch { background: var(--e3a-mid) }
 .e3a .sc-launch:hover { background: var(--e3a-dark) }
+.e4 .sc-launch { background: var(--e4-mid) }
+.e4 .sc-launch:hover { background: var(--e4-dark) }
 
 /* ==========================================
    SIDEBAR DERECHO
@@ -719,14 +729,14 @@ svg.icon-lg { width:20px; height:20px }
       <h1 class="hero-title" id="hero-title">
         ELESIC <span>2026</span>
       </h1>
-      <p class="hero-subtitle">Simulación de Crisis Estratégica · Cuatro Escenarios</p>
+      <p class="hero-subtitle">Simulación de Crisis Estratégica · Cinco Escenarios</p>
       <p class="hero-desc">
         Selecciona el escenario que corresponde a tu equipo y accede directamente a la interfaz de simulación.
         Cada escenario propone un rol de alta dirección, eventos de crisis progresivos y evaluación tridimensional
         en tiempo real.
       </p>
       <div class="hero-stats" role="list">
-        <div class="hstat" role="listitem"><span class="val">4</span><span class="lbl">Escenarios</span></div>
+        <div class="hstat" role="listitem"><span class="val">5</span><span class="lbl">Escenarios</span></div>
         <div class="hstat" role="listitem"><span class="val">6</span><span class="lbl">Eventos / escenario</span></div>
         <div class="hstat" role="listitem"><span class="val">45'</span><span class="lbl">Por evento</span></div>
         <div class="hstat" role="listitem"><span class="val">14h</span><span class="lbl">Duración total</span></div>
@@ -796,6 +806,10 @@ svg.icon-lg { width:20px; height:20px }
 
       <div class="selector-cta">
         <p style="font-size:13px;color:#7ea8cc;">Modelo CE³ · Base teórica: Edwards &amp; Cable (2009) · Duración total: <strong style="color:#fff">28 minutos</strong></p>
+        <button class="sc-launch" style="margin-top:12px" onclick="launchScenario('ELESIC2026_Selector.html')" aria-label="Abrir instrumento selector de escenario">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Abrir selector de escenario
+        </button>
       </div>
     </div>
 
@@ -803,7 +817,7 @@ svg.icon-lg { width:20px; height:20px }
     <div class="section" id="escenarios">
       <h2 class="section-title">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        Cuatro escenarios disponibles
+        Cinco escenarios disponibles
       </h2>
 
       <div class="scenarios-grid" role="list">
@@ -998,6 +1012,56 @@ svg.icon-lg { width:20px; height:20px }
           <div class="sc-footer">
             <div class="sc-pts"><span class="val">320</span><span class="lbl">&nbsp;pts máx.</span></div>
             <button class="sc-launch" onclick="event.stopPropagation();launchScenario('ELESIC2026_Escenario3A_ConflictoLaboral (4).html')" aria-label="Abrir simulación Escenario 3A">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Abrir simulación
+            </button>
+          </div>
+        </article>
+
+        <!-- E4: ÉTICA EN EL MANDO -->
+        <article class="scenario-card e4" role="listitem"
+          onclick="openModal('e4')"
+          aria-label="Escenario 4: Ética en el Mando — abrir detalles">
+          <div class="sc-stripe" aria-hidden="true"></div>
+          <div class="sc-head">
+            <div class="sc-id-row">
+              <span class="sc-id">E4</span>
+              <span class="sc-evts">6 eventos · MODs 1, 2, 3, 4, 5, 6</span>
+            </div>
+            <h3 class="sc-title">Ética en el Mando</h3>
+            <p class="sc-subtitle">Policrisis Ético-Institucional — Caso Catatumbo</p>
+          </div>
+          <div class="sc-body">
+            <div class="sc-rol">
+              <div class="sc-rol-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" style="color:var(--vino,#7d1f2d)"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+              </div>
+              <span>Rol: <span>Consejo de Mando Ético (CME)</span></span>
+            </div>
+            <p class="sc-context">
+              Amenaza híbrida en el Catatumbo: drones, reclutamiento de menores, economías ilegales y
+              desplazamiento masivo. El Consejo de Mando enfrenta dilemas morales del mando bajo presión
+              VUCA, con evaluación de la dimensión ética y de valores (LEM).
+            </p>
+            <div class="sc-tags" aria-label="Temas del escenario">
+              <span class="sc-tag">Ética del mando</span>
+              <span class="sc-tag">Amenaza híbrida</span>
+              <span class="sc-tag">DIH</span>
+              <span class="sc-tag">Cultura y valores</span>
+              <span class="sc-tag">Prospectiva de paz</span>
+            </div>
+            <div class="sc-modules" aria-label="Módulos activos">
+              <span class="sc-mod">MOD 1</span>
+              <span class="sc-mod">MOD 2</span>
+              <span class="sc-mod">MOD 3</span>
+              <span class="sc-mod">MOD 4</span>
+              <span class="sc-mod">MOD 5</span>
+              <span class="sc-mod">MOD 6</span>
+            </div>
+          </div>
+          <div class="sc-footer">
+            <div class="sc-pts"><span class="val">270</span><span class="lbl">&nbsp;pts/evento</span></div>
+            <button class="sc-launch" onclick="event.stopPropagation();launchScenario('ELESIC2026_Escenario4_Catatumbo.html')" aria-label="Abrir simulación Escenario 4">
               <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               Abrir simulación
             </button>
@@ -1454,6 +1518,31 @@ const SCENARIOS = {
       'Evento único: Negociación laboral portuaria con 40 opciones y 3 bonuses diferenciadores'
     ],
     highlight: '+70% de 3.542 trabajadores en huelga · $39M costo acumulado · Paradigma FDAI'
+  },
+  e4: {
+    id: 'E4',
+    title: 'Ética en el Mando',
+    subtitle: 'Policrisis Ético-Institucional — Caso Catatumbo',
+    file: 'ELESIC2026_Escenario4_Catatumbo.html',
+    color: '#7d1f2d',
+    colorLight: '#fdf3f4',
+    icon: '⭐',
+    role: 'Consejo de Mando Ético (CME)',
+    events: 6,
+    maxPts: 270,
+    duration: '96 horas simuladas · 2 días de ejercicio',
+    modulos: 'MODs 1, 2, 3, 4, 5, 6',
+    metodologia: 'Consejo de Mando Ético + Tribunal de Mando',
+    concepto: 'Dimensión ética y moral del mando (LEM) · Valores en policrisis VUCA',
+    eventsList: [
+      'E1 · El Dilema Ético del Mando — Menores como Escudos Humanos (MOD 1)',
+      'E2 · Crisis Interna del Mando — Neurociencia, Valores y Cultura bajo Presión (MOD 2)',
+      'E3 · Gobernanza en Zona de Conflicto — Institucionalidad bajo Fuego Híbrido (MOD 3)',
+      'E4 · Guerra de Drones y Operaciones Híbridas — Ética en el Uso de la Tecnología (MOD 4)',
+      'E5 · Economías Ilegales y Dignidad — La Coca, la Paz y los Valores Comunitarios (MOD 5)',
+      'E6 · Prospectiva del Catatumbo — Paz Estable, Duradera y con Valores (MOD 6)'
+    ],
+    highlight: 'Amenaza híbrida en el Catatumbo · Drones y menores reclutados · Dilemas morales del mando'
   }
 };
 
