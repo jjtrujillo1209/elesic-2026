@@ -342,6 +342,77 @@ footer b{color:var(--dorado-claro)}
 .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:12px}
 .legend .lg{display:inline-flex;align-items:center;gap:5px;color:var(--texto-suave)}
 .legend .sw{width:12px;height:12px;border-radius:3px}
+
+/* ===== MOBILE-FIX · ajuste responsive integral (teléfono) ===== */
+@media(max-width:640px){
+  html,body{overflow-x:hidden}
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .layout>*{min-width:0;max-width:100%}
+  .center,.side{min-width:0}
+  .ind .val{white-space:normal;overflow-wrap:anywhere}
+  .event-banner .edate{white-space:normal;overflow-wrap:anywhere}
+  .mono{overflow-wrap:anywhere}
+  .topbar-inner{gap:10px;padding:8px 12px;flex-wrap:wrap}
+  .escudo{height:44px}
+  .brand{flex:1 1 100%}
+  .brand .l1{font-size:11px;letter-spacing:1.5px}
+  .brand .l2{font-size:15px;white-space:normal;line-height:1.1}
+  .brand .l3{font-size:11px;letter-spacing:.8px}
+  .topbar-actions{width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:12px}
+  .hero{padding:12px 12px 4px}
+  .hero-card{padding:14px 16px}
+  .hero-card h1{font-size:21px}
+  .hero-card .sub{font-size:13px}
+  .hero-meta{gap:10px;font-size:12.5px}
+  .layout{padding:10px 12px 48px;gap:12px}
+  .clockwrap{padding:14px}
+  .phase-track{grid-template-columns:1fr;gap:6px}
+  .clock-main{gap:10px}
+  .time-big{font-size:42px}
+  .phase-now{min-width:0}
+  .phase-now .ttl{font-size:16px}
+  .clock-controls{gap:7px}
+  .cbtn{padding:9px 11px;font-size:12px;flex:1 1 auto;justify-content:center}
+  .event-tabs{gap:4px}
+  .etab{padding:7px 10px;font-size:12px}
+  .eventcard{border-radius:12px}
+  .event-banner{padding:14px}
+  .event-banner h2{font-size:19px}
+  .event-body{padding:14px}
+  .req-box{padding:11px 13px}
+  .req-box p{font-size:14px}
+  .opts-grid{grid-template-columns:1fr}
+  .justify-box textarea{min-height:100px}
+  .result-trigger{flex-direction:column}
+  .btn-result{width:100%;justify-content:center}
+  .res-top{gap:12px}
+  .level-badge{width:100%;min-width:0;padding:12px 18px}
+  .res-break{min-width:0}
+  .bloom-kohl{grid-template-columns:1fr}
+  .modal-bg{padding:14px 8px}
+  .modal-head{padding:12px 16px}
+  .modal-head h3{font-size:17px}
+  .modal-body{padding:16px 14px;max-height:80vh}
+  .news-grid{grid-template-columns:1fr}
+  .media-strip .media-thumb{min-width:0}
+  .final-rank{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .adj-row{gap:8px}
+  .adj-row label{min-width:120px}
+  .ticker{padding:0 12px}
+  .ticker-tag{padding:0 12px;font-size:12px}
+  .ticker-item{font-size:13px;padding:0 16px}
+  .sim-banner{bottom:14px;padding:11px 16px;font-size:13px;gap:10px}
+  .toast{right:10px;left:10px;top:70px}
+}
+@media(max-width:400px){
+  .brand .l2{font-size:14px}
+  .time-big{font-size:34px}
+  .hero-card h1{font-size:19px}
+  .event-banner h2{font-size:17px}
+  .btn{font-size:11px;padding:7px 10px}
+  .level-badge .lv{font-size:26px}
+}
 </style>
 </head>
 <body>
