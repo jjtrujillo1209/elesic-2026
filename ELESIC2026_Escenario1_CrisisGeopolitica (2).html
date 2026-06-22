@@ -1539,6 +1539,7 @@ function showEventResult(idx){
   renderTabs();
   renderEventResultHTML(idx);
   maybeShowFinal();
+  try{ window.elesicDB?.afterScore(idx); }catch(e){}
 }
 
 function renderEventResultHTML(idx){
@@ -1674,8 +1675,8 @@ function renderFinal(){
    INTEGRAL MODAL (triggered from last event)
    ============================================================ */
 function showIntegral(){
-  // ensure all events scored; if not, score those with data / zero
   state.forEach((s,i)=>{ if(!s.scored){ s.result=scoreEvent(i); } });
+  try{ window.elesicDB?.afterIntegral(); }catch(e){}
   const a=aggregate();
   // Bloom-Kohlberg quadrant
   let quad, qdesc;
@@ -2241,5 +2242,17 @@ document.addEventListener('DOMContentLoaded', ()=>{ try{ initMapFijo(); }catch(e
 
 </script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- ELESIC DB — Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  window.ELESIC_SCENARIO_ID = 'E1';
+  window.ELESIC_EVENTS_REF  = () => EVENTS;
+  window.ELESIC_STATE_REF   = () => state;
+  window.ELESIC_CONFIG = {
+    url: 'https://bkwipauheiqeukbwuvyl.supabase.co',
+    key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJrd2lwYXVoZWlxZXVrYnd1dnlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3OTgwMzcsImV4cCI6MjA5NTM3NDAzN30.sdv01mYzuUZT7MmEo1A3QaPjFe0HGEb5jFhyRQUHWzs'
+  };
+</script>
+<script src="_db.js"></script>
 </body>
 </html>
