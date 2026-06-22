@@ -887,6 +887,24 @@ universal"];
 
 const PTS = {opt:35, rec:20, acc:5, pen:-5, bonus:10};
 const MAX_EVENT = 300;
+/* === FIX simulación 1 min: constantes de puntaje + helpers de nivel (faltaban → rompían scoreEvent) === */
+const OPT_PTS = PTS.opt, REC_PTS = PTS.rec, ACC_PTS = PTS.acc, PEN_PTS = PTS.pen, BONUS_PTS = PTS.bonus;
+function bloomLabel(n){
+  if(n>=0.84) return "6 · Crear";
+  if(n>=0.68) return "5 · Evaluar";
+  if(n>=0.50) return "4 · Analizar";
+  if(n>=0.34) return "3 · Aplicar";
+  if(n>=0.18) return "2 · Comprender";
+  return "1 · Recordar";
+}
+function kohlbergStage(n){
+  if(n>=0.84) return {st:"E6 · Ética Universal", lvl:"Postconvencional"};
+  if(n>=0.68) return {st:"E5 · Contrato Social", lvl:"Postconvencional"};
+  if(n>=0.50) return {st:"E4 · Ley y Orden", lvl:"Convencional"};
+  if(n>=0.34) return {st:"E3 · Buen Líder", lvl:"Convencional"};
+  if(n>=0.18) return {st:"E2 · Interés Propio", lvl:"Preconvencional"};
+  return {st:"E1 · Miedo/Castigo", lvl:"Preconvencional"};
+}
 
 /* Per-event state */
 const state = EVENTS.map(()=>({
