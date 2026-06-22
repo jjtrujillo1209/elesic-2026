@@ -403,6 +403,11 @@ footer b{color:var(--dorado-claro)}
 .vpo-ctrl-btn{background:rgba(255,255,255,.1);border:none;color:#fff;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:12px;transition:background .2s}
 .vpo-ctrl-btn:hover{background:rgba(255,255,255,.2)}
 .vpo-dur{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9ab0c8}
+.vpo-real-video{display:none;width:100%;background:#000;flex-direction:column}
+.vpo-real-video video{width:100%;max-height:68vh;display:block;object-fit:contain}
+.vpo-real-video .vpo-controls{padding:10px 16px;background:#0a0e1a;display:flex;align-items:center;gap:12px}
+.vid-player-overlay.video-mode .vpo-news{display:none}
+.vid-player-overlay.video-mode .vpo-real-video{display:flex}
 
 /* ——————————————————— LEAFLET OVERRIDES ——————————————————— */
 .leaflet-city-label{background:rgba(0,0,0,.65)!important;color:#e8c84a!important;border:none!important;padding:1px 5px!important;font-size:10.5px!important;font-weight:bold!important;border-radius:3px!important;box-shadow:none!important}
@@ -804,6 +809,13 @@ footer b{color:var(--dorado-claro)}
 <div class="vid-player-overlay" id="vidOverlay">
   <div class="vpo-inner">
     <button class="vpo-close" onclick="closeVid()">✕</button>
+    <div class="vpo-real-video">
+      <video id="vpoVideo" controls playsinline></video>
+      <div class="vpo-controls">
+        <button class="vpo-ctrl-btn" onclick="replayVid()">↺ Replay</button>
+        <button class="vpo-ctrl-btn" onclick="closeVid()">✕ Cerrar</button>
+      </div>
+    </div>
     <div class="vpo-news">
       <div class="vpo-content">
         <div class="vpo-top-bar">
@@ -1758,7 +1770,7 @@ const NEWS=[
   ["CELAC / OEA","Región dividida: 7 con Colombia, 6 neutrales","Rusia respalda la soberanía colombiana; la OTAN pide calma. Venezuela, Ecuador y Perú emiten declaraciones de preocupación."],
 ];
 const VID_DATA=[
-  {channel:"ELESIC NEWS 24H",emoji:"👩‍💼",anchor:"Dra. M. Restrepo",role:"Editora Internacional",label:"SITUACIÓN GENERAL",
+  {channel:"ELESIC NEWS 24H",emoji:"👩‍💼",anchor:"Dra. M. Restrepo",role:"Editora Internacional",label:"SITUACIÓN GENERAL",src:"video_escenario1_crisis_geopolitica.mp4",
    headline:"CRISIS GEOPOLÍTICA: POTENCIAS EN AGUAS COLOMBIANAS",
    body:"China y Estados Unidos despliegan fuerzas navales en el Pacífico colombiano de forma no autorizada. Un destructor PLA-N viola el mar territorial en Nariño. Un P-8 de EE.UU. penetra el espacio aéreo en Chocó. Colombia activa el COSENA y eleva la alerta de las FFMM a Nivel Naranja. El país exige respuestas ante la bipolaridad tecnológica más intensa de los últimos 30 años.",
    tickers:[["BVC","-8.7%"],["Dólar","$5.890 COP"],["FFMM","Alerta Naranja"],["COSENA","Sesión de emergencia"],["OEA","Convocada urgente"]],narration:"Colombia enfrenta una crisis geopolítica sin precedentes. China y Estados Unidos despliegan fuerzas navales en el Pacífico colombiano sin autorización. Un destructor chino viola el mar territorial en Nariño. Un avión de reconocimiento norteamericano penetra el espacio aéreo en el Chocó. Catorce entidades críticas han sido víctimas de un ciberataque coordinado. El Consejo de Seguridad Nacional se reúne de emergencia."},
@@ -1937,20 +1949,30 @@ function playVid(idx){
   const v=VID_DATA[idx]; if(!v) return;
   _vpCurrentIdx=idx;
   const ov=document.getElementById('vidOverlay');
-  ov.querySelector('.vpo-hl-text').textContent=v.headline;
-  ov.querySelector('.vpo-body-text').textContent=v.body;
-  ov.querySelector('.vpo-channel').textContent=v.channel;
-  ov.querySelector('.vpo-anchor-name').textContent=v.anchor;
-  ov.querySelector('.vpo-anchor-role').textContent=v.role;
-  ov.querySelector('.vpo-anchor').textContent=v.emoji;
-  ov.querySelector('.vpo-hl-label').textContent=v.label||'ESPECIAL';
-  const tickers=v.tickers||[];
-  ov.querySelector('.vpo-ticker-inner').innerHTML=
-    [...tickers,...tickers].map(t=>`<span class="vpo-tick-item"><span class="vpo-tick-kw">${t[0]}:</span> ${t[1]}</span>`).join('');
-  ov.classList.add('show');
-  startVidTimer(ov);
-  const narration=v.narration||v.body||'';
-  setTimeout(()=>speakVid(narration),400);
+  if(v.src){
+    ov.classList.add('show','video-mode');
+    const vid=document.getElementById('vpoVideo');
+    vid.src=v.src;
+    vid.load();
+    vid.play().catch(()=>{});
+    vid.onended=()=>{ closeVid(); };
+  } else {
+    ov.classList.remove('video-mode');
+    ov.querySelector('.vpo-hl-text').textContent=v.headline;
+    ov.querySelector('.vpo-body-text').textContent=v.body;
+    ov.querySelector('.vpo-channel').textContent=v.channel;
+    ov.querySelector('.vpo-anchor-name').textContent=v.anchor;
+    ov.querySelector('.vpo-anchor-role').textContent=v.role;
+    ov.querySelector('.vpo-anchor').textContent=v.emoji;
+    ov.querySelector('.vpo-hl-label').textContent=v.label||'ESPECIAL';
+    const tickers=v.tickers||[];
+    ov.querySelector('.vpo-ticker-inner').innerHTML=
+      [...tickers,...tickers].map(t=>`<span class="vpo-tick-item"><span class="vpo-tick-kw">${t[0]}:</span> ${t[1]}</span>`).join('');
+    ov.classList.add('show');
+    startVidTimer(ov);
+    const narration=v.narration||v.body||'';
+    setTimeout(()=>speakVid(narration),400);
+  }
 }
 function startVidTimer(ov){
   _vpSec=0;
@@ -1969,10 +1991,15 @@ function startVidTimer(ov){
 }
 function replayVid(){
   stopSpeech();
+  const vid=document.getElementById('vpoVideo');
+  if(vid && !vid.paused || (vid && vid.src && vid.ended)){ vid.currentTime=0; vid.play().catch(()=>{}); return; }
   if(_vpCurrentIdx!==null) playVid(_vpCurrentIdx);
 }
 function closeVid(){
-  document.getElementById('vidOverlay').classList.remove('show');
+  const ov=document.getElementById('vidOverlay');
+  ov.classList.remove('show','video-mode');
+  const vid=document.getElementById('vpoVideo');
+  if(vid){ vid.pause(); vid.src=''; }
   clearInterval(_vpTimer); stopSpeech();
 }
 
