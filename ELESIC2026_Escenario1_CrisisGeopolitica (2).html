@@ -403,6 +403,18 @@ footer b{color:var(--dorado-claro)}
 .vpo-ctrl-btn{background:rgba(255,255,255,.1);border:none;color:#fff;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:12px;transition:background .2s}
 .vpo-ctrl-btn:hover{background:rgba(255,255,255,.2)}
 .vpo-dur{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9ab0c8}
+/* ——————————————————— MAPA TENSIÓN MODAL ——————————————————— */
+.mt-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9990;align-items:center;justify-content:center}
+.mt-modal-bg.show{display:flex}
+.mt-modal{width:min(920px,96vw);max-height:90vh;background:#0a0e1a;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(232,200,74,.25)}
+.mt-modal-head{background:linear-gradient(90deg,#0a1a40,#1a3060);padding:12px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.mt-modal-head h3{font-family:'Oswald',sans-serif;font-size:16px;color:#e8c84a;letter-spacing:1px;text-transform:uppercase;margin:0;flex:1}
+.mt-modal-close{background:rgba(255,255,255,.12);border:none;color:#fff;font-size:20px;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mt-modal-body{flex:1;overflow:hidden;position:relative}
+#mapaTensionLeaflet{height:560px;width:100%}
+.mt-legend{background:rgba(10,14,26,.9);border:1px solid rgba(232,200,74,.2);border-radius:8px;padding:10px 12px;font-size:11px;color:#b0c4dc;line-height:1.8}
+.mt-legend b{color:#e8c84a;display:block;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.5px;margin-bottom:4px}
+@media(max-width:640px){#mapaTensionLeaflet{height:380px}}
 .vpo-real-video{display:none;width:100%;background:#000;flex-direction:column}
 .vpo-real-video video{width:100%;max-height:68vh;display:block;object-fit:contain}
 .vpo-real-video .vpo-controls{padding:10px 16px;background:#0a0e1a;display:flex;align-items:center;gap:12px}
@@ -806,6 +818,21 @@ footer b{color:var(--dorado-claro)}
 <div class="toast" id="toast"></div>
 
 <!-- VIDEO PLAYER OVERLAY -->
+<!-- MAPA DE TENSIÓN MODAL -->
+<div class="mt-modal-bg" id="mapaTensionModal" onclick="if(event.target===this) closeMapaTension()">
+  <div class="mt-modal">
+    <div class="mt-modal-head">
+      <span style="font-size:20px">🗺️</span>
+      <h3>Mapa de Tensión — Pacífico Colombiano</h3>
+      <span style="font-size:11px;color:#9ab0c8;font-family:'IBM Plex Mono',monospace;margin-right:8px" id="mtClock"></span>
+      <button class="mt-modal-close" onclick="closeMapaTension()">✕</button>
+    </div>
+    <div class="mt-modal-body">
+      <div id="mapaTensionLeaflet"></div>
+    </div>
+  </div>
+</div>
+
 <div class="vid-player-overlay" id="vidOverlay">
   <div class="vpo-inner">
     <button class="vpo-close" onclick="closeVid()">✕</button>
@@ -1828,7 +1855,7 @@ function renderNews(){
           <div class="media-thumb"><span class="ic">🛰️</span><span class="mt">Imágenes satelitales</span><span class="md">Movimientos en tiempo real</span></div>
           <div class="media-thumb"><span class="ic">📻</span><span class="mt">Interceptación SIGINT</span><span class="md">Canal cifrado activo</span></div>
           <div class="media-thumb"><span class="ic">📺</span><span class="mt">Transmisión en vivo</span><span class="md">Cobertura internacional</span></div>
-          <div class="media-thumb" style="cursor:pointer" onclick="showTab('map',document.querySelectorAll('.mmt-tab')[1])"><span class="ic">🗺️</span><span class="mt">Ver mapa estratégico</span><span class="md" style="color:var(--dorado-claro)">→ Ir al mapa</span></div>
+          <div class="media-thumb" style="cursor:pointer" onclick="openMapaTension()"><span class="ic">🗺️</span><span class="mt">Mapa de tensión</span><span class="md">Pacífico colombiano · Chocó · Nariño</span></div>
         </div>
       </div>
       <div id="tab-map" class="mmt-panel">
@@ -2034,6 +2061,79 @@ function initMapFijo(){
    ============================================================ */
 function openModal(id){ document.getElementById(id).classList.add('show'); }
 function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+
+/* ---- MAPA DE TENSIÓN ---- */
+let _mtMap=null;
+function openMapaTension(){
+  const modal=document.getElementById('mapaTensionModal');
+  modal.classList.add('show');
+  document.getElementById('mtClock').textContent=new Date().toLocaleTimeString('es-CO',{hour12:false,hour:'2-digit',minute:'2-digit'})+'h · EN VIVO';
+  if(_mtMap){ _mtMap.invalidateSize(); return; }
+  if(typeof L==='undefined') return;
+  _mtMap=L.map('mapaTensionLeaflet',{center:[3.5,-78.5],zoom:6,zoomControl:true,scrollWheelZoom:true});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap','maxZoom':14}).addTo(_mtMap);
+
+  const mkI=s=>L.divIcon({html:s,className:'',iconSize:[28,28],iconAnchor:[14,14]});
+
+  /* PLA-N destructores */
+  const plaIcon=mkI('<div style="font-size:24px;filter:drop-shadow(0 0 4px #c00)">🚢</div>');
+  const plaPos=[[2.5,-80.5],[1.8,-82.0],[3.2,-79.0]];
+  plaPos.forEach((p,i)=>{
+    L.marker(p,{icon:plaIcon}).addTo(_mtMap)
+      .bindPopup(`<b style="color:#c00">🇨🇳 Destructor PLA-N #${i+1}</b><br>Violación soberanía marítima<br>Operación: <i>Jade Phoenix</i><br><span style="font-size:10px;color:#666">Coord: ${p[0]}°N ${Math.abs(p[1])}°O</span>`);
+  });
+
+  /* Zona de violación — polígono rojo PLA-N */
+  L.polygon([[2.0,-83.0],[4.5,-83.0],[4.5,-77.5],[2.0,-77.5]],
+    {color:'#dd2020',weight:2,fillColor:'#ff4444',fillOpacity:.10,dashArray:'6,4'})
+    .addTo(_mtMap).bindPopup('<b style="color:#c00">⚠ Zona de Violación Naval PLA-N</b><br>Mar territorial colombiano — 12 mn<br>Estado: <b>ACTIVO</b>');
+
+  /* USS / P-8 */
+  L.marker([4.8,-77.5],{icon:mkI('<div style="font-size:22px;filter:drop-shadow(0 0 4px #003399)">⚓</div>')}).addTo(_mtMap)
+    .bindPopup('<b style="color:#003399">🇺🇸 USS (Fragata) — USN</b><br>Patrullaje no autorizado<br>Op: <i>Southern Reach</i>');
+  L.marker([7.5,-77.8],{icon:mkI('<div style="font-size:22px">✈️</div>')}).addTo(_mtMap)
+    .bindPopup('<b style="color:#003399">🇺🇸 P-8 Poseidon (USN)</b><br>Violación espacio aéreo — Chocó<br>Reconocimiento antisubmarino');
+
+  /* Zona vigilancia EE.UU. — polígono azul */
+  L.polygon([[6.0,-78.0],[9.0,-78.0],[9.0,-76.0],[6.0,-76.0]],
+    {color:'#0044cc',weight:2,fillColor:'#3366ff',fillOpacity:.08,dashArray:'6,4'})
+    .addTo(_mtMap).bindPopup('<b style="color:#003399">⚠ Zona de Presencia USN</b><br>Chocó — violación espacio aéreo');
+
+  /* ZEE Colombia */
+  L.circle([4.5,-75.5],{radius:370400,color:'#e8c84a',weight:1.5,fillColor:'#e8c84a',fillOpacity:.05,dashArray:'8,5'})
+    .addTo(_mtMap).bindPopup('<b style="color:#8a6a12">🇨🇴 ZEE Colombia</b><br>Zona Económica Exclusiva — 200 mn<br>CONVEMAR Art. 55–75');
+
+  /* Puertos */
+  const portIcon=mkI('<div style="font-size:16px">⚓</div>');
+  [['Buenaventura',[3.88,-77.02]],['Tumaco',[1.82,-78.76]]].forEach(([n,p])=>{
+    L.marker(p,{icon:portIcon}).addTo(_mtMap)
+      .bindTooltip(`<b>${n}</b>`,{permanent:true,direction:'right',className:'leaflet-city-label'})
+      .bindPopup(`<b>Puerto ${n}</b><br>Infraestructura crítica<br>Estado: <span style="color:#c00">⚠ Monitoreo FFMM</span>`);
+  });
+
+  /* Ciberataque — Bogotá */
+  L.marker([4.60,-74.08],{icon:mkI('<div style="font-size:20px">💻</div>')}).addTo(_mtMap)
+    .bindPopup('<b style="color:#8a00c8">💻 Bogotá — Epicentro Ciberataque</b><br>14 entidades críticas comprometidas<br>Origen: múltiple (asiático + anglosajón)');
+
+  /* Leyenda */
+  const leg=L.control({position:'bottomright'});
+  leg.onAdd=()=>{
+    const d=L.DomUtil.create('div','mt-legend');
+    d.innerHTML=`<b>LEYENDA — TENSIÓN ACTIVA</b>
+      🚢 <span style="color:#ff6060">Destructor PLA-N (×3)</span><br>
+      ⚓ <span style="color:#6699ff">USS / USN</span><br>
+      ✈️ <span style="color:#6699ff">P-8 Poseidon — Chocó</span><br>
+      💻 <span style="color:#cc66ff">Ciberataque — Bogotá</span><br>
+      <span style="color:#e8c84a">— — ZEE Colombia 200 mn</span><br>
+      <span style="color:#ff4444">▒ Zona violación PLA-N</span><br>
+      <span style="color:#3366ff">▒ Zona presencia USN</span>`;
+    return d;
+  };
+  leg.addTo(_mtMap);
+}
+function closeMapaTension(){
+  document.getElementById('mapaTensionModal').classList.remove('show');
+}
 document.addEventListener('click',e=>{ if(e.target.classList.contains('modal-bg')) e.target.classList.remove('show'); });
 
 /* ============================================================
