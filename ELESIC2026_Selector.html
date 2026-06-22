@@ -124,6 +124,14 @@ h1,h2,h3,h4{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.4px;
 .reveal .r-close{background:rgba(255,255,255,.16);border:none;color:#fff;font-family:'Oswald';letter-spacing:.6px;text-transform:uppercase;border-radius:9px;padding:11px 22px;cursor:pointer;font-size:14px}
 .reveal .r-close:hover{background:rgba(255,255,255,.28)}
 .reveal .r-tie{font-size:13px;color:#ffcf6b;margin-top:8px}
+.reveal .r-launch-main{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#c8a820,#e8c84a);color:#1a1200;font-family:'Oswald';font-size:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:12px;padding:15px 32px;cursor:pointer;box-shadow:0 6px 22px rgba(200,161,58,.5);transition:filter .18s,transform .12s;margin-bottom:10px}
+.reveal .r-launch-main:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.reveal .r-sep{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.35);font-size:12px;letter-spacing:1px;margin:10px 0}
+.reveal .r-sep::before,.reveal .r-sep::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.18)}
+.reveal .r-grid{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+.reveal .r-esc-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-family:'Oswald';font-size:12px;letter-spacing:.5px;text-transform:uppercase;transition:background .15s,border-color .15s;min-width:80px}
+.reveal .r-esc-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.45)}
+.reveal .r-esc-btn span{font-size:18px}
 /* SIM BANNER */
 .sim-banner{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:150;background:linear-gradient(100deg,var(--azul-institucional),var(--azul-medio));color:#fff;border-radius:12px;padding:14px 22px;box-shadow:0 12px 34px rgba(7,30,68,.45);display:none;align-items:center;gap:14px;border:1px solid var(--dorado);max-width:92vw}
 .sim-banner.show{display:flex;animation:fade .3s}
@@ -266,6 +274,12 @@ footer b{color:var(--dorado-claro)}
 <script>/* ELESIC 2026 — Selector de Escenario (CE³) */
 const Q = DATA.questions;          // [[stem,A,B,C,D],...]
 const SC = DATA.scenarios;         // {S1:{...},...}
+const SC_URL = {
+  S1:  'ELESIC2026_Escenario1_CrisisGeopolitica (2).html',
+  S2:  'ELESIC2026_Escenario2_Ingobernabilidad (1).html',
+  S3:  'ELESIC2026_Escenario3_CrisisEnergetica (2).html',
+  S3A: 'ELESIC2026_Escenario3A_ConflictoLaboral (4).html'
+};
 const STEPS = DATA.steps;
 const KEYS = ["S1","S2","S3","S3A"];
 const LETTER_TO_KEY = {0:"S1",1:"S2",2:"S3",3:"S3A"};
@@ -362,6 +376,10 @@ function reveal(){
   const scoresHtml=KEYS.map(k=>`<span class="r-sc ${k===win?'win':''}">${SC[k].code}: ${sc[k]}/48</span>`).join('');
   const tie = winners.length>1
     ? `<div class="r-tie">⚠ Empate entre ${winners.map(k=>SC[k].code).join(' y ')}. Se asigna ${s.code} (primer criterio); el facilitador puede dirimir según la nota pedagógica.</div>` : '';
+  const otherBtns = KEYS.filter(k=>k!==win).map(k=>`
+    <button class="r-esc-btn" onclick="window.open('${SC_URL[k]}','_blank')">
+      <span>${SC[k].icon}</span>${SC[k].code}
+    </button>`).join('');
   document.getElementById('revealBox').innerHTML=`
     <div class="r-pre">Escenario asignado al equipo</div>
     <div class="r-icon">${s.icon}</div>
@@ -372,7 +390,10 @@ function reveal(){
     <div class="r-meta"><span>🧩 <b>${s.mods}</b></span><span>👤 Rol: <b>${s.rol}</b></span></div>
     <div class="r-scores">${scoresHtml}</div>
     ${tie}
-    <button class="r-close" onclick="closeReveal()">La crisis comienza · Cerrar</button>`;
+    <button class="r-launch-main" onclick="window.open('${SC_URL[win]}','_blank')">▶ Abrir ${s.code} — ${s.name}</button>
+    <div class="r-sep">o elige otro escenario</div>
+    <div class="r-grid">${otherBtns}</div>
+    <button class="r-close" style="margin-top:14px" onclick="closeReveal()">Cerrar</button>`;
   document.getElementById('revealBg').classList.add('show');
 }
 function closeReveal(){ document.getElementById('revealBg').classList.remove('show'); }
